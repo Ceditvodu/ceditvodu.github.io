@@ -2,8 +2,8 @@
 var dataCacheName = 'stp-data';
 var cacheName = 'stp-pwa';
 var filesToCache = [
-  '/',
-  '/index.html',
+  '/stp_game/',
+  '/stp_game/index.html',
 ];
 
 self.addEventListener('install', function(e) {
