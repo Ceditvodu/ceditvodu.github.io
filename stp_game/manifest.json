@@ -1,0 +1,18 @@
+{
+  "lang": "en",
+  "name": "spt-game",
+  "short_name": "spt",
+  "icons": [
+    {
+      "src": "st.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    }
+  ],
+  "scope": "https://ceditvodu.github.io/stp_game/",
+  "start_url": "https://ceditvodu.github.io/stp_game/index.html",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "theme_color": "aliceblue",
+  "background_color": "red"
+}
