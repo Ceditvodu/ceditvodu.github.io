@@ -2,8 +2,8 @@
 var dataCacheName = 'stp-data';
 var cacheName = 'stp-pwa';
 var filesToCache = [
-  '/stp_game/',
-  '/stp_game/index.html',
+  'https://ceditvodu.github.io/stp_game/',
+  'https://ceditvodu.github.io/stp_game/index.html',
 ];
 
 self.addEventListener('install', function(e) {
