@@ -17,4 +17,4 @@ var land = [
 	]
 ]
 var land_constr = new Worker("view/land_constr.js");
-land_constr.postBuild(land);
+land_constr.postBuild(land); 
