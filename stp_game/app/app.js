@@ -1,7 +1,6 @@
 window.onload = () => {
 	let name_of_container = 'main';
 	container = document.getElementById(name_of_container);
-	console.dir(container);
 	({
 		1:()=>{	programStart(name_of_container);}
 	}[+(container!=null)])();
@@ -14,7 +13,7 @@ function programStart (container) {
 	// of loading resources
 	let collector = new Worker("app/assets/collector.js");
 	collector.onmessage = (e) => {
-		console.dir(e.data);
+		//console.dir(e.data);
 	}
 
 	let section_runner = {
@@ -84,9 +83,10 @@ function programStart (container) {
 				'module':'section_gen',
 				'action':'add'
 			});
+			
+			callbacks.run(0, collectors_entity);
 		}
 
-		callbacks.run(0, collectors_entity);
 	}
 
 	function landConstrStart(callback_args, collectors_entity){
@@ -104,7 +104,6 @@ function programStart (container) {
 	}
 
 	function sayHello(callback_args){
-		console.log('hello');
 	}
 }
 
