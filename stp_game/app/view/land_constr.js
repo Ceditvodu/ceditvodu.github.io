@@ -12,8 +12,13 @@ this.addEventListener('message', (e)=>{
 	// 	return rend + tileStyle(tile);
 	// });
 	
-	console.dir(e.data);
-	tilesRunner(0, 0, e.data, rows);
+	//console.dir(e.data);
+	tiles_e = [
+		[{id:"1"},{id:"11"}],
+		[{id:"2"},{id:"21"}],
+		[{id:"3"},{id:"31"}],
+	]
+	tilesRunner(0, 0, tiles_e, rows);
 	render = e.data;
 	setTimeout(function () {
     this.postMessage(render);
@@ -26,42 +31,53 @@ function tilesRunner(i=0, j=0,tiles, rows){
 	let curent = 0;
 	//console.log(1, i, j);
 
+	array_check(tiles, 
+		()=>{
+			console.log(tiles);
+
+			setTimeout(function () {
+		    tilesRunner(i, j,tiles[i], rows);
+		  }, 3000);
+		},
+		()=>{
+			console.log(this);
+
+			i++;
+
+			// setTimeout(function () {
+		 //    tilesRunner(++i, j,tiles, rows);
+		 //  }, 3000);
+			
+		}
+	);
+
+	//console.log(rows);
+  return rows;
+}
+
+function array_check(array, callback_true, callback_false){
 	({
 		1:()=>{
-			({
-				1:()=>{
-					tilesRunner(i++, j=0, tiles[i], rows);
-					console.log(tiles[i], tiles.length, i);
-					//console.log(2, i, j);
-				},
-				0:()=>{
-					//console.log(3, i, j);
-				}
-			}[+((i) < tiles.length)])();
+			callback_true();
 		},
-
 		0:()=>{
-			rows.push('<path d="M'+curent+' '+(factor+curent)+'	L'+((factor*2)+curent)+' '+((factor*2)+curent)+' L'+((factor*4)+curent)+' '+(factor+curent)+' L'+((factor*2)+curent)+' L'+(curent)+' Z" id="tile_'+tiles[i].id+'" fill="'+tileColor(tiles[i].type)+'"></path>');
-			//console.log(4, i, j);
-
-			({
-				1:()=>{
-					curent++;
-					//console.log(tiles[j]);
-					//console.log(5, i, j);
-					tilesRunner(i,j++, tiles, rows);
-				},
-				0:()=>{
-					//console.log(6, i, j);
-				}
-			}[+((j) < tiles.length)])();
-
+			callback_false();
 		}
-	}[+(tiles[i].id == null )])();
-
-	console.log(rows);
-	return rows;
+	}[+(Array.isArray(array))])()
 }
+
+function array_counter(array, callback_true, callback_true){
+	({
+		1:()=>{
+			callback_true();
+		},
+		0:()=>{
+			callback_false();
+		}
+	}[+(Array.isArray(array))])()
+}
+
+			//rows.push('<path d="M'+curent+' '+(factor+curent)+'	L'+((factor*2)+curent)+' '+((factor*2)+curent)+' L'+((factor*4)+curent)+' '+(factor+curent)+' L'+((factor*2)+curent)+' L'+(curent)+' Z" id="tile_'+tiles[i].id+'" fill="'+tileColor(tiles[i].type)+'"></path>');
 
 function tileStyle(tile){
 	return `
