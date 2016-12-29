@@ -1,5 +1,7 @@
 this.addEventListener('message', (e)=>{
 	let map = e.data;
+
+	console.log(e.data.length);
 	let rows = [];
 	// let render = map.reduce((rend, row)=>{
 	// 	return rend.concat(row);
@@ -13,46 +15,54 @@ this.addEventListener('message', (e)=>{
 	// });
 	
 	//console.dir(e.data);
-	tiles_e = [
-		[{id:"1"},{id:"11"}],
-		[{id:"2"},{id:"21"}],
-		[{id:"3"},{id:"31"}],
-	]
-	tilesRunner(0, 0, tiles_e, rows);
-	render = e.data;
-	setTimeout(function () {
-    this.postMessage(render);
-  }, 3000);
-	
+
+	let wait_for_a_tiles = new Promise((resolve, reject)=>{
+
+		resolve(tilesRunner(0, 0, e.data, rows));
+
+		reject('bad');
+
+	});
+	wait_for_a_tiles.then((data)=>{
+		console.log(data);
+		console.log(rows);
+		render = data;
+		setTimeout(function () {
+	    this.postMessage(render);
+	  }, 3000);
+		
+	})
+
+
 });
 
 function tilesRunner(i=0, j=0,tiles, rows){
 	let factor = 16;
-	let curent = 0;
+	let current = 0;
 	//console.log(1, i, j);
 
 	array_check(tiles, 
 		()=>{
-			console.log(tiles);
 
-			setTimeout(function () {
-		    tilesRunner(i, j,tiles[i], rows);
-		  }, 3000);
+			array_counter(0, i, tiles[i], rows);
+
+			({
+				0:()=>{},
+				1:()=>{
+					tilesRunner(++i, 0,tiles, rows);
+				}
+			}[+(tiles[i] != undefined)])()
+
 		},
 		()=>{
-			console.log(this);
-
-			i++;
-
-			// setTimeout(function () {
-		 //    tilesRunner(++i, j,tiles, rows);
-		 //  }, 3000);
-			
 		}
 	);
 
-	//console.log(rows);
-  return rows;
+	console.log(rows);
+
+	return rows;
+  
+
 }
 
 function array_check(array, callback_true, callback_false){
@@ -63,26 +73,36 @@ function array_check(array, callback_true, callback_false){
 		0:()=>{
 			callback_false();
 		}
-	}[+(Array.isArray(array))])()
+	}[+(Array.isArray(array))])();
 }
 
-function array_counter(array, callback_true, callback_true){
+function array_counter(i=0, j, array, rows){
 	({
 		1:()=>{
-			callback_true();
+			rows.push(tileStyle(array[i], i, j));
+			array_counter(++i, j, array, rows)
 		},
 		0:()=>{
-			callback_false();
 		}
-	}[+(Array.isArray(array))])()
+	}[+((array != undefined)&&(i<array.length))])();
+
+
+	//return rows;
+
 }
 
 			//rows.push('<path d="M'+curent+' '+(factor+curent)+'	L'+((factor*2)+curent)+' '+((factor*2)+curent)+' L'+((factor*4)+curent)+' '+(factor+curent)+' L'+((factor*2)+curent)+' L'+(curent)+' Z" id="tile_'+tiles[i].id+'" fill="'+tileColor(tiles[i].type)+'"></path>');
 
-function tileStyle(tile){
-	return `
-		<path d="M0 16 L32 32 L64 16 L32 0 Z" id="tile_`+tile.id+`" fill="`+tileColor(tile.type)+`"></path>
-	`;
+function tileStyle(tile, x, y){
+	const center = (320/2);
+	const factor = 16;
+	x = (x*factor);
+	y = y*factor;
+	return '<path d="M'+(x+x-y-y+center)+' '+(factor+x+y)+
+								' L'+((factor*2)+x+x-y-y+center)+' '+((factor*2)+x+y)+
+								' L'+((factor*4)+x+x-y-y+center)+' '+(factor+x+y)+
+								' L'+((factor*2)+x+x-y-y+center)+' '+(x+y)+
+								' Z" id="tile_'+tile.id+'" fill="'+tileColor(tile.type)+'" stroke="black"></path>';
 }
 
 function tileColor(type){
@@ -92,6 +112,7 @@ function tileColor(type){
 	}[type];
 }
 
+// need some program informater
 function tileCenter(){
 
 }

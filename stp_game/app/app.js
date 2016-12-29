@@ -30,25 +30,49 @@ function programStart (container) {
 							{
 								"id": 2,
 								"type":"grass"
+							},
+							{
+								"id": 3,
+								"type":"grass"
 							}
 						],	
 						[
 							{
-								"id": 3,
+								"id": 4,
 								"type":"grass"
 							},
 							{
-								"id": 4,
+								"id": 5,
 								"type":"grass"
 							}
 						],
 						[
 							{
-								"id": 5,
+								"id": 4,
 								"type":"grass"
 							},
 							{
+								"id": 5,
+								"type":"grass"
+							}
+						],
+						[
+							{
+								"id": 4,
+								"type":"grass"
+							},
+							{
+								"id": 5,
+								"type":"grass"
+							}
+						],
+						[
+							{
 								"id": 6,
+								"type":"grass"
+							},
+							{
+								"id": 7,
 								"type":"grass"
 							}
 						]
@@ -68,6 +92,9 @@ function programStart (container) {
 				1:()=>{this.run(++i)},
 				0:()=>{}
 			}[+(i<this.sections.length-1)])();
+		},
+		getInfo: ()=>{
+
 		}
 	}
 
@@ -94,7 +121,8 @@ function programStart (container) {
 		land_constr.postMessage(callback_args.map);
 		land_constr.onmessage = (e) => {
 			let ground = document.getElementById('ground');
-			ground.innerHTML = e.data;
+			console.log(e.data.join(''));
+			ground.innerHTML = e.data.join('');
 
 			collectors_entity.postMessage({
 				'module':'lond_constr',
