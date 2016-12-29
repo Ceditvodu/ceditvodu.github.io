@@ -37,7 +37,7 @@ this.addEventListener('message', (e)=>{
 });
 
 function tilesRunner(i=0, j=0,tiles, rows){
-	let factor = 16;
+	let factor = 10;
 	let current = 0;
 	//console.log(1, i, j);
 
@@ -95,7 +95,7 @@ function array_counter(i=0, j, array, rows){
 
 function tileStyle(tile, x, y){
 	const center = (320/2);
-	const factor = 16;
+	const factor = 10;
 	x = (x*factor);
 	y = y*factor;
 	return '<path d="M'+(x+x-y-y+center)+' '+(factor+x+y)+
