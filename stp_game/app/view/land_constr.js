@@ -16,6 +16,8 @@ this.addEventListener('message', (e)=>{
 	
 	//console.dir(e.data);
 
+
+
 	let wait_for_a_tiles = new Promise((resolve, reject)=>{
 
 		resolve(tilesRunner(0, 0, e.data, rows));
@@ -91,8 +93,7 @@ function array_counter(i=0, j, array, rows){
 
 }
 
-			//rows.push('<path d="M'+curent+' '+(factor+curent)+'	L'+((factor*2)+curent)+' '+((factor*2)+curent)+' L'+((factor*4)+curent)+' '+(factor+curent)+' L'+((factor*2)+curent)+' L'+(curent)+' Z" id="tile_'+tiles[i].id+'" fill="'+tileColor(tiles[i].type)+'"></path>');
-
+function getCanvasInfo(){}
 function tileStyle(tile, x, y){
 	const center = (320/2);
 	const factor = 10;
