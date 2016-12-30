@@ -32,6 +32,14 @@ function programStart (container) {
 								"type":"grass"
 							},
 							{
+								"id": 2,
+								"type":"grass"
+							},
+							{
+								"id": 2,
+								"type":"grass"
+							},
+							{
 								"id": 3,
 								"type":"grass"
 							}
@@ -42,11 +50,13 @@ function programStart (container) {
 								"type":"grass"
 							},
 							{
-								"id": 5,
+								"id": 4,
 								"type":"grass"
-							}
-						],
-						[
+							},
+							{
+								"id": 4,
+								"type":"grass"
+							},
 							{
 								"id": 4,
 								"type":"grass"
@@ -62,11 +72,57 @@ function programStart (container) {
 								"type":"grass"
 							},
 							{
+								"id": 4,
+								"type":"grass"
+							},
+							{
+								"id": 4,
+								"type":"grass"
+							},
+							{
+								"id": 4,
+								"type":"grass"
+							},
+							{
 								"id": 5,
 								"type":"grass"
 							}
 						],
 						[
+							{
+								"id": 4,
+								"type":"grass"
+							},
+							{
+								"id": 4,
+								"type":"grass"
+							},
+							{
+								"id": 4,
+								"type":"grass"
+							},
+							{
+								"id": 4,
+								"type":"grass"
+							},
+							{
+								"id": 5,
+								"type":"grass"
+							}
+						],
+						[
+							{
+								"id": 6,
+								"type":"grass"
+							},
+							{
+								"id": 6,
+								"type":"grass"
+							},
+							{
+								"id": 6,
+								"type":"grass"
+							},
 							{
 								"id": 6,
 								"type":"grass"
