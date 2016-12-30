@@ -103,8 +103,9 @@ function getCanvasInfo(map){
 
 function tileStyle(tile, x, y, canvas_info){
 	const factor = 10;
-	const offset_x = tileCenter(canvas_info, factor).offset_x;
-	const offset_y = tileCenter(canvas_info, factor).offset_y;
+	const offsets = tileCenter(canvas_info, factor)
+	const offset_x = offsets.offset_x;
+	const offset_y = offsets.offset_y;
 
 	x = (x*factor);
 	y = y*factor;
@@ -129,13 +130,12 @@ function tileCenter(canvas_info, tiles_factor){
 	let width = canvas_info.width;
 	let height = canvas_info.height;
 
-	let tile_box_width = ((rows*tiles_factor*2)+(cols*tiles_factor*2))+(tiles_factor*2);
+	let tile_box_width = ((rows*tiles_factor*2) + (cols*tiles_factor*2));
 	let tile_box_offset_x = (width - tile_box_width)/2;
-	let offset_x = ((rows*tiles_factor*2)+tile_box_offset_x)-(tiles_factor*2);
+	let offset_x = ((rows*tiles_factor*2) + tile_box_offset_x) - (tiles_factor*2);
 
-	let tile_box_height = ((rows*tiles_factor)+(cols*tiles_factor))+(tiles_factor);
-	let tile_box_offset_y = (height - tile_box_height)/4;
-	let offset_y = ((rows*tiles_factor)+tile_box_offset_y)-(tiles_factor);
+	let tile_box_height = ((rows*tiles_factor) + (cols*tiles_factor));
+	let offset_y = (height - tile_box_height)/2;
 
 	console.log({
 		offset_x,
