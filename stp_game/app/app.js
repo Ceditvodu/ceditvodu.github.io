@@ -98,6 +98,26 @@ function programStart (container) {
 								"type":"grass"
 							},
 							{
+								"id": 5,
+								"type":"grass"
+							}
+						],
+						[
+							{
+								"id": 4,
+								"type":"grass"
+							},
+							{
+								"id": 4,
+								"type":"grass"
+							},
+							{
+								"id": 5,
+								"type":"grass"
+							}
+						],
+						[
+							{
 								"id": 4,
 								"type":"grass"
 							},
