@@ -83,10 +83,10 @@
 	var App = function (_React$Component) {
 	  _inherits(App, _React$Component);
 
-	  function App() {
+	  function App(props) {
 	    _classCallCheck(this, App);
 
-	    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+	    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 	  }
 
 	  _createClass(App, [{
@@ -94,7 +94,7 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
-	        { 'class': 'app' },
+	        { className: 'app' },
 	        _react2.default.createElement(_character2.default, { type: 'anger' }),
 	        _react2.default.createElement(_character2.default, { type: 'love' }),
 	        _react2.default.createElement(_character2.default, { type: 'hate' })
