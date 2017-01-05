@@ -6,6 +6,8 @@ export default class CharacterContainer extends React.Component {
   
   constructor(props) {
     super(props);
+
+    this.store = props.store;
   }
  
   render() {

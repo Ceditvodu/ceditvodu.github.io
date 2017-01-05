@@ -6,22 +6,23 @@ export default class Character extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {value: props.emotion, disabled: true};
+    this.state = {value: props.emotion};
     this.handleChange = this.handleChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    this.handleFocus = this.handleFocus.bind(this);
   }
 
   handleChange(event){
   	this.setState({value: event.target.value})
   }
 
-  handleClick(event){
-  	this.setState({disabled: false})
+
+  handleFocus(event){
+    this.setState(prevState=>({disabled: false}))
   }
  
   render() {
     return (
-    	<input type="text" value={this.state.value} disabled={this.state.disabled} onClick={this.handleClick} onChange={this.handleChange} />
+    	<input type="text" value={this.state.value} onChange={this.handleChange} onFocus={this.handleFocus} />
     );
   }
 }
