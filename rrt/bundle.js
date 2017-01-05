@@ -68,9 +68,9 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _character = __webpack_require__(184);
+	var _characterContainer = __webpack_require__(184);
 
-	var _character2 = _interopRequireDefault(_character);
+	var _characterContainer2 = _interopRequireDefault(_characterContainer);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -95,9 +95,7 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'app' },
-	        _react2.default.createElement(_character2.default, { type: 'anger' }),
-	        _react2.default.createElement(_character2.default, { type: 'love' }),
-	        _react2.default.createElement(_character2.default, { type: 'hate' })
+	        _react2.default.createElement(_characterContainer2.default, null)
 	      );
 	    }
 	  }]);
@@ -21818,6 +21816,67 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
+	var _character = __webpack_require__(185);
+
+	var _character2 = _interopRequireDefault(_character);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var CharacterContainer = function (_React$Component) {
+	  _inherits(CharacterContainer, _React$Component);
+
+	  function CharacterContainer(props) {
+	    _classCallCheck(this, CharacterContainer);
+
+	    return _possibleConstructorReturn(this, (CharacterContainer.__proto__ || Object.getPrototypeOf(CharacterContainer)).call(this, props));
+	  }
+
+	  _createClass(CharacterContainer, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'fieldset',
+	        null,
+	        _react2.default.createElement(_character2.default, { emotion: 'anger' }),
+	        _react2.default.createElement(_character2.default, { emotion: '' })
+	      );
+	    }
+	  }]);
+
+	  return CharacterContainer;
+	}(_react2.default.Component);
+
+	//ReactDOM.render(<Character type="anger"/>, document.getElementById('main'));
+
+
+	exports.default = CharacterContainer;
+
+/***/ },
+/* 185 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(33);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21832,18 +21891,28 @@
 	  function Character(props) {
 	    _classCallCheck(this, Character);
 
-	    return _possibleConstructorReturn(this, (Character.__proto__ || Object.getPrototypeOf(Character)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (Character.__proto__ || Object.getPrototypeOf(Character)).call(this, props));
+
+	    _this.state = { value: props.emotion, disabled: true };
+	    _this.handleChange = _this.handleChange.bind(_this);
+	    _this.handleClick = _this.handleClick.bind(_this);
+	    return _this;
 	  }
 
 	  _createClass(Character, [{
+	    key: 'handleChange',
+	    value: function handleChange(event) {
+	      this.setState({ value: event.target.value });
+	    }
+	  }, {
+	    key: 'handleClick',
+	    value: function handleClick(event) {
+	      this.setState({ disabled: false });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
-	      return _react2.default.createElement(
-	        'h1',
-	        null,
-	        'Character ',
-	        this.props.type
-	      );
+	      return _react2.default.createElement('input', { type: 'text', value: this.state.value, disabled: this.state.disabled, onClick: this.handleClick, onChange: this.handleChange });
 	    }
 	  }]);
 

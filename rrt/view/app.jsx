@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Character from './character.jsx';
+import CharacterContainer from './characterContainer/characterContainer.jsx';
  
 class App extends React.Component {
 
@@ -10,10 +10,8 @@ class App extends React.Component {
  
   render() {
     return (<div className="app">
-    				<Character type="anger" />
-    				<Character type="love" />
-    				<Character type="hate" />
-    			</div>)
+	    				<CharacterContainer/>
+	    			</div>)
   }
 }
  
