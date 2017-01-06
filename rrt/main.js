@@ -9,7 +9,7 @@ let store = createStore(characters);
 	
 render(	
 	<Provider store={store}>
-	    <CharacterContainer/>
-	  </Provider >, document.getElementById('main')
+	  <CharacterContainer/>
+	</Provider >, document.getElementById('main')
 )
  
