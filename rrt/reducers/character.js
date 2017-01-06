@@ -1,9 +1,13 @@
-export default (state = 0, action) => {
+export default (state = {}, action) => {
   switch (action.type) {
     case 'ADD':
-      return state + 1
+      return {
+        text: "cool"
+      }
     case 'DELETE':
-      return state - 1
+      return {
+        text: "not cool"
+      }
     default:
       return state
   }
