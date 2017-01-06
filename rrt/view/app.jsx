@@ -17,9 +17,9 @@ class App extends React.Component {
  
   render() {
     return (<div className="app" >
-	    				<CharacterContainer/>
+	    				<CharacterContainer store={store} />
 	    			</div>)
   }
 }
  
-ReactDOM.render(<App store={store} />, document.getElementById('main'));
+ReactDOM.render(<App />, document.getElementById('main'));
