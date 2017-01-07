@@ -1,13 +1,15 @@
+//import { add_char } from './actions'
+
 export default (state = {}, action) => {
   switch (action.type) {
     case 'ADD':
-      return {
-        text: "cool"
-      }
+      return Object.assign ({}, state, {
+                text: action.text
+            });
     case 'DELETE':
-      return {
-        text: "not cool"
-      }
+      return Object.assign ({}, state, {
+                text: action.text
+            });
     default:
       return state
   }
