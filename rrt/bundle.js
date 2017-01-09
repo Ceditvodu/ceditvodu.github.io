@@ -58,23 +58,53 @@
 
 	var _redux = __webpack_require__(194);
 
-	var _characterContainer = __webpack_require__(231);
+	var _App = __webpack_require__(231);
 
-	var _characterContainer2 = _interopRequireDefault(_characterContainer);
-
-	var _characters = __webpack_require__(233);
-
-	var _characters2 = _interopRequireDefault(_characters);
+	var _App2 = _interopRequireDefault(_App);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var store = (0, _redux.createStore)(_characters2.default);
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+	var initialState = ['Love', 'Anger'];
+
+	function characterList() {
+		var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+		var action = arguments[1];
+
+		if (action.type === 'ADD_CHARA') {
+			return [].concat(_toConsumableArray(state), [action.character_name]);
+		} else if (action.type === 'EDIT_CHARA') {
+			state[action.character_index] = action.character_name;
+			console.log(state);
+			return state;
+		} else if (action.type === 'CHANGE_CHARA') {
+			state[action.character_index] = action.character_name;
+			console.log(state);
+			var newstate = state.slice();
+			return newstate;
+		}
+		return state;
+	}
+
+	var store = (0, _redux.createStore)(characterList, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 	_reactDom2.default.render(_react2.default.createElement(
 		_reactRedux.Provider,
 		{ store: store },
-		_react2.default.createElement(_characterContainer2.default, null)
-	), document.getElementById('main'));
+		_react2.default.createElement(_App2.default, null)
+	), document.getElementsByClassName('root')[0]);
+
+	// store.subscribe(() => {
+	// 	console.log('subscribe', store.getState());
+	// })
+
+	// const addTrackBtn = document.getElementsByClassName('addTrack')[0];
+	// addTrackBtn.addEventListener('click', ()=>{
+	// 	const trackName = document.getElementsByClassName('trackInput')[0].value;
+	// 	console.log('trackName', trackName);
+	// 	store.dispatch({type: 'ADD_TRACK', characterList: trackName});
+	// })
 
 /***/ },
 /* 1 */
@@ -24296,13 +24326,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(32);
-
-	var _reactDom2 = _interopRequireDefault(_reactDom);
-
-	var _character = __webpack_require__(232);
-
-	var _character2 = _interopRequireDefault(_character);
+	var _reactRedux = __webpack_require__(183);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -24312,160 +24336,100 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var CharacterContainer = function (_React$Component) {
-	  _inherits(CharacterContainer, _React$Component);
+	var App = function (_Component) {
+	  _inherits(App, _Component);
 
-	  function CharacterContainer(props) {
-	    _classCallCheck(this, CharacterContainer);
+	  function App() {
+	    _classCallCheck(this, App);
 
-	    var _this = _possibleConstructorReturn(this, (CharacterContainer.__proto__ || Object.getPrototypeOf(CharacterContainer)).call(this, props));
-
-	    _this.store = props.store;
-	    return _this;
+	    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
 	  }
 
-	  _createClass(CharacterContainer, [{
+	  _createClass(App, [{
+	    key: 'addChara',
+
+
+	    // addChara(event){
+	    //   console.log(event.target.eventPhase)
+	    //   this.props.onAddChara(this.charaInput.value);
+	    //   this.charaInput.value = '';
+	    // }
+	    value: function addChara(event) {
+	      if (event.key == 'Enter') {
+	        this.props.onAddChara(this.charaInput.value);
+	        this.charaInput.value = '';
+	      }
+	    }
+	  }, {
+	    key: 'editChara',
+	    value: function editChara(index, event) {
+	      if (event.key == 'Enter') {
+	        this.props.onEditChara(event.target.value, index);
+	      }
+	    }
+	  }, {
+	    key: 'changeChara',
+	    value: function changeChara(index, event) {
+	      this.props.onChangeChara(event.target.value, index);
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var _this2 = this;
+
+	      console.log(this.props.testStore);
 	      return _react2.default.createElement(
-	        'fieldset',
+	        'div',
 	        null,
-	        _react2.default.createElement(_character2.default, { emotion: 'anger' }),
-	        _react2.default.createElement(_character2.default, { emotion: '' })
+	        _react2.default.createElement(
+	          'ul',
+	          null,
+	          this.props.testStore.map(function (chara, index) {
+	            return _react2.default.createElement(
+	              'li',
+	              { key: index },
+	              _react2.default.createElement('input', { type: 'text',
+	                value: chara,
+	                'data-index': index,
+	                ref: function ref(input) {
+	                  console.log(input);_this2.charaItem = input;
+	                },
+	                onKeyPress: _this2.editChara.bind(_this2, index),
+	                onChange: _this2.changeChara.bind(_this2, index) })
+	            );
+	          }),
+	          _react2.default.createElement(
+	            'li',
+	            null,
+	            _react2.default.createElement('input', { type: 'text', ref: function ref(input) {
+	                _this2.charaInput = input;
+	              }, onKeyPress: this.addChara.bind(this) })
+	          )
+	        )
 	      );
 	    }
 	  }]);
 
-	  return CharacterContainer;
-	}(_react2.default.Component);
+	  return App;
+	}(_react.Component);
 
-	//ReactDOM.render(<Character type="anger"/>, document.getElementById('main'));
-
-
-	exports.default = CharacterContainer;
-
-/***/ },
-/* 232 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactDom = __webpack_require__(32);
-
-	var _reactDom2 = _interopRequireDefault(_reactDom);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var Character = function (_React$Component) {
-	  _inherits(Character, _React$Component);
-
-	  function Character(props) {
-	    _classCallCheck(this, Character);
-
-	    var _this = _possibleConstructorReturn(this, (Character.__proto__ || Object.getPrototypeOf(Character)).call(this, props));
-
-	    _this.state = { value: props.emotion };
-	    _this.handleChange = _this.handleChange.bind(_this);
-	    _this.handleFocus = _this.handleFocus.bind(_this);
-	    return _this;
-	  }
-
-	  _createClass(Character, [{
-	    key: 'handleChange',
-	    value: function handleChange(event) {
-	      this.setState({ value: event.target.value });
+	exports.default = (0, _reactRedux.connect)(function (state) {
+	  return {
+	    testStore: state
+	  };
+	}, function (dispatch) {
+	  return {
+	    onAddChara: function onAddChara(charaName) {
+	      dispatch({ type: 'ADD_CHARA', character_name: charaName });
+	    },
+	    onEditChara: function onEditChara(charaName, charaIndex) {
+	      dispatch({ type: 'EDIT_CHARA', character_name: charaName, character_index: charaIndex });
+	    },
+	    onChangeChara: function onChangeChara(charaName, charaIndex) {
+	      dispatch({ type: 'CHANGE_CHARA', character_name: charaName, character_index: charaIndex });
 	    }
-	  }, {
-	    key: 'handleFocus',
-	    value: function handleFocus(event) {
-	      this.setState(function (prevState) {
-	        return { disabled: false };
-	      });
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement('input', { type: 'text', value: this.state.value, onChange: this.handleChange, onFocus: this.handleFocus });
-	    }
-	  }]);
-
-	  return Character;
-	}(_react2.default.Component);
-
-	//ReactDOM.render(<Character type="anger"/>, document.getElementById('main'));
-
-
-	exports.default = Character;
-
-/***/ },
-/* 233 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _redux = __webpack_require__(194);
-
-	var _character = __webpack_require__(234);
-
-	var _character2 = _interopRequireDefault(_character);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var characterApp = (0, _redux.combineReducers)({
-	  characterReducer: _character2.default
-	});
-
-	exports.default = characterApp;
-
-/***/ },
-/* 234 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	//import { add_char } from './actions'
-
-	exports.default = function () {
-	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-	  var action = arguments[1];
-
-	  switch (action.type) {
-	    case 'ADD':
-	      return Object.assign({}, state, {
-	        text: action.text
-	      });
-	    case 'DELETE':
-	      return Object.assign({}, state, {
-	        text: action.text
-	      });
-	    default:
-	      return state;
-	  }
-	};
+	  };
+	})(App);
 
 /***/ }
 /******/ ]);
