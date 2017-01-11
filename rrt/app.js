@@ -5,20 +5,36 @@ import ReactDOM from 'react-dom';
 
 class App extends Component{
 
-  // addChara(event){
-  //   console.log(event.target.eventPhase)
-  //   this.props.onAddChara(this.charaInput.value);
-  //   this.charaInput.value = '';
-  // }
-  // charaItemName = new Array();
-  // charaItemValue = new Array();
   constructor(props){
     super(props);
     this.charaItemName = new Array();
     this.charaItemValue = new Array();
+
+    this.validation = function (strip, ...validators) {
+      validators.map(function (element) {
+
+        return element(strip);
+      });
+      
+    }
+
+    this.isNotEmpty = function(strip){
+      if(strip != ""){
+        return true;
+      }else{
+        return false;
+      }
+    }
+    this.isNotEmpty = function(strip){
+      if(strip != ""){
+        return true;
+      }else{
+        return false;
+      }
+    }
   }
+
   addChara(event){
-    const input_name = ReactDOM
     if(event.key == 'Enter') { 
       this.props.onAddChara(this.charaInputName.value, this.charaInputValue.value);
       this.charaInputName.value = '';
@@ -37,23 +53,11 @@ class App extends Component{
     }
   }
 
-  // editCharaValue(index,event){
-  //   if(event.key == 'Enter') {
-  //     this.props.onEditChara(event.target.value, index);
-  //   }
-  // }
-
   changeChara(index, event){
-    console.log(index)
     this.props.onChangeChara(this.charaItemName[index].value, this.charaItemValue[index].value, index);
   }
 
-  // changeCharaValue(index,event){
-  //   this.props.onChangeChara(event.target.value, index);
-  // }
-
   deleteChara(index){
-    console.log(index)
     this.props.onDeleteChara(index);
   }
 
