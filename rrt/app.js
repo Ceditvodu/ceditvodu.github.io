@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'; 
+import ReactDOM from 'react-dom';
+
 
 class App extends Component{
 
@@ -8,26 +10,47 @@ class App extends Component{
   //   this.props.onAddChara(this.charaInput.value);
   //   this.charaInput.value = '';
   // }
+  // charaItemName = new Array();
+  // charaItemValue = new Array();
+  constructor(props){
+    super(props);
+    this.charaItemName = new Array();
+    this.charaItemValue = new Array();
+  }
   addChara(event){
+    const input_name = ReactDOM
     if(event.key == 'Enter') { 
-      this.props.onAddChara(this.charaInput.value);
-      this.charaInput.value = '';
+      this.props.onAddChara(this.charaInputName.value, this.charaInputValue.value);
+      this.charaInputName.value = '';
+      this.charaInputValue.value = '';
     }
   }
   addCharaB(){
-    this.props.onAddChara(this.charaInput.value);
-    this.charaInput.value = '';
+    this.props.onAddChara(this.charaInputName.value,this.charaInputValue.value);
+    this.charaInputName.value = '';
+    this.charaInputValue.value = '';
   }
 
-  editChara(index,event){
+  editChara(index, event){
     if(event.key == 'Enter') {
-      this.props.onEditChara(event.target.value, index);
+      this.props.onEditChara(this.charaItemName[index].value, this.charaItemValue[index].value, index);
     }
   }
 
-  changeChara(index,event){
-    this.props.onChangeChara(event.target.value, index);
+  // editCharaValue(index,event){
+  //   if(event.key == 'Enter') {
+  //     this.props.onEditChara(event.target.value, index);
+  //   }
+  // }
+
+  changeChara(index, event){
+    console.log(index)
+    this.props.onChangeChara(this.charaItemName[index].value, this.charaItemValue[index].value, index);
   }
+
+  // changeCharaValue(index,event){
+  //   this.props.onChangeChara(event.target.value, index);
+  // }
 
   deleteChara(index){
     console.log(index)
@@ -35,29 +58,30 @@ class App extends Component{
   }
 
   render(){
-    console.log(this.props.testStore)
+    console.log(this.props)
     return (
       <div>
         <ul>
-          {this.props.testStore.map((chara, index)=>
+          {this.props.characters.map((chara, index)=>
             <li key={index}>
               <input type="text" 
                         value={chara.name}
                         data-index={index} 
-                        ref={(input)=>{ console.log(input); this.charaItem = input;}} 
+                        ref={(name)=>{console.log(name);this.charaItemName[index] = name;}} 
                         onKeyPress={this.editChara.bind(this, index)}
                         onChange={this.changeChara.bind(this, index)}/>
               <input type="number"
-                      value={chara.value}
+                        value={chara.value}
                         data-index={index} 
-                        ref={(input)=>{ console.log(input); this.charaItem = input;}} 
+                        ref={(value)=>{this.charaItemValue[index] = value;}} 
                         onKeyPress={this.editChara.bind(this, index)}
                         onChange={this.changeChara.bind(this, index)}/>
               <button onClick={this.deleteChara.bind(this, index)}>x</button>
             </li>
           )}
           <li>
-            <input type="text" ref={(input)=>{this.charaInput = input}} onKeyPress={this.addChara.bind(this)} />
+            <input type="text" ref={(input)=>{this.charaInputName = input}} onKeyPress={this.addChara.bind(this)} />
+            <input type="number" max="100" ref={(input)=>{this.charaInputValue = input}} onKeyPress={this.addChara.bind(this)} />
             <button onClick={this.addCharaB.bind(this)}>+</button>
           </li>
         </ul>
@@ -68,17 +92,17 @@ class App extends Component{
 
 export default connect(
   state => ({
-    testStore: state
+    characters: state.characters
   }),
   dispatch => ({
-    onAddChara: (charaName) => {
-      dispatch({type: 'ADD_CHARA', character_name: charaName});
+    onAddChara: (charaInputName, charaInputValue) => {
+      dispatch({type: 'ADD_CHARA', character_name: charaInputName, character_value: charaInputValue});
     },
-    onEditChara: (charaName, charaIndex) => {
-      dispatch({type: 'EDIT_CHARA', character_name: charaName, character_index: charaIndex});
+    onEditChara: (charaName, charaValue, charaIndex) => {
+      dispatch({type: 'EDIT_CHARA', character_name: charaName, character_value: charaValue, character_index: charaIndex});
     },
-    onChangeChara: (charaName, charaIndex) => {
-      dispatch({type: 'CHANGE_CHARA', character_name: charaName, character_index: charaIndex});
+    onChangeChara: (charaName, charaValue, charaIndex) => {
+      dispatch({type: 'CHANGE_CHARA', character_name: charaName, character_value: charaValue, character_index: charaIndex});
     },
     onDeleteChara: (charaIndex) => {
       dispatch({type: 'DELETE_CHARA', character_index: charaIndex});
