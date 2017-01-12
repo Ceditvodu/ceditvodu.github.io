@@ -9,6 +9,7 @@ class App extends Component{
     super(props);
     this.charaItemName = new Array();
     this.charaItemValue = new Array();
+    this.valueDefault = 0;
 
     this.validation = function (strip, ...validators) {
       // validators.map(function (element) {
@@ -43,46 +44,170 @@ class App extends Component{
         return false;
       }
     }
+    this.isNotMoreThenHundred = function(strip){
+      if(strip <= 100){
+        return true;
+      }else{
+        return false;
+      }
+    }
+    this.isNotLessThenZero = function(strip){
+      if(strip >= 0){
+        return true;
+      }else{
+        return false;
+      }
+    }
   }
 
   addChara(event){
     if(event.key == 'Enter') { 
+
+      let name_is_valid = this.validation(this.charaInputName.value, 
+                                          this.isNotEmpty, 
+                                          this.isNotContainNumbers, 
+                                          this.isNotContainSpaces);
+      let value_is_valid = this.validation(this.charaInputValue.value, 
+                                          this.isNotMoreThenHundred, 
+                                          this.isNotLessThenZero, 
+                                          this.isNotEmpty);
+
+      if(name_is_valid){
+        this.charaInputName.className = '';
+      }else{
+        this.charaInputName.className = 'invalid';
+      }
+
+      if(value_is_valid){
+        this.charaInputValue.className = '';
+      }else{
+        this.charaInputValue.className = 'invalid';
+      }
+
+      if((name_is_valid)&&(value_is_valid)){
+        this.props.onAddChara(this.charaInputName.value, this.charaInputValue.value);
+        this.charaInputName.value = '';
+        this.charaInputValue.value = '';
+      }
+    }
+  }
+
+  addCharaB(){
+    let name_is_valid = this.validation(this.charaInputName.value, 
+                                        this.isNotEmpty, 
+                                        this.isNotContainNumbers, 
+                                        this.isNotContainSpaces);
+    let value_is_valid = this.validation(this.charaInputValue.value, 
+                                        this.isNotMoreThenHundred, 
+                                        this.isNotLessThenZero, 
+                                        this.isNotEmpty);
+
+    if(name_is_valid){
+      this.charaInputName.className = '';
+    }else{
+      this.charaInputName.className = 'invalid';
+    }
+
+    if(value_is_valid){
+      this.charaInputValue.className = '';
+    }else{
+      this.charaInputValue.className = 'invalid';
+    }
+
+    if((name_is_valid)&&(value_is_valid)){
       this.props.onAddChara(this.charaInputName.value, this.charaInputValue.value);
       this.charaInputName.value = '';
       this.charaInputValue.value = '';
     }
   }
-  addCharaB(){
-    this.props.onAddChara(this.charaInputName.value,this.charaInputValue.value);
-    this.charaInputName.value = '';
-    this.charaInputValue.value = '';
-  }
-
-  editChara(index, event){
-    if(event.key == 'Enter') {
-      if(this.validation(this.charaItemName[index].value, this.isNotEmpty, this.isNotContainNumbers, this.isNotContainSpaces)){
-        this.props.onEditChara(this.charaItemName[index].value, this.charaItemValue[index].value, index);
-      }
-    }
-  }
-
-  changeChara(index, event){
-    if(this.validation(this.charaItemName[index].value, this.isNotContainNumbers, this.isNotContainSpaces)){
-      this.props.onChangeChara(this.charaItemName[index].value, this.charaItemValue[index].value, index);
-    }
-  }
-
-  deleteChara(index){
-    this.props.onDeleteChara(index);
-  }
 
   blurChara(index, event){
-    if(!this.validation(event.target.value, this.isNotEmpty, this.isNotContainNumbers, this.isNotContainSpaces)){
+
+    let name_is_valid = this.validation(this.charaInputName.value, 
+                                        this.isNotEmpty, 
+                                        this.isNotContainNumbers, 
+                                        this.isNotContainSpaces);
+    let value_is_valid = this.validation(this.charaInputValue.value, 
+                                        this.isNotMoreThenHundred, 
+                                        this.isNotLessThenZero, 
+                                        this.isNotEmpty);
+
+    if(name_is_valid){
       this.charaInputName.className = '';
     }else{
       this.charaInputName.className = 'invalid';
     }
+
+    if(value_is_valid){
+      this.charaInputValue.className = '';
+    }else{
+      this.charaInputValue.className = 'invalid';
+    }
+
   }
+
+  changeInput(){
+    let name_is_valid = this.validation(this.charaInputName.value, 
+                                        this.isNotEmpty, 
+                                        this.isNotContainNumbers, 
+                                        this.isNotContainSpaces);
+    let value_is_valid = this.validation(this.charaInputValue.value, 
+                                        this.isNotMoreThenHundred, 
+                                        this.isNotLessThenZero, 
+                                        this.isNotEmpty);
+
+    if(name_is_valid){
+      this.charaInputName.className = '';
+    }else{
+      this.charaInputName.className = 'invalid';
+    }
+
+    if(value_is_valid){
+      this.charaInputValue.className = '';
+    }else{
+      this.charaInputValue.className = 'invalid';
+    }
+
+    // if((name_is_valid)&&(value_is_valid)){
+    //   this.props.onAddChara(this.charaInputName.value, this.charaInputValue.value);
+    //   this.charaInputName.value = '';
+    //   this.charaInputValue.value = '';
+    // }
+  }
+
+  editChara(index, event){
+    if(event.key == 'Enter') {
+
+      if(this.validation(this.charaItemName[index].value, 
+                          this.isNotEmpty, 
+                          this.isNotContainNumbers, 
+                          this.isNotContainSpaces)){
+
+        this.props.onEditChara(this.charaItemName[index].value, this.charaItemValue[index].value, index);
+
+      }
+
+    }
+  }
+
+  changeChara(index, event){
+
+    if(this.validation(this.charaItemName[index].value, 
+                        this.isNotContainNumbers, 
+                        this.isNotContainSpaces)){
+
+      this.props.onChangeChara(this.charaItemName[index].value, this.charaItemValue[index].value, index);
+
+    }
+
+  }
+
+  deleteChara(index){
+
+    this.props.onDeleteChara(index);
+
+  }
+
 
   render(){
     console.log(this.props)
@@ -93,6 +218,7 @@ class App extends Component{
             <li key={index}>
               <input type="text" 
                         value={chara.name}
+                        placeholder="Feature"
                         data-index={index} 
                         ref={(name)=>{console.log(name);this.charaItemName[index] = name;}} 
                         onKeyPress={this.editChara.bind(this, index)}
@@ -110,10 +236,13 @@ class App extends Component{
             <input type="text" 
               ref={(input)=>{this.charaInputName = input}} 
               onKeyPress={this.addChara.bind(this)} 
-              onBlur={this.blurChara.bind(this)}/>
+              onBlur={this.blurChara.bind(this)}
+              onChange={this.changeInput.bind(this)}/>
             <input type="number" max="100" 
               ref={(input)=>{this.charaInputValue = input}} 
-              onKeyPress={this.addChara.bind(this)} />
+              onKeyPress={this.addChara.bind(this)} 
+              onBlur={this.blurChara.bind(this)}
+              onChange={this.changeInput.bind(this)}/>
             <button onClick={this.addCharaB.bind(this)}>+</button>
           </li>
         </ul>
