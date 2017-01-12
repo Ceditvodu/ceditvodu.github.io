@@ -14,11 +14,9 @@ export default function characters (state = initialState, action) {
 	else if(action.type === 'EDIT_CHARA'){
 		state[action.character_index].name = action.character_name;
 		state[action.character_index].value = action.character_value;
-		console.log(state)
 		return state.slice(0);
 	}
 	else if(action.type === 'CHANGE_CHARA'){
-		console.log(state.slice(0))
 		state[action.character_index].name = action.character_name;
 		state[action.character_index].value = action.character_value;
 		return state.slice(0);

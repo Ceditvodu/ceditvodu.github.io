@@ -11,10 +11,14 @@ class App extends Component{
     this.charaItemValue = new Array();
 
     this.validation = function (strip, ...validators) {
-      validators.map(function (element) {
+      // validators.map(function (element) {
+      //   console.log(element(strip));
+      //   return element(strip);
+      // });
 
-        return element(strip);
-      });
+      return validators.reduce((a, b)=>{
+        return a && b(strip);
+      },true)
       
     }
 
@@ -25,8 +29,15 @@ class App extends Component{
         return false;
       }
     }
-    this.isNotEmpty = function(strip){
-      if(strip != ""){
+    this.isNotContainNumbers = function(strip){
+      if(!(/\d/.test(strip))){
+        return true;
+      }else{
+        return false;
+      }
+    }
+    this.isNotContainSpaces = function(strip){
+      if(!(/\s/.test(strip))){
         return true;
       }else{
         return false;
@@ -49,16 +60,28 @@ class App extends Component{
 
   editChara(index, event){
     if(event.key == 'Enter') {
-      this.props.onEditChara(this.charaItemName[index].value, this.charaItemValue[index].value, index);
+      if(this.validation(this.charaItemName[index].value, this.isNotEmpty, this.isNotContainNumbers, this.isNotContainSpaces)){
+        this.props.onEditChara(this.charaItemName[index].value, this.charaItemValue[index].value, index);
+      }
     }
   }
 
   changeChara(index, event){
-    this.props.onChangeChara(this.charaItemName[index].value, this.charaItemValue[index].value, index);
+    if(this.validation(this.charaItemName[index].value, this.isNotContainNumbers, this.isNotContainSpaces)){
+      this.props.onChangeChara(this.charaItemName[index].value, this.charaItemValue[index].value, index);
+    }
   }
 
   deleteChara(index){
     this.props.onDeleteChara(index);
+  }
+
+  blurChara(index, event){
+    if(!this.validation(event.target.value, this.isNotEmpty, this.isNotContainNumbers, this.isNotContainSpaces)){
+      this.charaInputName.className = '';
+    }else{
+      this.charaInputName.className = 'invalid';
+    }
   }
 
   render(){
@@ -84,8 +107,13 @@ class App extends Component{
             </li>
           )}
           <li>
-            <input type="text" ref={(input)=>{this.charaInputName = input}} onKeyPress={this.addChara.bind(this)} />
-            <input type="number" max="100" ref={(input)=>{this.charaInputValue = input}} onKeyPress={this.addChara.bind(this)} />
+            <input type="text" 
+              ref={(input)=>{this.charaInputName = input}} 
+              onKeyPress={this.addChara.bind(this)} 
+              onBlur={this.blurChara.bind(this)}/>
+            <input type="number" max="100" 
+              ref={(input)=>{this.charaInputValue = input}} 
+              onKeyPress={this.addChara.bind(this)} />
             <button onClick={this.addCharaB.bind(this)}>+</button>
           </li>
         </ul>
