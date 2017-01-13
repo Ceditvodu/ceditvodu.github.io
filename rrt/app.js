@@ -12,10 +12,6 @@ class App extends Component{
     this.valueDefault = 0;
 
     this.validation = function (strip, ...validators) {
-      // validators.map(function (element) {
-      //   console.log(element(strip));
-      //   return element(strip);
-      // });
 
       return validators.reduce((a, b)=>{
         return a && b(strip);
@@ -124,13 +120,11 @@ class App extends Component{
   blurChara(index, event){
 
     let name_is_valid = this.validation(this.charaInputName.value, 
-                                        this.isNotEmpty, 
                                         this.isNotContainNumbers, 
                                         this.isNotContainSpaces);
     let value_is_valid = this.validation(this.charaInputValue.value, 
                                         this.isNotMoreThenHundred, 
-                                        this.isNotLessThenZero, 
-                                        this.isNotEmpty);
+                                        this.isNotLessThenZero);
 
     if(name_is_valid){
       this.charaInputName.className = '';
@@ -147,14 +141,12 @@ class App extends Component{
   }
 
   changeInput(){
-    let name_is_valid = this.validation(this.charaInputName.value, 
-                                        this.isNotEmpty, 
+    let name_is_valid = this.validation(this.charaInputName.value,  
                                         this.isNotContainNumbers, 
                                         this.isNotContainSpaces);
     let value_is_valid = this.validation(this.charaInputValue.value, 
                                         this.isNotMoreThenHundred, 
-                                        this.isNotLessThenZero, 
-                                        this.isNotEmpty);
+                                        this.isNotLessThenZero);
 
     if(name_is_valid){
       this.charaInputName.className = '';
@@ -168,23 +160,34 @@ class App extends Component{
       this.charaInputValue.className = 'invalid';
     }
 
-    // if((name_is_valid)&&(value_is_valid)){
-    //   this.props.onAddChara(this.charaInputName.value, this.charaInputValue.value);
-    //   this.charaInputName.value = '';
-    //   this.charaInputValue.value = '';
-    // }
   }
 
   editChara(index, event){
     if(event.key == 'Enter') {
 
-      if(this.validation(this.charaItemName[index].value, 
-                          this.isNotEmpty, 
-                          this.isNotContainNumbers, 
-                          this.isNotContainSpaces)){
+      let name_is_valid = this.validation(this.charaItemName[index].value, 
+                                          this.isNotEmpty, 
+                                          this.isNotContainNumbers, 
+                                          this.isNotContainSpaces);
+      let value_is_valid = this.validation(this.charaItemValue[index].value, 
+                                          this.isNotMoreThenHundred, 
+                                          this.isNotLessThenZero, 
+                                          this.isNotEmpty);
 
+      if(name_is_valid){
+        this.charaItemName[index].className = '';
+      }else{
+        this.charaItemName[index].className = 'invalid';
+      }
+
+      if(value_is_valid){
+        this.charaItemValue[index].className = '';
+      }else{
+        this.charaItemValue[index].className = 'invalid';
+      }
+
+      if((name_is_valid)&&(value_is_valid)){
         this.props.onEditChara(this.charaItemName[index].value, this.charaItemValue[index].value, index);
-
       }
 
     }
@@ -192,13 +195,30 @@ class App extends Component{
 
   changeChara(index, event){
 
-    if(this.validation(this.charaItemName[index].value, 
-                        this.isNotContainNumbers, 
-                        this.isNotContainSpaces)){
+      let name_is_valid = this.validation(this.charaItemName[index].value, 
+                                          this.isNotEmpty, 
+                                          this.isNotContainNumbers, 
+                                          this.isNotContainSpaces);
+      let value_is_valid = this.validation(this.charaItemValue[index].value, 
+                                          this.isNotMoreThenHundred, 
+                                          this.isNotLessThenZero, 
+                                          this.isNotEmpty);
 
-      this.props.onChangeChara(this.charaItemName[index].value, this.charaItemValue[index].value, index);
+      // if(name_is_valid){
+      //   this.charaItemName[index].className = '';
+      // }else{
+      //   this.charaItemName[index].className = 'invalid';
+      // }
 
-    }
+      // if(value_is_valid){
+      //   this.charaItemValue[index].className = '';
+      // }else{
+      //   this.charaItemValue[index].className = 'invalid';
+      // }
+
+      if((name_is_valid)&&(value_is_valid)){
+        this.props.onEditChara(this.charaItemName[index].value, this.charaItemValue[index].value, index);
+      }
 
   }
 
@@ -210,7 +230,7 @@ class App extends Component{
 
 
   render(){
-    console.log(this.props)
+    //console.log(this.props)
     return (
       <div>
         <ul>
@@ -220,7 +240,7 @@ class App extends Component{
                         value={chara.name}
                         placeholder="Feature"
                         data-index={index} 
-                        ref={(name)=>{console.log(name);this.charaItemName[index] = name;}} 
+                        ref={(name)=>{this.charaItemName[index] = name;}} 
                         onKeyPress={this.editChara.bind(this, index)}
                         onChange={this.changeChara.bind(this, index)}/>
               <input type="number"
