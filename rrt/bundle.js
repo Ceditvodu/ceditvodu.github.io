@@ -23933,21 +23933,19 @@
 	      var name_is_valid = this.validation(this.charaItemName[index].value, this.isNotEmpty, this.isNotContainNumbers, this.isNotContainSpaces);
 	      var value_is_valid = this.validation(this.charaItemValue[index].value, this.isNotMoreThenHundred, this.isNotLessThenZero, this.isNotEmpty);
 
-	      // if(name_is_valid){
-	      //   this.charaItemName[index].className = '';
-	      // }else{
-	      //   this.charaItemName[index].className = 'invalid';
-	      // }
-
-	      // if(value_is_valid){
-	      //   this.charaItemValue[index].className = '';
-	      // }else{
-	      //   this.charaItemValue[index].className = 'invalid';
-	      // }
-
 	      if (name_is_valid && value_is_valid) {
 	        this.props.onEditChara(this.charaItemName[index].value, this.charaItemValue[index].value, index);
 	      }
+	    }
+	  }, {
+	    key: 'onMoveUpChara',
+	    value: function onMoveUpChara(index) {
+	      this.props.onMoveUpChara(index);
+	    }
+	  }, {
+	    key: 'onMoveDownChara',
+	    value: function onMoveDownChara(index) {
+	      this.props.onMoveDownChara(index);
 	    }
 	  }, {
 	    key: 'deleteChara',
@@ -23971,6 +23969,16 @@
 	            return _react2.default.createElement(
 	              'li',
 	              { key: index },
+	              _react2.default.createElement(
+	                'button',
+	                { onClick: _this2.onMoveUpChara.bind(_this2, index), disabled: index == 0 ? true : false },
+	                '^'
+	              ),
+	              _react2.default.createElement(
+	                'button',
+	                { onClick: _this2.onMoveDownChara.bind(_this2, index), disabled: index == _this2.props.characters.length - 1 ? true : false },
+	                'v'
+	              ),
 	              _react2.default.createElement('input', { type: 'text',
 	                value: chara.name,
 	                placeholder: 'Feature',
@@ -24043,6 +24051,12 @@
 	    },
 	    onDeleteChara: function onDeleteChara(charaIndex) {
 	      dispatch({ type: 'DELETE_CHARA', character_index: charaIndex });
+	    },
+	    onMoveUpChara: function onMoveUpChara(charaIndex) {
+	      dispatch({ type: 'MOVE_UP_CHARA', character_index: charaIndex });
+	    },
+	    onMoveDownChara: function onMoveDownChara(charaIndex) {
+	      dispatch({ type: 'MOVE_DOWN_CHARA', character_index: charaIndex });
 	    }
 	  };
 	})(App);
@@ -24102,6 +24116,26 @@
 			state.splice(action.character_index, 1);
 			var newstate = state.slice(0);
 			return newstate;
+		} else if (action.type === 'MOVE_UP_CHARA') {
+			if (action.character_index != 0) {
+				var previouse_item = state[action.character_index - 1];
+				var current_item = state[action.character_index];
+
+				state[action.character_index - 1] = current_item;
+				state[action.character_index] = previouse_item;
+			}
+			var _newstate = state.slice(0);
+			return _newstate;
+		} else if (action.type === 'MOVE_DOWN_CHARA') {
+			if (action.character_index < state.length - 1) {
+				var _previouse_item = state[action.character_index + 1];
+				var _current_item = state[action.character_index];
+
+				state[action.character_index + 1] = _current_item;
+				state[action.character_index] = _previouse_item;
+			}
+			var _newstate2 = state.slice(0);
+			return _newstate2;
 		}
 		return state;
 	}

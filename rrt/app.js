@@ -204,22 +204,18 @@ class App extends Component{
                                           this.isNotLessThenZero, 
                                           this.isNotEmpty);
 
-      // if(name_is_valid){
-      //   this.charaItemName[index].className = '';
-      // }else{
-      //   this.charaItemName[index].className = 'invalid';
-      // }
-
-      // if(value_is_valid){
-      //   this.charaItemValue[index].className = '';
-      // }else{
-      //   this.charaItemValue[index].className = 'invalid';
-      // }
-
       if((name_is_valid)&&(value_is_valid)){
         this.props.onEditChara(this.charaItemName[index].value, this.charaItemValue[index].value, index);
       }
 
+  }
+
+  onMoveUpChara(index){
+    this.props.onMoveUpChara(index);
+  }
+
+  onMoveDownChara(index){
+    this.props.onMoveDownChara(index);
   }
 
   deleteChara(index){
@@ -236,6 +232,8 @@ class App extends Component{
         <ul>
           {this.props.characters.map((chara, index)=>
             <li key={index}>
+              <button onClick={this.onMoveUpChara.bind(this, index)} disabled={(index==0)? true : false}>^</button>
+              <button onClick={this.onMoveDownChara.bind(this, index)} disabled={(index==(this.props.characters.length-1))? true : false}>v</button>
               <input type="text" 
                         value={chara.name}
                         placeholder="Feature"
@@ -287,6 +285,12 @@ export default connect(
     },
     onDeleteChara: (charaIndex) => {
       dispatch({type: 'DELETE_CHARA', character_index: charaIndex});
+    },
+    onMoveUpChara: (charaIndex) =>{
+      dispatch({type: 'MOVE_UP_CHARA', character_index: charaIndex});
+    },
+    onMoveDownChara: (charaIndex) =>{
+      dispatch({type: 'MOVE_DOWN_CHARA', character_index: charaIndex});
     }
   })
 )(App);

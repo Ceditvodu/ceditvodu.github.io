@@ -26,5 +26,29 @@ export default function characters (state = initialState, action) {
 		let newstate = state.slice(0);
 		return newstate;
 	}
+	else if(action.type === 'MOVE_UP_CHARA'){
+		if(action.character_index != 0){
+			let previouse_item = state[action.character_index-1];
+			let current_item = state[action.character_index];
+
+			state[action.character_index-1] = current_item;
+			state[action.character_index] = previouse_item;
+
+		}
+		let newstate = state.slice(0);
+		return newstate;
+	}
+	else if(action.type === 'MOVE_DOWN_CHARA'){
+		if(action.character_index < (state.length-1)){
+			let previouse_item = state[action.character_index+1];
+			let current_item = state[action.character_index];
+
+			state[action.character_index+1] = current_item;
+			state[action.character_index] = previouse_item;
+
+		}
+		let newstate = state.slice(0);
+		return newstate;
+	}
 	return state;
 }
