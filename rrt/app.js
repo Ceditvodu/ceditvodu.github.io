@@ -9,7 +9,7 @@ class App extends Component{
     super(props);
     this.charaItemName = new Array();
     this.charaItemValue = new Array();
-    this.valueDefault = 0;
+
 
     this.validation = function (strip, ...validators) {
 
@@ -229,6 +229,28 @@ class App extends Component{
     //console.log(this.props)
     return (
       <div>
+        <svg width="100" height="100" ref={(svg)=>{
+            this.container = svg
+            console.log(this.container,this.container.clientWidth);
+            this.centerX = this.container.clientWidth/2;
+            this.centerY = this.container.clientHeight/2;
+
+            this.points_count = this.props.characters.length-1;
+
+            console.log(this.centerX)
+
+          }}>
+          {this.props.characters.map((chara, index)=>
+            <g key={index}>
+              {()=>{return this.centerX}}
+              <circle cx="50" cy="50" r="40" stroke="green" strokeWidth="4" fill="yellow" />
+            </g>
+            )
+          }
+          <g>
+            <circle  r="10" stroke="green" strokeWidth="1" fill="black" />
+          </g>
+        </svg>
         <ul>
           {this.props.characters.map((chara, index)=>
             <li key={index}>

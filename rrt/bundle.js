@@ -23763,7 +23763,6 @@
 
 	    _this.charaItemName = new Array();
 	    _this.charaItemValue = new Array();
-	    _this.valueDefault = 0;
 
 	    _this.validation = function (strip) {
 	      for (var _len = arguments.length, validators = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
@@ -23962,6 +23961,34 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
+	        _react2.default.createElement(
+	          'svg',
+	          { width: '100', height: '100', ref: function ref(svg) {
+	              _this2.container = svg;
+	              console.log(_this2.container, _this2.container.clientWidth);
+	              _this2.centerX = _this2.container.clientWidth / 2;
+	              _this2.centerY = _this2.container.clientHeight / 2;
+
+	              _this2.points_count = _this2.props.characters.length - 1;
+
+	              console.log(_this2.centerX);
+	            } },
+	          this.props.characters.map(function (chara, index) {
+	            return _react2.default.createElement(
+	              'g',
+	              { key: index },
+	              function () {
+	                return _this2.centerX;
+	              },
+	              _react2.default.createElement('circle', { cx: '50', cy: '50', r: '40', stroke: 'green', strokeWidth: '4', fill: 'yellow' })
+	            );
+	          }),
+	          _react2.default.createElement(
+	            'g',
+	            null,
+	            _react2.default.createElement('circle', { r: '10', stroke: 'green', strokeWidth: '1', fill: 'black' })
+	          )
+	        ),
 	        _react2.default.createElement(
 	          'ul',
 	          null,
