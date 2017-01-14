@@ -1,6 +1,7 @@
 const initialState = [
 	{name:'Love', value: 100},
-	{name:'Anger', value: 0}
+	{name:'Anger', value: 0},
+	{name:'Hate', value: 0}
 ]
 
 
