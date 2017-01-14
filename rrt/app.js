@@ -10,6 +10,38 @@ class App extends Component{
     this.charaItemName = new Array();
     this.charaItemValue = new Array();
 
+    this.height = 100;
+    this.width = 100;
+
+    this.centerX = this.width/2;
+    this.centerY = this.height/2;
+    this.radius = this.height/2;
+    this.startX = 0+this.centerX;
+    this.startY = 0;
+
+    this.points_count = this.props.characters.length-1;
+
+    this.sum_of_angels = 180*(this.points_count-2);
+    this.one_angel = this.sum_of_angels/this.points_count;
+
+    this.ima_cg_angels = this.one_angel/2;
+    this.ima_angel = Math.pi - (2*this.ima_cg_angels)
+
+
+    this.getPointX= (i)=>{
+      if(i == 0){
+        return this.startX;
+      }
+      return this.centerX
+    }
+    this.getPointY= (i)=>{
+      if(i == 0){
+        return this.startY;
+      }
+      return this.centerY
+    }
+
+
 
     this.validation = function (strip, ...validators) {
 
@@ -229,26 +261,15 @@ class App extends Component{
     //console.log(this.props)
     return (
       <div>
-        <svg width="100" height="100" ref={(svg)=>{
-            this.container = svg
-            console.log(this.container,this.container.clientWidth);
-            this.centerX = this.container.clientWidth/2;
-            this.centerY = this.container.clientHeight/2;
-
-            this.points_count = this.props.characters.length-1;
-
-            console.log(this.centerX)
-
-          }}>
+        <svg width={this.width} height={this.height} ref={(svg)=>{}}>
           {this.props.characters.map((chara, index)=>
             <g key={index}>
-              {()=>{return this.centerX}}
-              <circle cx="50" cy="50" r="40" stroke="green" strokeWidth="4" fill="yellow" />
+              <circle cx={this.getPointX(index)} cy={this.getPointY(index)} r="5" stroke="green" strokeWidth="4" fill="yellow" />
             </g>
             )
           }
           <g>
-            <circle  r="10" stroke="green" strokeWidth="1" fill="black" />
+            <circle cx={50} cy={50}  r="10" stroke="green" strokeWidth="1" fill="black" />
           </g>
         </svg>
         <ul>

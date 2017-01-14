@@ -24332,6 +24332,36 @@
 	    _this.charaItemName = new Array();
 	    _this.charaItemValue = new Array();
 
+	    _this.height = 100;
+	    _this.width = 100;
+
+	    _this.centerX = _this.width / 2;
+	    _this.centerY = _this.height / 2;
+	    _this.radius = _this.height / 2;
+	    _this.startX = 0 + _this.centerX;
+	    _this.startY = 0;
+
+	    _this.points_count = _this.props.characters.length - 1;
+
+	    _this.sum_of_angels = 180 * (_this.points_count - 2);
+	    _this.one_angel = _this.sum_of_angels / _this.points_count;
+
+	    _this.ima_cg_angels = _this.one_angel / 2;
+	    _this.ima_angel = Math.pi - 2 * _this.ima_cg_angels;
+
+	    _this.getPointX = function (i) {
+	      if (i == 0) {
+	        return _this.startX;
+	      }
+	      return _this.centerX;
+	    };
+	    _this.getPointY = function (i) {
+	      if (i == 0) {
+	        return _this.startY;
+	      }
+	      return _this.centerY;
+	    };
+
 	    _this.validation = function (strip) {
 	      for (var _len = arguments.length, validators = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
 	        validators[_key - 1] = arguments[_key];
@@ -24531,30 +24561,18 @@
 	        null,
 	        _react2.default.createElement(
 	          'svg',
-	          { width: '100', height: '100', ref: function ref(svg) {
-	              _this2.container = svg;
-	              console.log(_this2.container, _this2.container.clientWidth);
-	              _this2.centerX = _this2.container.clientWidth / 2;
-	              _this2.centerY = _this2.container.clientHeight / 2;
-
-	              _this2.points_count = _this2.props.characters.length - 1;
-
-	              console.log(_this2.centerX);
-	            } },
+	          { width: this.width, height: this.height, ref: function ref(svg) {} },
 	          this.props.characters.map(function (chara, index) {
 	            return _react2.default.createElement(
 	              'g',
 	              { key: index },
-	              function () {
-	                return _this2.centerX;
-	              },
-	              _react2.default.createElement('circle', { cx: '50', cy: '50', r: '40', stroke: 'green', strokeWidth: '4', fill: 'yellow' })
+	              _react2.default.createElement('circle', { cx: _this2.getPointX(index), cy: _this2.getPointY(index), r: '5', stroke: 'green', strokeWidth: '4', fill: 'yellow' })
 	            );
 	          }),
 	          _react2.default.createElement(
 	            'g',
 	            null,
-	            _react2.default.createElement('circle', { r: '10', stroke: 'green', strokeWidth: '1', fill: 'black' })
+	            _react2.default.createElement('circle', { cx: 50, cy: 50, r: '10', stroke: 'green', strokeWidth: '1', fill: 'black' })
 	          )
 	        ),
 	        _react2.default.createElement(
@@ -24691,7 +24709,7 @@
 
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
-	var initialState = [{ name: 'Love', value: 100 }, { name: 'Anger', value: 0 }, { name: 'Hate', value: 0 }];
+	var initialState = [{ name: 'Love', value: 100 }, { name: 'Anger', value: 0 }, { name: 'Anger', value: 0 }];
 
 	function characters() {
 		var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
