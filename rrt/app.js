@@ -10,8 +10,8 @@ class App extends Component{
     this.charaItemName = new Array();
     this.charaItemValue = new Array();
 
-    this.height = 100;
-    this.width = 100;
+    this.height = 200;
+    this.width = 320;
 
     this.centerX = this.width/2;
     this.centerY = this.height/2;
@@ -26,24 +26,24 @@ class App extends Component{
         return [
           {
             x: (0+cx),
-            y: 0
+            y: 20
           }
         ]
       }else if(count==2){
         return [
           {
             x: (0+cx),
-            y: 0
+            y: 20
           },
           {
             x: (0+cx),
-            y: (cy*2)
+            y: (cy*2-20)
           }
         ]
       }else{
         let points = [];
-        var current_x = 50;
-        var current_y = 0;
+        var current_x = cx;
+        var current_y = 20;
         let as_sum = 180*(count-2);
         let a = as_sum/count;
         let cg_a = a/2;
@@ -51,8 +51,6 @@ class App extends Component{
         cc_a = cc_a*Math.PI/180;
         let cos_a = (Math.cos(cc_a));
         let sin_a = (Math.sin(cc_a));
-        console.log(cc_a)
-
 
         for(var i=0; i<count; i++){
           points.push({
@@ -71,7 +69,6 @@ class App extends Component{
 
           current_x = ((c_x-cx)*cos_a)-((c_y-cy)*sin_a)+cx;
           current_y = ((c_x-cx)*sin_a)+((c_y-cy)*cos_a)+cy; 
-          console.log(current_x,current_y, sin_a, cos_a)
 
         }
 
@@ -320,6 +317,39 @@ class App extends Component{
     return (
       <div>
         <svg width={this.width} height={this.height} ref={(svg)=>{}}>
+          <g>
+            <path d={
+              this.props.characters.reduce((prev, chara, index)=>{
+                  let polygon = "M8 48 L56 48 L32 12 Z";
+                  console.log(this.props.characters.length, index);
+                  if(index == 0){
+                    return prev+"M "+this.getPoints(this.props.characters.length, this.width/2, this.height/2)[index].x
+                              +" "+this.getPoints(this.props.characters.length, this.width/2, this.height/2)[index].y
+                              +" ";
+                  }else if(index == (this.props.characters.length-1)){
+                    return prev+"L "+this.getPoints(this.props.characters.length, this.width/2, this.height/2)[index].x
+                              +" "+this.getPoints(this.props.characters.length, this.width/2, this.height/2)[index].y
+                              +" Z";
+                  }else{
+                    return prev+"L "+this.getPoints(this.props.characters.length, this.width/2, this.height/2)[index].x
+                              +" "+this.getPoints(this.props.characters.length, this.width/2, this.height/2)[index].y
+                              +" "; 
+                  }
+                  return prev+"";
+                }, ""
+
+              )
+            } style={{fill:"rgba(100,0,100,0.5)", stroke:"rgba(100,0,100,1)" }}></path>
+          </g>
+          <g>
+            {this.props.characters.map((chara, index)=>
+              <line x1={this.width/2} 
+                    y1={this.height/2} 
+                    x2={this.getPoints(this.props.characters.length, this.width/2, this.height/2)[index].x}
+                    y2={this.getPoints(this.props.characters.length, this.width/2, this.height/2)[index].y} 
+                    style={{stroke:"rgba(100,0,100,1)"}}></line>
+            )}
+          </g>
           {this.props.characters.map((chara, index)=>
             <g key={index}>
               <circle cx={this.getPoints(this.props.characters.length, this.width/2, this.height/2)[index].x} 
@@ -329,7 +359,7 @@ class App extends Component{
             )
           }
           <g>
-            <circle cx={50} cy={50}  r="10" stroke="green" strokeWidth="1" fill="black" />
+            <circle cx={this.width/2} cy={this.height/2}  r="10" stroke="green" strokeWidth="1" fill="black" />
           </g>
         </svg>
         <ul>

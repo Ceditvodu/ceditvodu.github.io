@@ -24332,8 +24332,8 @@
 	    _this.charaItemName = new Array();
 	    _this.charaItemValue = new Array();
 
-	    _this.height = 100;
-	    _this.width = 100;
+	    _this.height = 200;
+	    _this.width = 320;
 
 	    _this.centerX = _this.width / 2;
 	    _this.centerY = _this.height / 2;
@@ -24346,20 +24346,20 @@
 	      if (count == 1) {
 	        return [{
 	          x: 0 + cx,
-	          y: 0
+	          y: 20
 	        }];
 	      } else if (count == 2) {
 	        return [{
 	          x: 0 + cx,
-	          y: 0
+	          y: 20
 	        }, {
 	          x: 0 + cx,
-	          y: cy * 2
+	          y: cy * 2 - 20
 	        }];
 	      } else {
 	        var points = [];
-	        var current_x = 50;
-	        var current_y = 0;
+	        var current_x = cx;
+	        var current_y = 20;
 	        var as_sum = 180 * (count - 2);
 	        var a = as_sum / count;
 	        var cg_a = a / 2;
@@ -24367,7 +24367,6 @@
 	        cc_a = cc_a * Math.PI / 180;
 	        var cos_a = Math.cos(cc_a);
 	        var sin_a = Math.sin(cc_a);
-	        console.log(cc_a);
 
 	        for (var i = 0; i < count; i++) {
 	          points.push({
@@ -24386,7 +24385,6 @@
 
 	          current_x = (c_x - cx) * cos_a - (c_y - cy) * sin_a + cx;
 	          current_y = (c_x - cx) * sin_a + (c_y - cy) * cos_a + cy;
-	          console.log(current_x, current_y, sin_a, cos_a);
 	        }
 
 	        return points;
@@ -24610,6 +24608,33 @@
 	        _react2.default.createElement(
 	          'svg',
 	          { width: this.width, height: this.height, ref: function ref(svg) {} },
+	          _react2.default.createElement(
+	            'g',
+	            null,
+	            _react2.default.createElement('path', { d: this.props.characters.reduce(function (prev, chara, index) {
+	                var polygon = "M8 48 L56 48 L32 12 Z";
+	                console.log(_this2.props.characters.length, index);
+	                if (index == 0) {
+	                  return prev + "M " + _this2.getPoints(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].x + " " + _this2.getPoints(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].y + " ";
+	                } else if (index == _this2.props.characters.length - 1) {
+	                  return prev + "L " + _this2.getPoints(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].x + " " + _this2.getPoints(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].y + " Z";
+	                } else {
+	                  return prev + "L " + _this2.getPoints(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].x + " " + _this2.getPoints(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].y + " ";
+	                }
+	                return prev + "";
+	              }, ""), style: { fill: "rgba(100,0,100,0.5)", stroke: "rgba(100,0,100,1)" } })
+	          ),
+	          _react2.default.createElement(
+	            'g',
+	            null,
+	            this.props.characters.map(function (chara, index) {
+	              return _react2.default.createElement('line', { x1: _this2.width / 2,
+	                y1: _this2.height / 2,
+	                x2: _this2.getPoints(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].x,
+	                y2: _this2.getPoints(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].y,
+	                style: { stroke: "rgba(100,0,100,1)" } });
+	            })
+	          ),
 	          this.props.characters.map(function (chara, index) {
 	            return _react2.default.createElement(
 	              'g',
@@ -24622,7 +24647,7 @@
 	          _react2.default.createElement(
 	            'g',
 	            null,
-	            _react2.default.createElement('circle', { cx: 50, cy: 50, r: '10', stroke: 'green', strokeWidth: '1', fill: 'black' })
+	            _react2.default.createElement('circle', { cx: this.width / 2, cy: this.height / 2, r: '10', stroke: 'green', strokeWidth: '1', fill: 'black' })
 	          )
 	        ),
 	        _react2.default.createElement(
