@@ -24338,16 +24338,64 @@
 	    _this.centerX = _this.width / 2;
 	    _this.centerY = _this.height / 2;
 	    _this.radius = _this.height / 2;
-	    _this.startX = 0 + _this.centerX;
-	    _this.startY = 0;
 
-	    _this.points_count = _this.props.characters.length - 1;
+	    _this.points_count = _this.props.characters.length;
 
-	    _this.sum_of_angels = 180 * (_this.points_count - 2);
-	    _this.one_angel = _this.sum_of_angels / _this.points_count;
+	    _this.getPoints = function (count, cx, cy) {
 
-	    _this.ima_cg_angels = _this.one_angel / 2;
-	    _this.ima_angel = Math.pi - 2 * _this.ima_cg_angels;
+	      if (count == 1) {
+	        return [{
+	          x: 0 + cx,
+	          y: 0
+	        }];
+	      } else if (count == 2) {
+	        return [{
+	          x: 0 + cx,
+	          y: 0
+	        }, {
+	          x: 0 + cx,
+	          y: cy * 2
+	        }];
+	      } else {
+	        var points = [];
+	        var current_x = 50;
+	        var current_y = 0;
+	        var as_sum = 180 * (count - 2);
+	        var a = as_sum / count;
+	        var cg_a = a / 2;
+	        var cc_a = 180 - cg_a * 2;
+	        cc_a = cc_a * Math.PI / 180;
+	        var cos_a = Math.cos(cc_a);
+	        var sin_a = Math.sin(cc_a);
+	        console.log(cc_a);
+
+	        for (var i = 0; i < count; i++) {
+	          points.push({
+	            x: current_x,
+	            y: current_y
+	          });
+
+	          // current_x = cx + vec_x * cos_a - vec_y * sin_a;
+	          // current_y = cy + vec_x * sin_a - vec_y * cos_a;
+
+	          var c_x = current_x;
+	          var c_y = current_y;
+
+	          // X = x0 + (x - x0) * cos(a) - (y - y0) * sin(a);
+	          // Y = y0 + (y - y0) * cos(a) + (x - x0) * sin(a);
+
+	          current_x = (c_x - cx) * cos_a - (c_y - cy) * sin_a + cx;
+	          current_y = (c_x - cx) * sin_a + (c_y - cy) * cos_a + cy;
+	          console.log(current_x, current_y, sin_a, cos_a);
+	        }
+
+	        return points;
+	      }
+	    };
+
+	    _this.point = _this.getPoints(_this.points_count, _this.centerX, _this.centerY);
+
+	    console.log(_this.point);
 
 	    _this.getPointX = function (i) {
 	      if (i == 0) {
@@ -24566,7 +24614,9 @@
 	            return _react2.default.createElement(
 	              'g',
 	              { key: index },
-	              _react2.default.createElement('circle', { cx: _this2.getPointX(index), cy: _this2.getPointY(index), r: '5', stroke: 'green', strokeWidth: '4', fill: 'yellow' })
+	              _react2.default.createElement('circle', { cx: _this2.getPoints(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].x,
+	                cy: _this2.getPoints(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].y,
+	                r: '5', stroke: 'green', strokeWidth: '4', fill: 'yellow' })
 	            );
 	          }),
 	          _react2.default.createElement(
@@ -24709,7 +24759,7 @@
 
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
-	var initialState = [{ name: 'Love', value: 100 }, { name: 'Anger', value: 0 }, { name: 'Anger', value: 0 }];
+	var initialState = [{ name: 'Love', value: 100 }, { name: 'Anger', value: 0 }, { name: 'Hate', value: 0 }, { name: 'Hate', value: 0 }, { name: 'Hate', value: 0 }, { name: 'Fury', value: 0 }];
 
 	function characters() {
 		var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;

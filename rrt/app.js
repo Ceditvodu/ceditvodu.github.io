@@ -16,17 +16,75 @@ class App extends Component{
     this.centerX = this.width/2;
     this.centerY = this.height/2;
     this.radius = this.height/2;
-    this.startX = 0+this.centerX;
-    this.startY = 0;
 
-    this.points_count = this.props.characters.length-1;
+    this.points_count = this.props.characters.length;
 
-    this.sum_of_angels = 180*(this.points_count-2);
-    this.one_angel = this.sum_of_angels/this.points_count;
 
-    this.ima_cg_angels = this.one_angel/2;
-    this.ima_angel = Math.pi - (2*this.ima_cg_angels)
+    this.getPoints = (count, cx, cy)=>{
 
+      if(count==1){
+        return [
+          {
+            x: (0+cx),
+            y: 0
+          }
+        ]
+      }else if(count==2){
+        return [
+          {
+            x: (0+cx),
+            y: 0
+          },
+          {
+            x: (0+cx),
+            y: (cy*2)
+          }
+        ]
+      }else{
+        let points = [];
+        var current_x = 50;
+        var current_y = 0;
+        let as_sum = 180*(count-2);
+        let a = as_sum/count;
+        let cg_a = a/2;
+        let cc_a = 180 - (cg_a*2);
+        cc_a = cc_a*Math.PI/180;
+        let cos_a = (Math.cos(cc_a));
+        let sin_a = (Math.sin(cc_a));
+        console.log(cc_a)
+
+
+        for(var i=0; i<count; i++){
+          points.push({
+            x: current_x,
+            y: current_y
+          });
+
+          // current_x = cx + vec_x * cos_a - vec_y * sin_a;
+          // current_y = cy + vec_x * sin_a - vec_y * cos_a;
+
+          var c_x = current_x;
+          var c_y = current_y;
+
+// X = x0 + (x - x0) * cos(a) - (y - y0) * sin(a);
+// Y = y0 + (y - y0) * cos(a) + (x - x0) * sin(a);
+
+          current_x = ((c_x-cx)*cos_a)-((c_y-cy)*sin_a)+cx;
+          current_y = ((c_x-cx)*sin_a)+((c_y-cy)*cos_a)+cy; 
+          console.log(current_x,current_y, sin_a, cos_a)
+
+        }
+
+
+        return points;
+
+      }
+
+    }
+
+    this.point = this.getPoints(this.points_count, this.centerX, this.centerY);
+
+    console.log(this.point)
 
     this.getPointX= (i)=>{
       if(i == 0){
@@ -264,7 +322,9 @@ class App extends Component{
         <svg width={this.width} height={this.height} ref={(svg)=>{}}>
           {this.props.characters.map((chara, index)=>
             <g key={index}>
-              <circle cx={this.getPointX(index)} cy={this.getPointY(index)} r="5" stroke="green" strokeWidth="4" fill="yellow" />
+              <circle cx={this.getPoints(this.props.characters.length, this.width/2, this.height/2)[index].x} 
+                      cy={this.getPoints(this.props.characters.length, this.width/2, this.height/2)[index].y} 
+                      r="5" stroke="green" strokeWidth="4" fill="yellow" />
             </g>
             )
           }
