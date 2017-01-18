@@ -19,6 +19,9 @@ class App extends Component{
 
     this.points_count = this.props.characters.length;
 
+    this.getIndicators = ()=>{
+
+    }
 
     this.getPoints = (count, cx, cy)=>{
 
