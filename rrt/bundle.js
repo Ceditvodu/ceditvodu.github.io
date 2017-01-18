@@ -24341,7 +24341,55 @@
 
 	    _this.points_count = _this.props.characters.length;
 
-	    _this.getIndicators = function () {};
+	    _this.getValuePosition = function (cx, value) {
+	      return cx - 20 - (cx - 20) * value / 100;
+	    };
+
+	    _this.getIndicators = function (count, cx, cy, index, value) {
+	      var pos = 0;
+	      if (value != undefined) {
+	        pos = _this.getValuePosition(cx, value);
+	      }
+
+	      if (count == 1) {
+	        return [{
+	          x: 0 + cx,
+	          y: 20 + pos
+	        }];
+	      } else if (count == 2) {
+	        return [{
+	          x: 0 + cx,
+	          y: 20 + pos
+	        }, {
+	          x: 0 + cx,
+	          y: cy * 2 - 20 - pos
+	        }];
+	      } else {
+	        var points = [];
+	        var current_x = cx;
+	        var current_y = 20 + pos;
+	        var as_sum = 180 * (count - 2);
+	        var a = as_sum / count;
+	        var cg_a = a / 2;
+	        var cc_a = (180 - cg_a * 2) * index;
+	        cc_a = cc_a * Math.PI / 180;
+	        var cos_a = Math.cos(cc_a);
+	        var sin_a = Math.sin(cc_a);
+
+	        points.push({
+	          x: current_x,
+	          y: current_y
+	        });
+
+	        var c_x = current_x;
+	        var c_y = current_y;
+
+	        current_x = (c_x - cx) * cos_a - (c_y - cy) * sin_a + cx;
+	        current_y = (c_x - cx) * sin_a + (c_y - cy) * cos_a + cy;
+
+	        return points;
+	      }
+	    };
 
 	    _this.getPoints = function (count, cx, cy) {
 
@@ -24394,21 +24442,6 @@
 	    };
 
 	    _this.point = _this.getPoints(_this.points_count, _this.centerX, _this.centerY);
-
-	    console.log(_this.point);
-
-	    _this.getPointX = function (i) {
-	      if (i == 0) {
-	        return _this.startX;
-	      }
-	      return _this.centerX;
-	    };
-	    _this.getPointY = function (i) {
-	      if (i == 0) {
-	        return _this.startY;
-	      }
-	      return _this.centerY;
-	    };
 
 	    _this.validation = function (strip) {
 	      for (var _len = arguments.length, validators = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
@@ -24610,6 +24643,23 @@
 	        _react2.default.createElement(
 	          'svg',
 	          { width: this.width, height: this.height, ref: function ref(svg) {} },
+	          _react2.default.createElement(
+	            'g',
+	            null,
+	            'this.getIndicators = (count, cx, cy, index, value)',
+	            _react2.default.createElement('path', { d: this.props.characters.reduce(function (prev, chara, index) {
+	                var polygon = "M8 48 L56 48 L32 12 Z";
+	                console.log(_this2.props.characters.length, index);
+	                if (index == 0) {
+	                  return prev + "M " + _this2.getIndicators(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value)[index].x + " " + _this2.getIndicators(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value)[index].y + " ";
+	                } else if (index == _this2.props.characters.length - 1) {
+	                  return prev + "L " + _this2.getIndicators(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value)[index].x + " " + _this2.getIndicators(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value)[index].y + " Z";
+	                } else {
+	                  return prev + "L " + _this2.getIndicators(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value)[index].x + " " + _this2.getIndicators(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value)[index].y + " ";
+	                }
+	                return prev + "";
+	              }, ""), style: { fill: "rgba(100,0,100,0.5)", stroke: "rgba(100,100,0,1)" } })
+	          ),
 	          _react2.default.createElement(
 	            'g',
 	            null,

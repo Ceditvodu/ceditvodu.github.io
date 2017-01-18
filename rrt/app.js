@@ -19,8 +19,61 @@ class App extends Component{
 
     this.points_count = this.props.characters.length;
 
-    this.getIndicators = ()=>{
+    this.getValuePosition = (cx, value) => {
+      return ((cx-20)-(((cx-20) * value)/100));
 
+    }
+
+    this.getIndicators = (count, cx, cy, index, value)=>{
+      let pos = 0;
+      if(value != undefined){
+        pos = this.getValuePosition(cx,value);
+      }
+
+      if(count==1){
+        return [
+          {
+            x: (0+cx),
+            y: 20+pos
+          }
+        ]
+      }else if(count==2){
+        return [
+          {
+            x: (0+cx),
+            y: 20+pos
+          },
+          {
+            x: (0+cx),
+            y: (cy*2-20-pos)
+          }
+        ]
+      }else{
+        let points = [];
+        var current_x = cx;
+        var current_y = 20+pos;
+        let as_sum = 180*(count-2);
+        let a = as_sum/count;
+        let cg_a = a/2;
+        let cc_a = (180 - (cg_a*2))*index;
+        cc_a = cc_a*Math.PI/180;
+        let cos_a = (Math.cos(cc_a));
+        let sin_a = (Math.sin(cc_a));
+
+        points.push({
+          x: current_x,
+          y: current_y
+        });
+
+        var c_x = current_x;
+        var c_y = current_y;
+
+        current_x = ((c_x-cx)*cos_a)-((c_y-cy)*sin_a)+cx;
+        current_y = ((c_x-cx)*sin_a)+((c_y-cy)*cos_a)+cy; 
+
+        return points;
+
+      }
     }
 
     this.getPoints = (count, cx, cy)=>{
@@ -84,20 +137,6 @@ class App extends Component{
 
     this.point = this.getPoints(this.points_count, this.centerX, this.centerY);
 
-    console.log(this.point)
-
-    this.getPointX= (i)=>{
-      if(i == 0){
-        return this.startX;
-      }
-      return this.centerX
-    }
-    this.getPointY= (i)=>{
-      if(i == 0){
-        return this.startY;
-      }
-      return this.centerY
-    }
 
 
 
@@ -320,6 +359,31 @@ class App extends Component{
     return (
       <div>
         <svg width={this.width} height={this.height} ref={(svg)=>{}}>
+          <g>
+            this.getIndicators = (count, cx, cy, index, value)
+            <path d={
+              this.props.characters.reduce((prev, chara, index)=>{
+                  let polygon = "M8 48 L56 48 L32 12 Z";
+                  console.log(this.props.characters.length, index);
+                  if(index == 0){
+                    return prev+"M "+this.getIndicators(this.props.characters.length, this.width/2, this.height/2, index, chara.value)[index].x
+                              +" "+this.getIndicators(this.props.characters.length, this.width/2, this.height/2, index, chara.value)[index].y
+                              +" ";
+                  }else if(index == (this.props.characters.length-1)){
+                    return prev+"L "+this.getIndicators(this.props.characters.length, this.width/2, this.height/2, index, chara.value)[index].x
+                              +" "+this.getIndicators(this.props.characters.length, this.width/2, this.height/2, index, chara.value)[index].y
+                              +" Z";
+                  }else{
+                    return prev+"L "+this.getIndicators(this.props.characters.length, this.width/2, this.height/2, index, chara.value)[index].x
+                              +" "+this.getIndicators(this.props.characters.length, this.width/2, this.height/2, index, chara.value)[index].y
+                              +" "; 
+                  }
+                  return prev+"";
+                }, ""
+
+              )
+            } style={{fill:"rgba(100,0,100,0.5)", stroke:"rgba(100,100,0,1)" }}></path>
+          </g>
           <g>
             <path d={
               this.props.characters.reduce((prev, chara, index)=>{
