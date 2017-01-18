@@ -24341,6 +24341,8 @@
 
 	    _this.points_count = _this.props.characters.length;
 
+	    _this.getIndicators = function () {};
+
 	    _this.getPoints = function (count, cx, cy) {
 
 	      if (count == 1) {
@@ -24784,7 +24786,7 @@
 
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
-	var initialState = [{ name: 'Love', value: 100 }, { name: 'Anger', value: 0 }, { name: 'Hate', value: 0 }, { name: 'Hate', value: 0 }, { name: 'Hate', value: 0 }, { name: 'Fury', value: 0 }];
+	var initialState = [{ name: 'Love', value: 100 }, { name: 'Anger', value: 90 }, { name: 'Hate', value: 80 }, { name: 'Fame', value: 70 }, { name: 'Frandy', value: 60 }, { name: 'Fury', value: 50 }];
 
 	function characters() {
 		var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;

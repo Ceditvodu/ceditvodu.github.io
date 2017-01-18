@@ -1,10 +1,10 @@
 const initialState = [
 	{name:'Love', value: 100},
-	{name:'Anger', value: 0},
-	{name:'Hate', value: 0},
-	{name:'Hate', value: 0},
-	{name:'Hate', value: 0},
-	{name:'Fury', value: 0}
+	{name:'Anger', value: 90},
+	{name:'Hate', value: 80},
+	{name:'Fame', value: 70},
+	{name:'Frandy', value: 60},
+	{name:'Fury', value: 50}
 ]
 
 
