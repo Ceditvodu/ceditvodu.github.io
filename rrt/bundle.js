@@ -24349,6 +24349,7 @@
 	      var pos = 0;
 	      if (value != undefined) {
 	        pos = _this.getValuePosition(cx, value);
+	        console.log(pos);
 	      }
 
 	      if (count == 1) {
@@ -24387,7 +24388,13 @@
 	        current_x = (c_x - cx) * cos_a - (c_y - cy) * sin_a + cx;
 	        current_y = (c_x - cx) * sin_a + (c_y - cy) * cos_a + cy;
 
-	        return points;
+	        // console.log(points);
+
+
+	        return {
+	          x: current_x,
+	          y: current_y
+	        };
 	      }
 	    };
 
@@ -24649,13 +24656,13 @@
 	            'this.getIndicators = (count, cx, cy, index, value)',
 	            _react2.default.createElement('path', { d: this.props.characters.reduce(function (prev, chara, index) {
 	                var polygon = "M8 48 L56 48 L32 12 Z";
-	                console.log(_this2.props.characters.length, index);
+	                // console.log(this.props.characters.length, index);
 	                if (index == 0) {
-	                  return prev + "M " + _this2.getIndicators(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value)[index].x + " " + _this2.getIndicators(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value)[index].y + " ";
+	                  return prev + "M " + _this2.getIndicators(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).x + " " + _this2.getIndicators(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).y + " ";
 	                } else if (index == _this2.props.characters.length - 1) {
-	                  return prev + "L " + _this2.getIndicators(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value)[index].x + " " + _this2.getIndicators(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value)[index].y + " Z";
+	                  return prev + "L " + _this2.getIndicators(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).x + " " + _this2.getIndicators(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).y + " Z";
 	                } else {
-	                  return prev + "L " + _this2.getIndicators(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value)[index].x + " " + _this2.getIndicators(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value)[index].y + " ";
+	                  return prev + "L " + _this2.getIndicators(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).x + " " + _this2.getIndicators(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).y + " ";
 	                }
 	                return prev + "";
 	              }, ""), style: { fill: "rgba(100,0,100,0.5)", stroke: "rgba(100,100,0,1)" } })
@@ -24665,7 +24672,7 @@
 	            null,
 	            _react2.default.createElement('path', { d: this.props.characters.reduce(function (prev, chara, index) {
 	                var polygon = "M8 48 L56 48 L32 12 Z";
-	                console.log(_this2.props.characters.length, index);
+	                // console.log(this.props.characters.length, index);
 	                if (index == 0) {
 	                  return prev + "M " + _this2.getPoints(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].x + " " + _this2.getPoints(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].y + " ";
 	                } else if (index == _this2.props.characters.length - 1) {

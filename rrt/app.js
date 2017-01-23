@@ -28,6 +28,7 @@ class App extends Component{
       let pos = 0;
       if(value != undefined){
         pos = this.getValuePosition(cx,value);
+        console.log(pos);
       }
 
       if(count==1){
@@ -57,8 +58,8 @@ class App extends Component{
         let cg_a = a/2;
         let cc_a = (180 - (cg_a*2))*index;
         cc_a = cc_a*Math.PI/180;
-        let cos_a = (Math.cos(cc_a));
-        let sin_a = (Math.sin(cc_a));
+        let cos_a = ((Math.cos(cc_a)));
+        let sin_a = ((Math.sin(cc_a)));
 
         points.push({
           x: current_x,
@@ -71,7 +72,13 @@ class App extends Component{
         current_x = ((c_x-cx)*cos_a)-((c_y-cy)*sin_a)+cx;
         current_y = ((c_x-cx)*sin_a)+((c_y-cy)*cos_a)+cy; 
 
-        return points;
+        // console.log(points);
+
+
+        return {
+          x: current_x,
+          y: current_y
+        };
 
       }
     }
@@ -364,18 +371,18 @@ class App extends Component{
             <path d={
               this.props.characters.reduce((prev, chara, index)=>{
                   let polygon = "M8 48 L56 48 L32 12 Z";
-                  console.log(this.props.characters.length, index);
+                  // console.log(this.props.characters.length, index);
                   if(index == 0){
-                    return prev+"M "+this.getIndicators(this.props.characters.length, this.width/2, this.height/2, index, chara.value)[index].x
-                              +" "+this.getIndicators(this.props.characters.length, this.width/2, this.height/2, index, chara.value)[index].y
+                    return prev+"M "+this.getIndicators(this.props.characters.length, this.width/2, this.height/2, index, chara.value).x
+                              +" "+this.getIndicators(this.props.characters.length, this.width/2, this.height/2, index, chara.value).y
                               +" ";
                   }else if(index == (this.props.characters.length-1)){
-                    return prev+"L "+this.getIndicators(this.props.characters.length, this.width/2, this.height/2, index, chara.value)[index].x
-                              +" "+this.getIndicators(this.props.characters.length, this.width/2, this.height/2, index, chara.value)[index].y
+                    return prev+"L "+this.getIndicators(this.props.characters.length, this.width/2, this.height/2, index, chara.value).x
+                              +" "+this.getIndicators(this.props.characters.length, this.width/2, this.height/2, index, chara.value).y
                               +" Z";
                   }else{
-                    return prev+"L "+this.getIndicators(this.props.characters.length, this.width/2, this.height/2, index, chara.value)[index].x
-                              +" "+this.getIndicators(this.props.characters.length, this.width/2, this.height/2, index, chara.value)[index].y
+                    return prev+"L "+this.getIndicators(this.props.characters.length, this.width/2, this.height/2, index, chara.value).x
+                              +" "+this.getIndicators(this.props.characters.length, this.width/2, this.height/2, index, chara.value).y
                               +" "; 
                   }
                   return prev+"";
@@ -388,7 +395,7 @@ class App extends Component{
             <path d={
               this.props.characters.reduce((prev, chara, index)=>{
                   let polygon = "M8 48 L56 48 L32 12 Z";
-                  console.log(this.props.characters.length, index);
+                  // console.log(this.props.characters.length, index);
                   if(index == 0){
                     return prev+"M "+this.getPoints(this.props.characters.length, this.width/2, this.height/2)[index].x
                               +" "+this.getPoints(this.props.characters.length, this.width/2, this.height/2)[index].y
