@@ -20,7 +20,7 @@ class App extends Component{
     this.points_count = this.props.characters.length;
 
     this.getValuePosition = (cx, value) => {
-      return ((cx-20)-(((cx-20) * value)/100));
+      return ((cx-80)-(((cx-80) * value)/100));
 
     }
 
