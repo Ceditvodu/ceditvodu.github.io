@@ -142,13 +142,24 @@ class App extends Component{
 
     }
 
-    this.getAnchor = (x)=>{
-
-      return x
+    this.getAnchor = (width, x)=>{
+      if(x<width){
+        return "end";
+      }else if(x>width){
+        return "start";
+      }else{
+        return "middle";
+      }
     }
 
-    this.getBaseline = (y)=>{
-      return y
+    this.getBaseline = (height, y)=>{
+      if(y<height){
+        return "baseline";
+      }else if(y>height){
+        return "hanging";
+      }else{
+        return "middle";
+      }
     }
 
 
@@ -446,7 +457,14 @@ class App extends Component{
                     <text 
                       x={x} 
                       y={y} 
-                      fontFamily="Verdana" fontSize="16px" fontWeight="bold" textAnchor={this.getAnchor(x)} alignmentBaseline={this.getBaseline(y)} stroke="#fff" strokeWidth="0.5" > 
+                      fontFamily="Verdana" 
+                      fontSize="16px" 
+                      fontWeight="bold" 
+                      stroke="#fff" 
+                      strokeWidth="0.5" 
+                      textAnchor={this.getAnchor(this.width/2,x)} 
+                      alignmentBaseline={this.getBaseline(this.height/2,y)} 
+                      > 
                       {chara.name}
                     </text>
                   </g>
