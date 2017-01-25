@@ -142,7 +142,14 @@ class App extends Component{
 
     }
 
-    this.point = this.getPoints(this.points_count, this.centerX, this.centerY);
+    this.getAnchor = (x)=>{
+
+      return x
+    }
+
+    this.getBaseline = (y)=>{
+      return y
+    }
 
 
 
@@ -426,14 +433,37 @@ class App extends Component{
           </g>
           {this.props.characters.map((chara, index)=>
             <g key={index}>
+              <circle cx={this.getIndicators(this.props.characters.length, this.width/2, this.height/2, index, chara.value).x} 
+                      cy={this.getIndicators(this.props.characters.length, this.width/2, this.height/2, index, chara.value).y} 
+                      r="2" stroke="green" strokeWidth="1" fill="blue" />
+            </g>
+            )
+          }
+          {this.props.characters.map((chara, index)=>{
+              let x = this.getIndicators(this.props.characters.length, this.width/2, this.height/2, index, "100").x;
+              let y = this.getIndicators(this.props.characters.length, this.width/2, this.height/2, index, "100").y;
+                return <g key={index} >
+                    <text 
+                      x={x} 
+                      y={y} 
+                      fontFamily="Verdana" fontSize="16px" fontWeight="bold" textAnchor={this.getAnchor(x)} alignmentBaseline={this.getBaseline(y)} stroke="#fff" strokeWidth="0.5" > 
+                      {chara.name}
+                    </text>
+                  </g>
+              }
+            
+            )
+          }
+          {this.props.characters.map((chara, index)=>
+            <g key={index}>
               <circle cx={this.getPoints(this.props.characters.length, this.width/2, this.height/2)[index].x} 
                       cy={this.getPoints(this.props.characters.length, this.width/2, this.height/2)[index].y} 
-                      r="5" stroke="green" strokeWidth="4" fill="yellow" />
+                      r="2" stroke="green" strokeWidth="1" fill="yellow" />
             </g>
             )
           }
           <g>
-            <circle cx={this.width/2} cy={this.height/2}  r="10" stroke="green" strokeWidth="1" fill="black" />
+            <circle cx={this.width/2} cy={this.height/2}  r="5" stroke="green" strokeWidth="1" fill="black" />
           </g>
         </svg>
         <ul>
