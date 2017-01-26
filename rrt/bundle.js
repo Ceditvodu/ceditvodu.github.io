@@ -62,7 +62,7 @@
 
 	var _App2 = _interopRequireDefault(_App);
 
-	var _reducers = __webpack_require__(232);
+	var _reducers = __webpack_require__(238);
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -24313,6 +24313,14 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
+	var _main = __webpack_require__(232);
+
+	var _validation = __webpack_require__(233);
+
+	var _app = __webpack_require__(234);
+
+	var _app2 = _interopRequireDefault(_app);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -24341,178 +24349,6 @@
 
 	    _this.points_count = _this.props.characters.length;
 
-	    _this.getValuePosition = function (cx, value) {
-	      return cx - 80 - (cx - 80) * value / 100;
-	    };
-
-	    _this.getIndicators = function (count, cx, cy, index, value) {
-	      var pos = 0;
-	      if (value != undefined) {
-	        pos = _this.getValuePosition(cx, value);
-	        console.log(pos);
-	      }
-
-	      if (count == 1) {
-	        return [{
-	          x: 0 + cx,
-	          y: 20 + pos
-	        }];
-	      } else if (count == 2) {
-	        return [{
-	          x: 0 + cx,
-	          y: 20 + pos
-	        }, {
-	          x: 0 + cx,
-	          y: cy * 2 - 20 - pos
-	        }];
-	      } else {
-	        var points = [];
-	        var current_x = cx;
-	        var current_y = 20 + pos;
-	        var as_sum = 180 * (count - 2);
-	        var a = as_sum / count;
-	        var cg_a = a / 2;
-	        var cc_a = (180 - cg_a * 2) * index;
-	        cc_a = cc_a * Math.PI / 180;
-	        var cos_a = Math.cos(cc_a);
-	        var sin_a = Math.sin(cc_a);
-
-	        points.push({
-	          x: current_x,
-	          y: current_y
-	        });
-
-	        var c_x = current_x;
-	        var c_y = current_y;
-
-	        current_x = (c_x - cx) * cos_a - (c_y - cy) * sin_a + cx;
-	        current_y = (c_x - cx) * sin_a + (c_y - cy) * cos_a + cy;
-
-	        // console.log(points);
-
-
-	        return {
-	          x: current_x,
-	          y: current_y
-	        };
-	      }
-	    };
-
-	    _this.getPoints = function (count, cx, cy) {
-
-	      if (count == 1) {
-	        return [{
-	          x: 0 + cx,
-	          y: 20
-	        }];
-	      } else if (count == 2) {
-	        return [{
-	          x: 0 + cx,
-	          y: 20
-	        }, {
-	          x: 0 + cx,
-	          y: cy * 2 - 20
-	        }];
-	      } else {
-	        var points = [];
-	        var current_x = cx;
-	        var current_y = 20;
-	        var as_sum = 180 * (count - 2);
-	        var a = as_sum / count;
-	        var cg_a = a / 2;
-	        var cc_a = 180 - cg_a * 2;
-	        cc_a = cc_a * Math.PI / 180;
-	        var cos_a = Math.cos(cc_a);
-	        var sin_a = Math.sin(cc_a);
-
-	        for (var i = 0; i < count; i++) {
-	          points.push({
-	            x: current_x,
-	            y: current_y
-	          });
-
-	          // current_x = cx + vec_x * cos_a - vec_y * sin_a;
-	          // current_y = cy + vec_x * sin_a - vec_y * cos_a;
-
-	          var c_x = current_x;
-	          var c_y = current_y;
-
-	          // X = x0 + (x - x0) * cos(a) - (y - y0) * sin(a);
-	          // Y = y0 + (y - y0) * cos(a) + (x - x0) * sin(a);
-
-	          current_x = (c_x - cx) * cos_a - (c_y - cy) * sin_a + cx;
-	          current_y = (c_x - cx) * sin_a + (c_y - cy) * cos_a + cy;
-	        }
-
-	        return points;
-	      }
-	    };
-
-	    _this.getAnchor = function (width, x) {
-	      if (x < width) {
-	        return "end";
-	      } else if (x > width) {
-	        return "start";
-	      } else {
-	        return "middle";
-	      }
-	    };
-
-	    _this.getBaseline = function (height, y) {
-	      if (y < height) {
-	        return "baseline";
-	      } else if (y > height) {
-	        return "hanging";
-	      } else {
-	        return "middle";
-	      }
-	    };
-
-	    _this.validation = function (strip) {
-	      for (var _len = arguments.length, validators = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-	        validators[_key - 1] = arguments[_key];
-	      }
-
-	      return validators.reduce(function (a, b) {
-	        return a && b(strip);
-	      }, true);
-	    };
-
-	    _this.isNotEmpty = function (strip) {
-	      if (strip != "") {
-	        return true;
-	      } else {
-	        return false;
-	      }
-	    };
-	    _this.isNotContainNumbers = function (strip) {
-	      if (!/\d/.test(strip)) {
-	        return true;
-	      } else {
-	        return false;
-	      }
-	    };
-	    _this.isNotContainSpaces = function (strip) {
-	      if (!/\s/.test(strip)) {
-	        return true;
-	      } else {
-	        return false;
-	      }
-	    };
-	    _this.isNotMoreThenHundred = function (strip) {
-	      if (strip <= 100) {
-	        return true;
-	      } else {
-	        return false;
-	      }
-	    };
-	    _this.isNotLessThenZero = function (strip) {
-	      if (strip >= 0) {
-	        return true;
-	      } else {
-	        return false;
-	      }
-	    };
 	    return _this;
 	  }
 
@@ -24521,8 +24357,8 @@
 	    value: function addChara(event) {
 	      if (event.key == 'Enter') {
 
-	        var name_is_valid = this.validation(this.charaInputName.value, this.isNotEmpty, this.isNotContainNumbers, this.isNotContainSpaces);
-	        var value_is_valid = this.validation(this.charaInputValue.value, this.isNotMoreThenHundred, this.isNotLessThenZero, this.isNotEmpty);
+	        var name_is_valid = (0, _validation.validation)(this.charaInputName.value, _validation.isNotEmpty, _validation.isNotContainNumbers, _validation.isNotContainSpaces);
+	        var value_is_valid = (0, _validation.validation)(this.charaInputValue.value, _validation.isNotMoreThenHundred, _validation.isNotLessThenZero, _validation.isNotEmpty);
 
 	        if (name_is_valid) {
 	          this.charaInputName.className = '';
@@ -24546,8 +24382,8 @@
 	  }, {
 	    key: 'addCharaB',
 	    value: function addCharaB() {
-	      var name_is_valid = this.validation(this.charaInputName.value, this.isNotEmpty, this.isNotContainNumbers, this.isNotContainSpaces);
-	      var value_is_valid = this.validation(this.charaInputValue.value, this.isNotMoreThenHundred, this.isNotLessThenZero, this.isNotEmpty);
+	      var name_is_valid = (0, _validation.validation)(this.charaInputName.value, _validation.isNotEmpty, _validation.isNotContainNumbers, _validation.isNotContainSpaces);
+	      var value_is_valid = (0, _validation.validation)(this.charaInputValue.value, _validation.isNotMoreThenHundred, _validation.isNotLessThenZero, _validation.isNotEmpty);
 
 	      if (name_is_valid) {
 	        this.charaInputName.className = '';
@@ -24571,8 +24407,8 @@
 	    key: 'blurChara',
 	    value: function blurChara(index, event) {
 
-	      var name_is_valid = this.validation(this.charaInputName.value, this.isNotContainNumbers, this.isNotContainSpaces);
-	      var value_is_valid = this.validation(this.charaInputValue.value, this.isNotMoreThenHundred, this.isNotLessThenZero);
+	      var name_is_valid = (0, _validation.validation)(this.charaInputName.value, _validation.isNotContainNumbers, _validation.isNotContainSpaces);
+	      var value_is_valid = (0, _validation.validation)(this.charaInputValue.value, _validation.isNotMoreThenHundred, _validation.isNotLessThenZero);
 
 	      if (name_is_valid) {
 	        this.charaInputName.className = '';
@@ -24589,8 +24425,8 @@
 	  }, {
 	    key: 'changeInput',
 	    value: function changeInput() {
-	      var name_is_valid = this.validation(this.charaInputName.value, this.isNotContainNumbers, this.isNotContainSpaces);
-	      var value_is_valid = this.validation(this.charaInputValue.value, this.isNotMoreThenHundred, this.isNotLessThenZero);
+	      var name_is_valid = (0, _validation.validation)(this.charaInputName.value, _validation.isNotContainNumbers, _validation.isNotContainSpaces);
+	      var value_is_valid = (0, _validation.validation)(this.charaInputValue.value, _validation.isNotMoreThenHundred, _validation.isNotLessThenZero);
 
 	      if (name_is_valid) {
 	        this.charaInputName.className = '';
@@ -24609,8 +24445,8 @@
 	    value: function editChara(index, event) {
 	      if (event.key == 'Enter') {
 
-	        var name_is_valid = this.validation(this.charaItemName[index].value, this.isNotEmpty, this.isNotContainNumbers, this.isNotContainSpaces);
-	        var value_is_valid = this.validation(this.charaItemValue[index].value, this.isNotMoreThenHundred, this.isNotLessThenZero, this.isNotEmpty);
+	        var name_is_valid = (0, _validation.validation)(this.charaItemName[index].value, _validation.isNotEmpty, _validation.isNotContainNumbers, _validation.isNotContainSpaces);
+	        var value_is_valid = (0, _validation.validation)(this.charaItemValue[index].value, _validation.isNotMoreThenHundred, _validation.isNotLessThenZero, _validation.isNotEmpty);
 
 	        if (name_is_valid) {
 	          this.charaItemName[index].className = '';
@@ -24633,8 +24469,8 @@
 	    key: 'changeChara',
 	    value: function changeChara(index, event) {
 
-	      var name_is_valid = this.validation(this.charaItemName[index].value, this.isNotEmpty, this.isNotContainNumbers, this.isNotContainSpaces);
-	      var value_is_valid = this.validation(this.charaItemValue[index].value, this.isNotMoreThenHundred, this.isNotLessThenZero, this.isNotEmpty);
+	      var name_is_valid = (0, _validation.validation)(this.charaItemName[index].value, _validation.isNotEmpty, _validation.isNotContainNumbers, _validation.isNotContainSpaces);
+	      var value_is_valid = (0, _validation.validation)(this.charaItemValue[index].value, _validation.isNotMoreThenHundred, _validation.isNotLessThenZero, _validation.isNotEmpty);
 
 	      if (name_is_valid && value_is_valid) {
 	        this.props.onEditChara(this.charaItemName[index].value, this.charaItemValue[index].value, index);
@@ -24671,16 +24507,16 @@
 	          _react2.default.createElement(
 	            'g',
 	            null,
-	            'this.getIndicators = (count, cx, cy, index, value)',
+	            'getIndicators = (count, cx, cy, index, value)',
 	            _react2.default.createElement('path', { d: this.props.characters.reduce(function (prev, chara, index) {
 	                var polygon = "M8 48 L56 48 L32 12 Z";
 	                // console.log(this.props.characters.length, index);
 	                if (index == 0) {
-	                  return prev + "M " + _this2.getIndicators(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).x + " " + _this2.getIndicators(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).y + " ";
+	                  return prev + "M " + (0, _main.getIndicators)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).x + " " + (0, _main.getIndicators)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).y + " ";
 	                } else if (index == _this2.props.characters.length - 1) {
-	                  return prev + "L " + _this2.getIndicators(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).x + " " + _this2.getIndicators(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).y + " Z";
+	                  return prev + "L " + (0, _main.getIndicators)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).x + " " + (0, _main.getIndicators)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).y + " Z";
 	                } else {
-	                  return prev + "L " + _this2.getIndicators(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).x + " " + _this2.getIndicators(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).y + " ";
+	                  return prev + "L " + (0, _main.getIndicators)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).x + " " + (0, _main.getIndicators)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).y + " ";
 	                }
 	                return prev + "";
 	              }, ""), style: { fill: "rgba(100,0,100,0.5)", stroke: "rgba(100,100,0,1)" } })
@@ -24692,11 +24528,11 @@
 	                var polygon = "M8 48 L56 48 L32 12 Z";
 	                // console.log(this.props.characters.length, index);
 	                if (index == 0) {
-	                  return prev + "M " + _this2.getPoints(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].x + " " + _this2.getPoints(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].y + " ";
+	                  return prev + "M " + (0, _main.getPoints)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].x + " " + (0, _main.getPoints)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].y + " ";
 	                } else if (index == _this2.props.characters.length - 1) {
-	                  return prev + "L " + _this2.getPoints(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].x + " " + _this2.getPoints(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].y + " Z";
+	                  return prev + "L " + (0, _main.getPoints)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].x + " " + (0, _main.getPoints)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].y + " Z";
 	                } else {
-	                  return prev + "L " + _this2.getPoints(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].x + " " + _this2.getPoints(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].y + " ";
+	                  return prev + "L " + (0, _main.getPoints)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].x + " " + (0, _main.getPoints)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].y + " ";
 	                }
 	                return prev + "";
 	              }, ""), style: { fill: "rgba(100,0,100,0.5)", stroke: "rgba(100,0,100,1)" } })
@@ -24707,8 +24543,8 @@
 	            this.props.characters.map(function (chara, index) {
 	              return _react2.default.createElement('line', { x1: _this2.width / 2,
 	                y1: _this2.height / 2,
-	                x2: _this2.getPoints(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].x,
-	                y2: _this2.getPoints(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].y,
+	                x2: (0, _main.getPoints)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].x,
+	                y2: (0, _main.getPoints)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].y,
 	                style: { stroke: "rgba(100,0,100,1)" } });
 	            })
 	          ),
@@ -24716,14 +24552,14 @@
 	            return _react2.default.createElement(
 	              'g',
 	              { key: index },
-	              _react2.default.createElement('circle', { cx: _this2.getIndicators(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).x,
-	                cy: _this2.getIndicators(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).y,
+	              _react2.default.createElement('circle', { cx: (0, _main.getIndicators)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).x,
+	                cy: (0, _main.getIndicators)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).y,
 	                r: '2', stroke: 'green', strokeWidth: '1', fill: 'blue' })
 	            );
 	          }),
 	          this.props.characters.map(function (chara, index) {
-	            var x = _this2.getIndicators(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, "100").x;
-	            var y = _this2.getIndicators(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, "100").y;
+	            var x = (0, _main.getIndicators)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, "100").x;
+	            var y = (0, _main.getIndicators)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, "100").y;
 	            return _react2.default.createElement(
 	              'g',
 	              { key: index },
@@ -24737,8 +24573,8 @@
 	                  fontWeight: 'bold',
 	                  stroke: '#fff',
 	                  strokeWidth: '0.5',
-	                  textAnchor: _this2.getAnchor(_this2.width / 2, x),
-	                  alignmentBaseline: _this2.getBaseline(_this2.height / 2, y)
+	                  textAnchor: (0, _main.getAnchor)(_this2.width / 2, x),
+	                  alignmentBaseline: (0, _main.getBaseline)(_this2.height / 2, y)
 	                },
 	                chara.name
 	              )
@@ -24748,8 +24584,8 @@
 	            return _react2.default.createElement(
 	              'g',
 	              { key: index },
-	              _react2.default.createElement('circle', { cx: _this2.getPoints(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].x,
-	                cy: _this2.getPoints(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].y,
+	              _react2.default.createElement('circle', { cx: (0, _main.getPoints)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].x,
+	                cy: (0, _main.getPoints)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].y,
 	                r: '2', stroke: 'green', strokeWidth: '1', fill: 'yellow' })
 	            );
 	          }),
@@ -24765,19 +24601,20 @@
 	          this.props.characters.map(function (chara, index) {
 	            return _react2.default.createElement(
 	              'li',
-	              { key: index },
+	              { key: index, className: _app2.default.chara_item },
 	              _react2.default.createElement(
 	                'button',
-	                { onClick: _this2.onMoveUpChara.bind(_this2, index), disabled: index == 0 ? true : false },
+	                { className: _app2.default.chara_up, onClick: _this2.onMoveUpChara.bind(_this2, index), disabled: index == 0 ? true : false },
 	                '^'
 	              ),
 	              _react2.default.createElement(
 	                'button',
-	                { onClick: _this2.onMoveDownChara.bind(_this2, index), disabled: index == _this2.props.characters.length - 1 ? true : false },
+	                { className: _app2.default.chara_down, onClick: _this2.onMoveDownChara.bind(_this2, index), disabled: index == _this2.props.characters.length - 1 ? true : false },
 	                'v'
 	              ),
 	              _react2.default.createElement('input', { type: 'text',
 	                value: chara.name,
+	                className: _app2.default.chara_name,
 	                placeholder: 'Feature',
 	                'data-index': index,
 	                ref: function ref(name) {
@@ -24787,6 +24624,7 @@
 	                onChange: _this2.changeChara.bind(_this2, index) }),
 	              _react2.default.createElement('input', { type: 'number',
 	                value: chara.value,
+	                className: _app2.default.chara_value,
 	                'data-index': index,
 	                ref: function ref(value) {
 	                  _this2.charaItemValue[index] = value;
@@ -24795,7 +24633,7 @@
 	                onChange: _this2.changeChara.bind(_this2, index) }),
 	              _react2.default.createElement(
 	                'button',
-	                { onClick: _this2.deleteChara.bind(_this2, index) },
+	                { className: _app2.default.chara_del, onClick: _this2.deleteChara.bind(_this2, index) },
 	                'x'
 	              )
 	            );
@@ -24860,6 +24698,564 @@
 
 /***/ },
 /* 232 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.getValuePosition = getValuePosition;
+	exports.getIndicators = getIndicators;
+	exports.getPoints = getPoints;
+	exports.getAnchor = getAnchor;
+	exports.getBaseline = getBaseline;
+	function getValuePosition(cx, value) {
+	  return cx - 80 - (cx - 80) * value / 100;
+	}
+
+	function getIndicators(count, cx, cy, index, value) {
+	  var pos = 0;
+	  if (value != undefined) {
+	    pos = getValuePosition(cx, value);
+	    console.log(pos);
+	  }
+
+	  if (count == 1) {
+	    return [{
+	      x: 0 + cx,
+	      y: 20 + pos
+	    }];
+	  } else if (count == 2) {
+	    return [{
+	      x: 0 + cx,
+	      y: 20 + pos
+	    }, {
+	      x: 0 + cx,
+	      y: cy * 2 - 20 - pos
+	    }];
+	  } else {
+	    var points = [];
+	    var current_x = cx;
+	    var current_y = 20 + pos;
+	    var as_sum = 180 * (count - 2);
+	    var a = as_sum / count;
+	    var cg_a = a / 2;
+	    var cc_a = (180 - cg_a * 2) * index;
+	    cc_a = cc_a * Math.PI / 180;
+	    var cos_a = Math.cos(cc_a);
+	    var sin_a = Math.sin(cc_a);
+
+	    points.push({
+	      x: current_x,
+	      y: current_y
+	    });
+
+	    var c_x = current_x;
+	    var c_y = current_y;
+
+	    current_x = (c_x - cx) * cos_a - (c_y - cy) * sin_a + cx;
+	    current_y = (c_x - cx) * sin_a + (c_y - cy) * cos_a + cy;
+
+	    // console.log(points);
+
+
+	    return {
+	      x: current_x,
+	      y: current_y
+	    };
+	  }
+	}
+
+	function getPoints(count, cx, cy) {
+	  if (count == 1) {
+	    return [{
+	      x: 0 + cx,
+	      y: 20
+	    }];
+	  } else if (count == 2) {
+	    return [{
+	      x: 0 + cx,
+	      y: 20
+	    }, {
+	      x: 0 + cx,
+	      y: cy * 2 - 20
+	    }];
+	  } else {
+	    var points = [];
+	    var current_x = cx;
+	    var current_y = 20;
+	    var as_sum = 180 * (count - 2);
+	    var a = as_sum / count;
+	    var cg_a = a / 2;
+	    var cc_a = 180 - cg_a * 2;
+	    cc_a = cc_a * Math.PI / 180;
+	    var cos_a = Math.cos(cc_a);
+	    var sin_a = Math.sin(cc_a);
+
+	    for (var i = 0; i < count; i++) {
+	      points.push({
+	        x: current_x,
+	        y: current_y
+	      });
+
+	      // current_x = cx + vec_x * cos_a - vec_y * sin_a;
+	      // current_y = cy + vec_x * sin_a - vec_y * cos_a;
+
+	      var c_x = current_x;
+	      var c_y = current_y;
+
+	      // X = x0 + (x - x0) * cos(a) - (y - y0) * sin(a);
+	      // Y = y0 + (y - y0) * cos(a) + (x - x0) * sin(a);
+
+	      current_x = (c_x - cx) * cos_a - (c_y - cy) * sin_a + cx;
+	      current_y = (c_x - cx) * sin_a + (c_y - cy) * cos_a + cy;
+	    }
+
+	    return points;
+	  }
+	}
+
+	function getAnchor(width, x) {
+	  if (x < width) {
+	    return "end";
+	  } else if (x > width) {
+	    return "start";
+	  } else {
+	    return "middle";
+	  }
+	}
+
+	function getBaseline(height, y) {
+	  if (y < height) {
+	    return "baseline";
+	  } else if (y > height) {
+	    return "hanging";
+	  } else {
+	    return "middle";
+	  }
+	}
+
+/***/ },
+/* 233 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.validation = validation;
+	exports.isNotEmpty = isNotEmpty;
+	exports.isNotContainNumbers = isNotContainNumbers;
+	exports.isNotContainSpaces = isNotContainSpaces;
+	exports.isNotMoreThenHundred = isNotMoreThenHundred;
+	exports.isNotLessThenZero = isNotLessThenZero;
+	function validation(strip) {
+	  for (var _len = arguments.length, validators = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+	    validators[_key - 1] = arguments[_key];
+	  }
+
+	  return validators.reduce(function (a, b) {
+	    return a && b(strip);
+	  }, true);
+	}
+
+	function isNotEmpty(strip) {
+	  if (strip != "") {
+	    return true;
+	  } else {
+	    return false;
+	  }
+	}
+	function isNotContainNumbers(strip) {
+	  if (!/\d/.test(strip)) {
+	    return true;
+	  } else {
+	    return false;
+	  }
+	}
+	function isNotContainSpaces(strip) {
+	  if (!/\s/.test(strip)) {
+	    return true;
+	  } else {
+	    return false;
+	  }
+	}
+	function isNotMoreThenHundred(strip) {
+	  if (strip <= 100) {
+	    return true;
+	  } else {
+	    return false;
+	  }
+	}
+	function isNotLessThenZero(strip) {
+	  if (strip >= 0) {
+	    return true;
+	  } else {
+	    return false;
+	  }
+	}
+
+/***/ },
+/* 234 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(235);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(237)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../node_modules/css-loader/index.js?{\"modules\":true,\"localIdentName\":\"[name]__[local]___[hash:base64:5]\"}!./app.css", function() {
+				var newContent = require("!!./../node_modules/css-loader/index.js?{\"modules\":true,\"localIdentName\":\"[name]__[local]___[hash:base64:5]\"}!./app.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 235 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(236)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".app__colors___2nvcY{\r\n\tcolor: #9398F3;\r\n\tcolor: #F03BD6;\r\n\tcolor: #F265CD;\r\n\tcolor: #EBEBF3;\r\n\tcolor: #D9AE83;\r\n}\r\n\r\n\r\n\r\n.app__chara_cont___1i7YY{\r\n\tposition: relative;\r\n}\r\n\r\n.app__chara_item___30gsH{\r\n\tposition: relative;\r\n}\r\n\r\n.app__chara_item___30gsH:hover .app__chara_up___376vl{\r\n\tvisibility: visible;\r\n}\r\n\r\n.app__chara_item___30gsH:hover .app__chara_down___H3XQN{\r\n\tvisibility: visible;\r\n}\r\n\r\n.app__chara_name___mQbjI{\r\n\tbackground: #9398F3;\r\n\tcolor: #ffffff;\r\n\tborder: 5px solid #F265CD;\r\n\tborder-radius: 10px 5px 5px 10px;\r\n\tpadding: 10px;\r\n\tmargin: 2px;\r\n}\r\n\r\n.app__chara_value___3d15b{\r\n\tbackground: #9398F3;\r\n\tcolor: #ffffff;\r\n\tborder: 5px solid #F265CD;\r\n\tborder-radius: 5px 10px 10px 5px;\r\n\tpadding: 10px;\r\n\tmargin: 2px;\r\n}\r\n\r\n.app__chara_del___3u5h0{\r\n\tbackground: #9398F3;\r\n\tcolor: #ffffff;\r\n\tborder: 5px solid #F265CD;\r\n\tborder-radius: 50%;\r\n\tpadding: 1px 5px;\r\n\tmargin: 2px;\r\n}\r\n\r\n.app__chara_up___376vl{\r\n\tbackground: #9398F3;\r\n\tcolor: #ffffff;\r\n\tborder: 5px solid #F265CD;\r\n\tborder-radius: 50%;\r\n\tpadding: 1px 5px;\r\n\tmargin: 2px;\r\n\tposition: absolute;\r\n\ttop: 0;\r\n\tleft: 0;\r\n\tvisibility: hidden;\r\n}\r\n\r\n.app__chara_down___H3XQN{\r\n\tbackground: #9398F3;\r\n\tcolor: #ffffff;\r\n\tborder: 5px solid #F265CD;\r\n\tborder-radius: 50%;\r\n\tpadding: 1px 5px;\r\n\tmargin: 2px;\r\n\tposition: absolute;\r\n\tbottom: 0;\r\n\tleft: 0;\r\n\tvisibility: hidden;\r\n}", ""]);
+
+	// exports
+	exports.locals = {
+		"colors": "app__colors___2nvcY",
+		"chara_cont": "app__chara_cont___1i7YY",
+		"chara_item": "app__chara_item___30gsH",
+		"chara_up": "app__chara_up___376vl",
+		"chara_down": "app__chara_down___H3XQN",
+		"chara_name": "app__chara_name___mQbjI",
+		"chara_value": "app__chara_value___3d15b",
+		"chara_del": "app__chara_del___3u5h0"
+	};
+
+/***/ },
+/* 236 */
+/***/ function(module, exports) {
+
+	/*
+		MIT License http://www.opensource.org/licenses/mit-license.php
+		Author Tobias Koppers @sokra
+	*/
+	// css base code, injected by the css-loader
+	module.exports = function() {
+		var list = [];
+
+		// return the list of modules as css string
+		list.toString = function toString() {
+			var result = [];
+			for(var i = 0; i < this.length; i++) {
+				var item = this[i];
+				if(item[2]) {
+					result.push("@media " + item[2] + "{" + item[1] + "}");
+				} else {
+					result.push(item[1]);
+				}
+			}
+			return result.join("");
+		};
+
+		// import a list of modules into the list
+		list.i = function(modules, mediaQuery) {
+			if(typeof modules === "string")
+				modules = [[null, modules, ""]];
+			var alreadyImportedModules = {};
+			for(var i = 0; i < this.length; i++) {
+				var id = this[i][0];
+				if(typeof id === "number")
+					alreadyImportedModules[id] = true;
+			}
+			for(i = 0; i < modules.length; i++) {
+				var item = modules[i];
+				// skip already imported module
+				// this implementation is not 100% perfect for weird media query combinations
+				//  when a module is imported multiple times with different media queries.
+				//  I hope this will never occur (Hey this way we have smaller bundles)
+				if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+					if(mediaQuery && !item[2]) {
+						item[2] = mediaQuery;
+					} else if(mediaQuery) {
+						item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+					}
+					list.push(item);
+				}
+			}
+		};
+		return list;
+	};
+
+
+/***/ },
+/* 237 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/*
+		MIT License http://www.opensource.org/licenses/mit-license.php
+		Author Tobias Koppers @sokra
+	*/
+	var stylesInDom = {},
+		memoize = function(fn) {
+			var memo;
+			return function () {
+				if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+				return memo;
+			};
+		},
+		isOldIE = memoize(function() {
+			return /msie [6-9]\b/.test(window.navigator.userAgent.toLowerCase());
+		}),
+		getHeadElement = memoize(function () {
+			return document.head || document.getElementsByTagName("head")[0];
+		}),
+		singletonElement = null,
+		singletonCounter = 0,
+		styleElementsInsertedAtTop = [];
+
+	module.exports = function(list, options) {
+		if(false) {
+			if(typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+		}
+
+		options = options || {};
+		// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+		// tags it will allow on a page
+		if (typeof options.singleton === "undefined") options.singleton = isOldIE();
+
+		// By default, add <style> tags to the bottom of <head>.
+		if (typeof options.insertAt === "undefined") options.insertAt = "bottom";
+
+		var styles = listToStyles(list);
+		addStylesToDom(styles, options);
+
+		return function update(newList) {
+			var mayRemove = [];
+			for(var i = 0; i < styles.length; i++) {
+				var item = styles[i];
+				var domStyle = stylesInDom[item.id];
+				domStyle.refs--;
+				mayRemove.push(domStyle);
+			}
+			if(newList) {
+				var newStyles = listToStyles(newList);
+				addStylesToDom(newStyles, options);
+			}
+			for(var i = 0; i < mayRemove.length; i++) {
+				var domStyle = mayRemove[i];
+				if(domStyle.refs === 0) {
+					for(var j = 0; j < domStyle.parts.length; j++)
+						domStyle.parts[j]();
+					delete stylesInDom[domStyle.id];
+				}
+			}
+		};
+	}
+
+	function addStylesToDom(styles, options) {
+		for(var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+			if(domStyle) {
+				domStyle.refs++;
+				for(var j = 0; j < domStyle.parts.length; j++) {
+					domStyle.parts[j](item.parts[j]);
+				}
+				for(; j < item.parts.length; j++) {
+					domStyle.parts.push(addStyle(item.parts[j], options));
+				}
+			} else {
+				var parts = [];
+				for(var j = 0; j < item.parts.length; j++) {
+					parts.push(addStyle(item.parts[j], options));
+				}
+				stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+			}
+		}
+	}
+
+	function listToStyles(list) {
+		var styles = [];
+		var newStyles = {};
+		for(var i = 0; i < list.length; i++) {
+			var item = list[i];
+			var id = item[0];
+			var css = item[1];
+			var media = item[2];
+			var sourceMap = item[3];
+			var part = {css: css, media: media, sourceMap: sourceMap};
+			if(!newStyles[id])
+				styles.push(newStyles[id] = {id: id, parts: [part]});
+			else
+				newStyles[id].parts.push(part);
+		}
+		return styles;
+	}
+
+	function insertStyleElement(options, styleElement) {
+		var head = getHeadElement();
+		var lastStyleElementInsertedAtTop = styleElementsInsertedAtTop[styleElementsInsertedAtTop.length - 1];
+		if (options.insertAt === "top") {
+			if(!lastStyleElementInsertedAtTop) {
+				head.insertBefore(styleElement, head.firstChild);
+			} else if(lastStyleElementInsertedAtTop.nextSibling) {
+				head.insertBefore(styleElement, lastStyleElementInsertedAtTop.nextSibling);
+			} else {
+				head.appendChild(styleElement);
+			}
+			styleElementsInsertedAtTop.push(styleElement);
+		} else if (options.insertAt === "bottom") {
+			head.appendChild(styleElement);
+		} else {
+			throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");
+		}
+	}
+
+	function removeStyleElement(styleElement) {
+		styleElement.parentNode.removeChild(styleElement);
+		var idx = styleElementsInsertedAtTop.indexOf(styleElement);
+		if(idx >= 0) {
+			styleElementsInsertedAtTop.splice(idx, 1);
+		}
+	}
+
+	function createStyleElement(options) {
+		var styleElement = document.createElement("style");
+		styleElement.type = "text/css";
+		insertStyleElement(options, styleElement);
+		return styleElement;
+	}
+
+	function createLinkElement(options) {
+		var linkElement = document.createElement("link");
+		linkElement.rel = "stylesheet";
+		insertStyleElement(options, linkElement);
+		return linkElement;
+	}
+
+	function addStyle(obj, options) {
+		var styleElement, update, remove;
+
+		if (options.singleton) {
+			var styleIndex = singletonCounter++;
+			styleElement = singletonElement || (singletonElement = createStyleElement(options));
+			update = applyToSingletonTag.bind(null, styleElement, styleIndex, false);
+			remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true);
+		} else if(obj.sourceMap &&
+			typeof URL === "function" &&
+			typeof URL.createObjectURL === "function" &&
+			typeof URL.revokeObjectURL === "function" &&
+			typeof Blob === "function" &&
+			typeof btoa === "function") {
+			styleElement = createLinkElement(options);
+			update = updateLink.bind(null, styleElement);
+			remove = function() {
+				removeStyleElement(styleElement);
+				if(styleElement.href)
+					URL.revokeObjectURL(styleElement.href);
+			};
+		} else {
+			styleElement = createStyleElement(options);
+			update = applyToTag.bind(null, styleElement);
+			remove = function() {
+				removeStyleElement(styleElement);
+			};
+		}
+
+		update(obj);
+
+		return function updateStyle(newObj) {
+			if(newObj) {
+				if(newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap)
+					return;
+				update(obj = newObj);
+			} else {
+				remove();
+			}
+		};
+	}
+
+	var replaceText = (function () {
+		var textStore = [];
+
+		return function (index, replacement) {
+			textStore[index] = replacement;
+			return textStore.filter(Boolean).join('\n');
+		};
+	})();
+
+	function applyToSingletonTag(styleElement, index, remove, obj) {
+		var css = remove ? "" : obj.css;
+
+		if (styleElement.styleSheet) {
+			styleElement.styleSheet.cssText = replaceText(index, css);
+		} else {
+			var cssNode = document.createTextNode(css);
+			var childNodes = styleElement.childNodes;
+			if (childNodes[index]) styleElement.removeChild(childNodes[index]);
+			if (childNodes.length) {
+				styleElement.insertBefore(cssNode, childNodes[index]);
+			} else {
+				styleElement.appendChild(cssNode);
+			}
+		}
+	}
+
+	function applyToTag(styleElement, obj) {
+		var css = obj.css;
+		var media = obj.media;
+
+		if(media) {
+			styleElement.setAttribute("media", media)
+		}
+
+		if(styleElement.styleSheet) {
+			styleElement.styleSheet.cssText = css;
+		} else {
+			while(styleElement.firstChild) {
+				styleElement.removeChild(styleElement.firstChild);
+			}
+			styleElement.appendChild(document.createTextNode(css));
+		}
+	}
+
+	function updateLink(linkElement, obj) {
+		var css = obj.css;
+		var sourceMap = obj.sourceMap;
+
+		if(sourceMap) {
+			// http://stackoverflow.com/a/26603875
+			css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+		}
+
+		var blob = new Blob([css], { type: "text/css" });
+
+		var oldSrc = linkElement.href;
+
+		linkElement.href = URL.createObjectURL(blob);
+
+		if(oldSrc)
+			URL.revokeObjectURL(oldSrc);
+	}
+
+
+/***/ },
+/* 238 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24870,7 +25266,7 @@
 
 	var _redux = __webpack_require__(194);
 
-	var _characters = __webpack_require__(233);
+	var _characters = __webpack_require__(239);
 
 	var _characters2 = _interopRequireDefault(_characters);
 
@@ -24881,7 +25277,7 @@
 	});
 
 /***/ },
-/* 233 */
+/* 239 */
 /***/ function(module, exports) {
 
 	'use strict';
