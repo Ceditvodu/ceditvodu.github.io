@@ -1,7 +1,7 @@
 .colors{
 	color: #9398F3;
 	color: #F03BD6;
-	color: #F265CD;
+	color: #FFC2FF;
 	color: #EBEBF3;
 	color: #D9AE83;
 }
@@ -10,6 +10,13 @@
 
 .chara_cont{
 	position: relative;
+}
+
+.chara_items{
+	padding: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 .chara_item{
@@ -24,28 +31,38 @@
 	visibility: visible;
 }
 
+.chara_item:first-of-type .chara_name{
+	border-radius: 20px 5px 5px 10px;
+}
+
+.chara_item:first-of-type .chara_value{
+	border-radius: 5px 20px 10px 5px;
+}
+
 .chara_name{
 	background: #9398F3;
 	color: #ffffff;
-	border: 5px solid #F265CD;
+	border: 5px solid #FFC2FF;
 	border-radius: 10px 5px 5px 10px;
 	padding: 10px;
 	margin: 2px;
+	width: 150px;
 }
 
 .chara_value{
 	background: #9398F3;
 	color: #ffffff;
-	border: 5px solid #F265CD;
+	border: 5px solid #FFC2FF;
 	border-radius: 5px 10px 10px 5px;
 	padding: 10px;
 	margin: 2px;
+	width: 50px;
 }
 
 .chara_del{
 	background: #9398F3;
 	color: #ffffff;
-	border: 5px solid #F265CD;
+	border: 5px solid #FFC2FF;
 	border-radius: 50%;
 	padding: 1px 5px;
 	margin: 2px;
@@ -54,7 +71,7 @@
 .chara_up{
 	background: #9398F3;
 	color: #ffffff;
-	border: 5px solid #F265CD;
+	border: 5px solid #FFC2FF;
 	border-radius: 50%;
 	padding: 1px 5px;
 	margin: 2px;
@@ -67,7 +84,7 @@
 .chara_down{
 	background: #9398F3;
 	color: #ffffff;
-	border: 5px solid #F265CD;
+	border: 5px solid #FFC2FF;
 	border-radius: 50%;
 	padding: 1px 5px;
 	margin: 2px;

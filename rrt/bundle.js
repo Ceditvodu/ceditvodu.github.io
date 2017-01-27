@@ -24597,7 +24597,7 @@
 	        ),
 	        _react2.default.createElement(
 	          'ul',
-	          null,
+	          { className: _app2.default.chara_items },
 	          this.props.characters.map(function (chara, index) {
 	            return _react2.default.createElement(
 	              'li',
@@ -24932,12 +24932,13 @@
 
 
 	// module
-	exports.push([module.id, ".app__colors___2nvcY{\r\n\tcolor: #9398F3;\r\n\tcolor: #F03BD6;\r\n\tcolor: #F265CD;\r\n\tcolor: #EBEBF3;\r\n\tcolor: #D9AE83;\r\n}\r\n\r\n\r\n\r\n.app__chara_cont___1i7YY{\r\n\tposition: relative;\r\n}\r\n\r\n.app__chara_item___30gsH{\r\n\tposition: relative;\r\n}\r\n\r\n.app__chara_item___30gsH:hover .app__chara_up___376vl{\r\n\tvisibility: visible;\r\n}\r\n\r\n.app__chara_item___30gsH:hover .app__chara_down___H3XQN{\r\n\tvisibility: visible;\r\n}\r\n\r\n.app__chara_name___mQbjI{\r\n\tbackground: #9398F3;\r\n\tcolor: #ffffff;\r\n\tborder: 5px solid #F265CD;\r\n\tborder-radius: 10px 5px 5px 10px;\r\n\tpadding: 10px;\r\n\tmargin: 2px;\r\n}\r\n\r\n.app__chara_value___3d15b{\r\n\tbackground: #9398F3;\r\n\tcolor: #ffffff;\r\n\tborder: 5px solid #F265CD;\r\n\tborder-radius: 5px 10px 10px 5px;\r\n\tpadding: 10px;\r\n\tmargin: 2px;\r\n}\r\n\r\n.app__chara_del___3u5h0{\r\n\tbackground: #9398F3;\r\n\tcolor: #ffffff;\r\n\tborder: 5px solid #F265CD;\r\n\tborder-radius: 50%;\r\n\tpadding: 1px 5px;\r\n\tmargin: 2px;\r\n}\r\n\r\n.app__chara_up___376vl{\r\n\tbackground: #9398F3;\r\n\tcolor: #ffffff;\r\n\tborder: 5px solid #F265CD;\r\n\tborder-radius: 50%;\r\n\tpadding: 1px 5px;\r\n\tmargin: 2px;\r\n\tposition: absolute;\r\n\ttop: 0;\r\n\tleft: 0;\r\n\tvisibility: hidden;\r\n}\r\n\r\n.app__chara_down___H3XQN{\r\n\tbackground: #9398F3;\r\n\tcolor: #ffffff;\r\n\tborder: 5px solid #F265CD;\r\n\tborder-radius: 50%;\r\n\tpadding: 1px 5px;\r\n\tmargin: 2px;\r\n\tposition: absolute;\r\n\tbottom: 0;\r\n\tleft: 0;\r\n\tvisibility: hidden;\r\n}", ""]);
+	exports.push([module.id, ".app__colors___2nvcY{\r\n\tcolor: #9398F3;\r\n\tcolor: #F03BD6;\r\n\tcolor: #FFC2FF;\r\n\tcolor: #EBEBF3;\r\n\tcolor: #D9AE83;\r\n}\r\n\r\n\r\n\r\n.app__chara_cont___1i7YY{\r\n\tposition: relative;\r\n}\r\n\r\n.app__chara_items___-Bz7A{\r\n\tpadding: 0;\r\n\t-webkit-box-sizing: border-box;\r\n\t-moz-box-sizing: border-box;\r\n\tbox-sizing: border-box;\r\n}\r\n\r\n.app__chara_item___30gsH{\r\n\tposition: relative;\r\n}\r\n\r\n.app__chara_item___30gsH:hover .app__chara_up___376vl{\r\n\tvisibility: visible;\r\n}\r\n\r\n.app__chara_item___30gsH:hover .app__chara_down___H3XQN{\r\n\tvisibility: visible;\r\n}\r\n\r\n.app__chara_item___30gsH:first-of-type .app__chara_name___mQbjI{\r\n\tborder-radius: 20px 5px 5px 10px;\r\n}\r\n\r\n.app__chara_item___30gsH:first-of-type .app__chara_value___3d15b{\r\n\tborder-radius: 5px 20px 10px 5px;\r\n}\r\n\r\n.app__chara_name___mQbjI{\r\n\tbackground: #9398F3;\r\n\tcolor: #ffffff;\r\n\tborder: 5px solid #FFC2FF;\r\n\tborder-radius: 10px 5px 5px 10px;\r\n\tpadding: 10px;\r\n\tmargin: 2px;\r\n\twidth: 150px;\r\n}\r\n\r\n.app__chara_value___3d15b{\r\n\tbackground: #9398F3;\r\n\tcolor: #ffffff;\r\n\tborder: 5px solid #FFC2FF;\r\n\tborder-radius: 5px 10px 10px 5px;\r\n\tpadding: 10px;\r\n\tmargin: 2px;\r\n\twidth: 50px;\r\n}\r\n\r\n.app__chara_del___3u5h0{\r\n\tbackground: #9398F3;\r\n\tcolor: #ffffff;\r\n\tborder: 5px solid #FFC2FF;\r\n\tborder-radius: 50%;\r\n\tpadding: 1px 5px;\r\n\tmargin: 2px;\r\n}\r\n\r\n.app__chara_up___376vl{\r\n\tbackground: #9398F3;\r\n\tcolor: #ffffff;\r\n\tborder: 5px solid #FFC2FF;\r\n\tborder-radius: 50%;\r\n\tpadding: 1px 5px;\r\n\tmargin: 2px;\r\n\tposition: absolute;\r\n\ttop: 0;\r\n\tleft: 0;\r\n\tvisibility: hidden;\r\n}\r\n\r\n.app__chara_down___H3XQN{\r\n\tbackground: #9398F3;\r\n\tcolor: #ffffff;\r\n\tborder: 5px solid #FFC2FF;\r\n\tborder-radius: 50%;\r\n\tpadding: 1px 5px;\r\n\tmargin: 2px;\r\n\tposition: absolute;\r\n\tbottom: 0;\r\n\tleft: 0;\r\n\tvisibility: hidden;\r\n}", ""]);
 
 	// exports
 	exports.locals = {
 		"colors": "app__colors___2nvcY",
 		"chara_cont": "app__chara_cont___1i7YY",
+		"chara_items": "app__chara_items___-Bz7A",
 		"chara_item": "app__chara_item___30gsH",
 		"chara_up": "app__chara_up___376vl",
 		"chara_down": "app__chara_down___H3XQN",

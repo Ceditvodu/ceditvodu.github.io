@@ -308,7 +308,7 @@ class App extends Component{
             <circle cx={this.width/2} cy={this.height/2}  r="5" stroke="green" strokeWidth="1" fill="black" />
           </g>
         </svg>
-        <ul>
+        <ul className={style.chara_items}>
           {this.props.characters.map((chara, index)=>
             <li key={index} className={style.chara_item}>
               <button className={style.chara_up} onClick={this.onMoveUpChara.bind(this, index)} disabled={(index==0)? true : false}>^</button>
