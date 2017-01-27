@@ -24,11 +24,15 @@
 }
 
 .chara_item:hover .chara_up{
-	visibility: visible;
+	display: block;
 }
 
 .chara_item:hover .chara_down{
-	visibility: visible;
+	display: block;
+}
+
+.chara_item:hover .chara_del{
+	display: block;
 }
 
 .chara_item:first-of-type .chara_name{
@@ -45,8 +49,8 @@
 	border: 5px solid #FFC2FF;
 	border-radius: 10px 5px 5px 10px;
 	padding: 10px;
-	margin: 2px;
-	width: 150px;
+	margin: 2px 2px 2px 10px;
+	width: 185px;
 }
 
 .chara_value{
@@ -55,7 +59,7 @@
 	border: 5px solid #FFC2FF;
 	border-radius: 5px 10px 10px 5px;
 	padding: 10px;
-	margin: 2px;
+	margin: 2px 10px 2px 2px;
 	width: 50px;
 }
 
@@ -65,7 +69,11 @@
 	border: 5px solid #FFC2FF;
 	border-radius: 50%;
 	padding: 1px 5px;
-	margin: 2px;
+	position: absolute;
+	top: 0;
+	right: 2px;
+	display: none;
+
 }
 
 .chara_up{
@@ -74,11 +82,10 @@
 	border: 5px solid #FFC2FF;
 	border-radius: 50%;
 	padding: 1px 5px;
-	margin: 2px;
 	position: absolute;
 	top: 0;
-	left: 0;
-	visibility: hidden;
+	left: 2px;
+	display: none;
 }
 
 .chara_down{
@@ -87,9 +94,8 @@
 	border: 5px solid #FFC2FF;
 	border-radius: 50%;
 	padding: 1px 5px;
-	margin: 2px;
 	position: absolute;
 	bottom: 0;
-	left: 0;
-	visibility: hidden;
+	left: 2px;
+	display: none;
 }
