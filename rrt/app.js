@@ -47,15 +47,15 @@ class App extends Component{
                                           isNotEmpty);
 
       if(name_is_valid){
-        this.charaInputName.className = '';
+        this.charaInputName.classList.remove = 'invalid';
       }else{
-        this.charaInputName.className = 'invalid';
+        this.charaInputName.classList.add = 'invalid';
       }
 
       if(value_is_valid){
-        this.charaInputValue.className = '';
+        this.charaInputValue.classList.remove = 'invalid';
       }else{
-        this.charaInputValue.className = 'invalid';
+        this.charaInputValue.classList.add = 'invalid';
       }
 
       if((name_is_valid)&&(value_is_valid)){
@@ -77,15 +77,15 @@ class App extends Component{
                                         isNotEmpty);
 
     if(name_is_valid){
-      this.charaInputName.className = '';
+      this.charaInputName.classList.remove = 'invalid';
     }else{
-      this.charaInputName.className = 'invalid';
+      this.charaInputName.classList.add = 'invalid';
     }
 
     if(value_is_valid){
-      this.charaInputValue.className = '';
+      this.charaInputValue.classList.remove = 'invalid';
     }else{
-      this.charaInputValue.className = 'invalid';
+      this.charaInputValue.classList.add = 'invalid';
     }
 
     if((name_is_valid)&&(value_is_valid)){
@@ -105,15 +105,15 @@ class App extends Component{
                                         isNotLessThenZero);
 
     if(name_is_valid){
-      this.charaInputName.className = '';
+      this.charaInputName.classList.remove = 'invalid';
     }else{
-      this.charaInputName.className = 'invalid';
+      this.charaInputName.classList.add = 'invalid';
     }
 
     if(value_is_valid){
-      this.charaInputValue.className = '';
+      this.charaInputValue.classList.remove = 'invalid';
     }else{
-      this.charaInputValue.className = 'invalid';
+      this.charaInputValue.classList.add = 'invalid';
     }
 
   }
@@ -127,15 +127,15 @@ class App extends Component{
                                         isNotLessThenZero);
 
     if(name_is_valid){
-      this.charaInputName.className = '';
+      this.charaInputName.classList.remove = 'invalid';
     }else{
-      this.charaInputName.className = 'invalid';
+      this.charaInputName.classList.add = 'invalid';
     }
 
     if(value_is_valid){
-      this.charaInputValue.className = '';
+      this.charaInputValue.classList.remove = 'invalid';
     }else{
-      this.charaInputValue.className = 'invalid';
+      this.charaInputValue.classList.add = 'invalid';
     }
 
   }
@@ -153,15 +153,15 @@ class App extends Component{
                                           isNotEmpty);
 
       if(name_is_valid){
-        this.charaItemName[index].className = '';
+        this.charaItemName[index].classList.remove = 'invalid';
       }else{
-        this.charaItemName[index].className = 'invalid';
+        this.charaItemName[index].classList.add = 'invalid';
       }
 
       if(value_is_valid){
-        this.charaItemValue[index].className = '';
+        this.charaItemValue[index].classList.remove = 'invalid';
       }else{
-        this.charaItemValue[index].className = 'invalid';
+        this.charaItemValue[index].classList.add = 'invalid';
       }
 
       if((name_is_valid)&&(value_is_valid)){
@@ -331,18 +331,20 @@ class App extends Component{
               <button className={style.chara_del} onClick={this.deleteChara.bind(this, index)}>x</button>
             </li>
           )}
-          <li>
+          <li className={style.chara_item}>
             <input type="text" 
+              className={style.chara_add_name}
               ref={(input)=>{this.charaInputName = input}} 
               onKeyPress={this.addChara.bind(this)} 
               onBlur={this.blurChara.bind(this)}
               onChange={this.changeInput.bind(this)}/>
             <input type="number" max="100" 
+              className={style.chara_add_value}
               ref={(input)=>{this.charaInputValue = input}} 
               onKeyPress={this.addChara.bind(this)} 
               onBlur={this.blurChara.bind(this)}
               onChange={this.changeInput.bind(this)}/>
-            <button onClick={this.addCharaB.bind(this)}>+</button>
+            <button className={style.chara_add} onClick={this.addCharaB.bind(this)}>+</button>
           </li>
         </ul>
       </div>

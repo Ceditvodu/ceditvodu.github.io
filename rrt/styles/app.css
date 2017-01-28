@@ -9,17 +9,21 @@
 
 
 .chara_cont{
-	position: relative;
+	/*position: relative;*/
 }
 
 .chara_items{
-	padding: 0;
+	height: 257px;
+	overflow-y: scroll;
+  padding: 0 0 61px 17px;
+  margin: 4px 0 0;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
 
 .chara_item{
+	list-style: none;
 	position: relative;
 }
 
@@ -35,6 +39,10 @@
 	display: block;
 }
 
+.chara_item:hover .chara_add{
+	display: block;
+}
+
 .chara_item:first-of-type .chara_name{
 	border-radius: 20px 5px 5px 10px;
 }
@@ -43,14 +51,21 @@
 	border-radius: 5px 20px 10px 5px;
 }
 
+.chara_item:last-of-type{
+	position: absolute;
+	bottom: 0px;
+	padding: 0 0 27px;
+	background: #EBEBF3;
+}
+
 .chara_name{
 	background: #9398F3;
 	color: #ffffff;
 	border: 5px solid #FFC2FF;
 	border-radius: 10px 5px 5px 10px;
-	padding: 10px;
+	padding: 10px 15px;
 	margin: 2px 2px 2px 10px;
-	width: 185px;
+	width: 130px;
 }
 
 .chara_value{
@@ -58,9 +73,42 @@
 	color: #ffffff;
 	border: 5px solid #FFC2FF;
 	border-radius: 5px 10px 10px 5px;
-	padding: 10px;
+	padding: 10px 15px;
 	margin: 2px 10px 2px 2px;
 	width: 50px;
+}
+
+.chara_add_name{
+	background: #9398F3;
+	color: #ffffff;
+	border: 5px solid #FFC2FF;
+	border-radius: 10px 5px 5px 10px;
+	padding: 10px 15px;
+	margin: 2px 2px 2px 10px;
+	width: 130px;
+}
+
+.chara_add_value{
+	background: #9398F3;
+	color: #ffffff;
+	border: 5px solid #FFC2FF;
+	border-radius: 5px 10px 10px 5px;
+	padding: 10px 15px;
+	margin: 2px 10px 2px 2px;
+	width: 50px;
+}
+
+.chara_add{
+	background: #9398F3;
+	color: #ffffff;
+	border: 5px solid #FFC2FF;
+	border-radius: 50%;
+	padding: 1px 5px;
+	position: absolute;
+	top: 0;
+	right: 2px;
+	display: none;
+
 }
 
 .chara_del{
