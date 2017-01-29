@@ -53,9 +53,9 @@ class App extends Component{
       }
 
       if(value_is_valid){
-        this.charaInputValue.classList.remove = ' invalid';
+        this.charaInputValue.className = style.chara_add_value;
       }else{
-        this.charaInputValue.classList.add = ' invalid';
+        this.charaInputName.className = [style.chara_add_name, style.chara_invalid].join(" ");
       }
 
       if((name_is_valid)&&(value_is_valid)){
@@ -83,9 +83,9 @@ class App extends Component{
     }
 
     if(value_is_valid){
-      this.charaInputValue.classList.remove = ' invalid';
+      this.charaInputValue.className = style.chara_add_value;
     }else{
-      this.charaInputValue.classList.add = ' invalid';
+      this.charaInputName.className = [style.chara_add_name, style.chara_invalid].join(" ");
     }
 
     if((name_is_valid)&&(value_is_valid)){
@@ -111,9 +111,9 @@ class App extends Component{
     }
 
     if(value_is_valid){
-      this.charaInputValue.classList.remove = ' invalid';
+      this.charaInputValue.className = style.chara_add_value;
     }else{
-      this.charaInputValue.classList.add = ' invalid';
+      this.charaInputName.className = [style.chara_add_name, style.chara_invalid].join(" ");
     }
 
   }
@@ -133,9 +133,9 @@ class App extends Component{
     }
 
     if(value_is_valid){
-      this.charaInputValue.classList.remove = ' invalid';
+      this.charaInputValue.className = style.chara_add_value;
     }else{
-      this.charaInputValue.classList.add = ' invalid';
+      this.charaInputValue.className = [style.chara_add_value, style.chara_invalid].join(" ");
     }
 
   }
@@ -151,18 +151,6 @@ class App extends Component{
                                           isNotMoreThenHundred, 
                                           isNotLessThenZero, 
                                           isNotEmpty);
-
-      if(name_is_valid){
-        this.charaItemName[index].classList.remove = ' invalid';
-      }else{
-        this.charaItemName[index].classList.add = ' invalid';
-      }
-
-      if(value_is_valid){
-        this.charaItemValue[index].classList.remove = ' invalid';
-      }else{
-        this.charaItemValue[index].classList.add = ' invalid';
-      }
 
       if((name_is_valid)&&(value_is_valid)){
         this.props.onEditChara(this.charaItemName[index].value, this.charaItemValue[index].value, index);

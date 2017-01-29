@@ -97,14 +97,8 @@ export function getPoints(count, cx, cy){
         y: current_y
       });
 
-      // current_x = cx + vec_x * cos_a - vec_y * sin_a;
-      // current_y = cy + vec_x * sin_a - vec_y * cos_a;
-
       var c_x = current_x;
       var c_y = current_y;
-
-// X = x0 + (x - x0) * cos(a) - (y - y0) * sin(a);
-// Y = y0 + (y - y0) * cos(a) + (x - x0) * sin(a);
 
       current_x = ((c_x-cx)*cos_a)-((c_y-cy)*sin_a)+cx;
       current_y = ((c_x-cx)*sin_a)+((c_y-cy)*cos_a)+cy; 

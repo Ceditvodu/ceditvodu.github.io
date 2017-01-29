@@ -24367,9 +24367,9 @@
 	        }
 
 	        if (value_is_valid) {
-	          this.charaInputValue.classList.remove = ' invalid';
+	          this.charaInputValue.className = _app2.default.chara_add_value;
 	        } else {
-	          this.charaInputValue.classList.add = ' invalid';
+	          this.charaInputName.className = [_app2.default.chara_add_name, _app2.default.chara_invalid].join(" ");
 	        }
 
 	        if (name_is_valid && value_is_valid) {
@@ -24392,9 +24392,9 @@
 	      }
 
 	      if (value_is_valid) {
-	        this.charaInputValue.classList.remove = ' invalid';
+	        this.charaInputValue.className = _app2.default.chara_add_value;
 	      } else {
-	        this.charaInputValue.classList.add = ' invalid';
+	        this.charaInputName.className = [_app2.default.chara_add_name, _app2.default.chara_invalid].join(" ");
 	      }
 
 	      if (name_is_valid && value_is_valid) {
@@ -24417,9 +24417,9 @@
 	      }
 
 	      if (value_is_valid) {
-	        this.charaInputValue.classList.remove = ' invalid';
+	        this.charaInputValue.className = _app2.default.chara_add_value;
 	      } else {
-	        this.charaInputValue.classList.add = ' invalid';
+	        this.charaInputName.className = [_app2.default.chara_add_name, _app2.default.chara_invalid].join(" ");
 	      }
 	    }
 	  }, {
@@ -24435,9 +24435,9 @@
 	      }
 
 	      if (value_is_valid) {
-	        this.charaInputValue.classList.remove = ' invalid';
+	        this.charaInputValue.className = _app2.default.chara_add_value;
 	      } else {
-	        this.charaInputValue.classList.add = ' invalid';
+	        this.charaInputValue.className = [_app2.default.chara_add_value, _app2.default.chara_invalid].join(" ");
 	      }
 	    }
 	  }, {
@@ -24447,18 +24447,6 @@
 
 	        var name_is_valid = (0, _validation.validation)(this.charaItemName[index].value, _validation.isNotEmpty, _validation.isNotContainNumbers, _validation.isNotContainSpaces);
 	        var value_is_valid = (0, _validation.validation)(this.charaItemValue[index].value, _validation.isNotMoreThenHundred, _validation.isNotLessThenZero, _validation.isNotEmpty);
-
-	        if (name_is_valid) {
-	          this.charaItemName[index].classList.remove = ' invalid';
-	        } else {
-	          this.charaItemName[index].classList.add = ' invalid';
-	        }
-
-	        if (value_is_valid) {
-	          this.charaItemValue[index].classList.remove = ' invalid';
-	        } else {
-	          this.charaItemValue[index].classList.add = ' invalid';
-	        }
 
 	        if (name_is_valid && value_is_valid) {
 	          this.props.onEditChara(this.charaItemName[index].value, this.charaItemValue[index].value, index);
@@ -24801,14 +24789,8 @@
 	        y: current_y
 	      });
 
-	      // current_x = cx + vec_x * cos_a - vec_y * sin_a;
-	      // current_y = cy + vec_x * sin_a - vec_y * cos_a;
-
 	      var c_x = current_x;
 	      var c_y = current_y;
-
-	      // X = x0 + (x - x0) * cos(a) - (y - y0) * sin(a);
-	      // Y = y0 + (y - y0) * cos(a) + (x - x0) * sin(a);
 
 	      current_x = (c_x - cx) * cos_a - (c_y - cy) * sin_a + cx;
 	      current_y = (c_x - cx) * sin_a + (c_y - cy) * cos_a + cy;
