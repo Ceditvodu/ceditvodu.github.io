@@ -24321,12 +24321,6 @@
 
 	var _controls2 = _interopRequireDefault(_controls);
 
-	var _validation = __webpack_require__(234);
-
-	var _inputs = __webpack_require__(235);
-
-	var _inputs2 = _interopRequireDefault(_inputs);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
