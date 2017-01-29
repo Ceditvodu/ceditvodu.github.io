@@ -13,7 +13,7 @@ class App extends Component{
   render(){
     return (
       <div>
-        <Chart />
+        <Chart width="320" height="200" />
         <Controls />
       </div>
     )

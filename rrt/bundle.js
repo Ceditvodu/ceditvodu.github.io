@@ -24344,7 +24344,7 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement(_chart2.default, null),
+	        _react2.default.createElement(_chart2.default, { width: '320', height: '200' }),
 	        _react2.default.createElement(_controls2.default, null)
 	      );
 	    }
@@ -24379,9 +24379,9 @@
 
 	var _main = __webpack_require__(233);
 
-	var _inputs = __webpack_require__(235);
+	var _chart = __webpack_require__(242);
 
-	var _inputs2 = _interopRequireDefault(_inputs);
+	var _chart2 = _interopRequireDefault(_chart);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -24399,8 +24399,8 @@
 
 	    var _this = _possibleConstructorReturn(this, (Chart.__proto__ || Object.getPrototypeOf(Chart)).call(this, props));
 
-	    _this.height = 200;
-	    _this.width = 320;
+	    _this.height = _this.props.height;
+	    _this.width = _this.props.width;
 
 	    _this.centerX = _this.width / 2;
 	    _this.centerY = _this.height / 2;
@@ -24432,7 +24432,7 @@
 	                return prev + "L " + (0, _main.getIndicators)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).x + " " + (0, _main.getIndicators)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).y + " ";
 	              }
 	              return prev + "";
-	            }, ""), style: { fill: "rgba(100,0,100,0.5)", stroke: "rgba(100,100,0,1)" } })
+	            }, ""), className: _chart2.default.chart })
 	        ),
 	        _react2.default.createElement(
 	          'g',
@@ -24448,7 +24448,7 @@
 	                return prev + "L " + (0, _main.getPoints)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].x + " " + (0, _main.getPoints)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].y + " ";
 	              }
 	              return prev + "";
-	            }, ""), style: { fill: "rgba(100,0,100,0.5)", stroke: "rgba(100,0,100,1)" } })
+	            }, ""), className: _chart2.default.background })
 	        ),
 	        _react2.default.createElement(
 	          'g',
@@ -24481,14 +24481,9 @@
 	              {
 	                x: x,
 	                y: y,
-	                fontFamily: 'Passion One',
-	                fontSize: '24px',
-	                fill: '#fff'
-	                // fontWeight="bold" 
-	                , stroke: '#000',
-	                strokeWidth: '0.5',
 	                textAnchor: (0, _main.getAnchor)(_this2.width / 2, x),
-	                alignmentBaseline: (0, _main.getBaseline)(_this2.height / 2, y)
+	                alignmentBaseline: (0, _main.getBaseline)(_this2.height / 2, y),
+	                className: _chart2.default.text
 	              },
 	              chara.name
 	            )
@@ -25439,6 +25434,50 @@
 	    }
 	  };
 	})(Controls);
+
+/***/ },
+/* 242 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(243);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(238)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../node_modules/css-loader/index.js?{\"modules\":true,\"localIdentName\":\"[name]__[local]___[hash:base64:5]\"}!./chart.css", function() {
+				var newContent = require("!!./../node_modules/css-loader/index.js?{\"modules\":true,\"localIdentName\":\"[name]__[local]___[hash:base64:5]\"}!./chart.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 243 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(237)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".chart__background___2SNp9{\r\n\tstroke:rgba(100,0,100,1);\r\n\tfill:rgba(100,0,100,0.5);\r\n}\r\n.chart__chart___3f-3y{\r\n\tstroke:rgba(100,100,0,1);\r\n\tfill:rgba(100,0,100,0.5);\r\n}\r\n.chart__text___mM7W4{\r\n\tfont-family:\"Passion One\";\r\n\tfont-size: 24px; \r\n  fill:#fff;\r\n  stroke:#000;\r\n  stroke-width:0.5 ;\r\n}", ""]);
+
+	// exports
+	exports.locals = {
+		"background": "chart__background___2SNp9",
+		"chart": "chart__chart___3f-3y",
+		"text": "chart__text___mM7W4"
+	};
 
 /***/ }
 /******/ ]);

@@ -1,3 +1,15 @@
 .background{
 	stroke:rgba(100,0,100,1);
+	fill:rgba(100,0,100,0.5);
+}
+.chart{
+	stroke:rgba(100,100,0,1);
+	fill:rgba(100,0,100,0.5);
+}
+.text{
+	font-family:"Passion One";
+	font-size: 24px; 
+  fill:#fff;
+  stroke:#000;
+  stroke-width:0.5 ;
 }

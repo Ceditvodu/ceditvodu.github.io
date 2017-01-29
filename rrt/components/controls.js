@@ -177,44 +177,44 @@ class Controls extends Component{
   render(){
   	return(
   		<ul className={style.chara_items}>
-          {this.props.characters.map((chara, index)=>
-            <li key={index} className={style.chara_item}>
-              <button className={style.chara_up} onClick={this.onMoveUpChara.bind(this, index)} disabled={(index==0)? true : false}>^</button>
-              <button className={style.chara_down} onClick={this.onMoveDownChara.bind(this, index)} disabled={(index==(this.props.characters.length-1))? true : false}>v</button>
-              <input type="text" 
-                        value={chara.name}
-                        className={style.chara_name}
-                        placeholder="Feature"
-                        data-index={index} 
-                        ref={(name)=>{this.charaItemName[index] = name;}} 
-                        onKeyPress={this.editChara.bind(this, index)}
-                        onChange={this.changeChara.bind(this, index)}/>
-              <input type="number"
-                        value={chara.value}
-                        className={style.chara_value}
-                        data-index={index} 
-                        ref={(value)=>{this.charaItemValue[index] = value;}} 
-                        onKeyPress={this.editChara.bind(this, index)}
-                        onChange={this.changeChara.bind(this, index)}/>
-              <button className={style.chara_del} onClick={this.deleteChara.bind(this, index)}>x</button>
-            </li>
-          )}
-          <li className={style.chara_item}>
+        {this.props.characters.map((chara, index)=>
+          <li key={index} className={style.chara_item}>
+            <button className={style.chara_up} onClick={this.onMoveUpChara.bind(this, index)} disabled={(index==0)? true : false}>^</button>
+            <button className={style.chara_down} onClick={this.onMoveDownChara.bind(this, index)} disabled={(index==(this.props.characters.length-1))? true : false}>v</button>
             <input type="text" 
-              className={style.chara_add_name}
-              ref={(input)=>{this.charaInputName = input}} 
-              onKeyPress={this.addChara.bind(this)} 
-              onBlur={this.blurChara.bind(this)}
-              onChange={this.changeInput.bind(this)}/>
-            <input type="number" max="100" 
-              className={style.chara_add_value}
-              ref={(input)=>{this.charaInputValue = input}} 
-              onKeyPress={this.addChara.bind(this)} 
-              onBlur={this.blurChara.bind(this)}
-              onChange={this.changeInput.bind(this)}/>
-            <button className={style.chara_add} onClick={this.addCharaB.bind(this)}>+</button>
+                      value={chara.name}
+                      className={style.chara_name}
+                      placeholder="Feature"
+                      data-index={index} 
+                      ref={(name)=>{this.charaItemName[index] = name;}} 
+                      onKeyPress={this.editChara.bind(this, index)}
+                      onChange={this.changeChara.bind(this, index)}/>
+            <input type="number"
+                      value={chara.value}
+                      className={style.chara_value}
+                      data-index={index} 
+                      ref={(value)=>{this.charaItemValue[index] = value;}} 
+                      onKeyPress={this.editChara.bind(this, index)}
+                      onChange={this.changeChara.bind(this, index)}/>
+            <button className={style.chara_del} onClick={this.deleteChara.bind(this, index)}>x</button>
           </li>
-        </ul>
+        )}
+        <li className={style.chara_item}>
+          <input type="text" 
+            className={style.chara_add_name}
+            ref={(input)=>{this.charaInputName = input}} 
+            onKeyPress={this.addChara.bind(this)} 
+            onBlur={this.blurChara.bind(this)}
+            onChange={this.changeInput.bind(this)}/>
+          <input type="number" max="100" 
+            className={style.chara_add_value}
+            ref={(input)=>{this.charaInputValue = input}} 
+            onKeyPress={this.addChara.bind(this)} 
+            onBlur={this.blurChara.bind(this)}
+            onChange={this.changeInput.bind(this)}/>
+          <button className={style.chara_add} onClick={this.addCharaB.bind(this)}>+</button>
+        </li>
+      </ul>
   	)
   }
 }
