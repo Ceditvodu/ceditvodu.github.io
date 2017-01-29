@@ -24361,9 +24361,9 @@
 	        var value_is_valid = (0, _validation.validation)(this.charaInputValue.value, _validation.isNotMoreThenHundred, _validation.isNotLessThenZero, _validation.isNotEmpty);
 
 	        if (name_is_valid) {
-	          this.charaInputName.classList.remove = ' invalid';
+	          this.charaInputName.className = _app2.default.chara_add_name;
 	        } else {
-	          this.charaInputName.classList.add = ' invalid';
+	          this.charaInputName.className = [_app2.default.chara_add_name, _app2.default.chara_invalid].join(" ");
 	        }
 
 	        if (value_is_valid) {
@@ -24386,9 +24386,9 @@
 	      var value_is_valid = (0, _validation.validation)(this.charaInputValue.value, _validation.isNotMoreThenHundred, _validation.isNotLessThenZero, _validation.isNotEmpty);
 
 	      if (name_is_valid) {
-	        this.charaInputName.classList.remove = ' invalid';
+	        this.charaInputName.className = _app2.default.chara_add_name;
 	      } else {
-	        this.charaInputName.classList.add = ' invalid';
+	        this.charaInputName.className = [_app2.default.chara_add_name, _app2.default.chara_invalid].join(" ");
 	      }
 
 	      if (value_is_valid) {
@@ -24411,9 +24411,9 @@
 	      var value_is_valid = (0, _validation.validation)(this.charaInputValue.value, _validation.isNotMoreThenHundred, _validation.isNotLessThenZero);
 
 	      if (name_is_valid) {
-	        this.charaInputName.classList.remove = ' invalid';
+	        this.charaInputName.className = _app2.default.chara_add_name;
 	      } else {
-	        this.charaInputName.classList.add = ' invalid';
+	        this.charaInputName.className = [_app2.default.chara_add_name, _app2.default.chara_invalid].join(" ");
 	      }
 
 	      if (value_is_valid) {
@@ -24429,9 +24429,9 @@
 	      var value_is_valid = (0, _validation.validation)(this.charaInputValue.value, _validation.isNotMoreThenHundred, _validation.isNotLessThenZero);
 
 	      if (name_is_valid) {
-	        this.charaInputName.classList.remove = ' invalid';
+	        this.charaInputName.className = _app2.default.chara_add_name;
 	      } else {
-	        this.charaInputName.classList.add = ' invalid';
+	        this.charaInputName.className = [_app2.default.chara_add_name, _app2.default.chara_invalid].join(" ");
 	      }
 
 	      if (value_is_valid) {
@@ -24568,10 +24568,11 @@
 	                {
 	                  x: x,
 	                  y: y,
-	                  fontFamily: 'Verdana',
-	                  fontSize: '16px',
-	                  fontWeight: 'bold',
-	                  stroke: '#fff',
+	                  fontFamily: 'Passion One',
+	                  fontSize: '24px',
+	                  fill: '#fff'
+	                  // fontWeight="bold" 
+	                  , stroke: '#000',
 	                  strokeWidth: '0.5',
 	                  textAnchor: (0, _main.getAnchor)(_this2.width / 2, x),
 	                  alignmentBaseline: (0, _main.getBaseline)(_this2.height / 2, y)
@@ -24933,7 +24934,7 @@
 
 
 	// module
-	exports.push([module.id, ".app__colors___2nvcY{\r\n\tcolor: #9398F3;\r\n\tcolor: #F03BD6;\r\n\tcolor: #FFC2FF;\r\n\tcolor: #EBEBF3;\r\n\tcolor: #D9AE83;\r\n}\r\n\r\n\r\n\r\n.app__chara_cont___1i7YY{\r\n\t/*position: relative;*/\r\n}\r\n\r\n.app__chara_items___-Bz7A{\r\n\theight: 257px;\r\n\toverflow-y: scroll;\r\n  padding: 0 0 61px 17px;\r\n  margin: 4px 0 0;\r\n\t-webkit-box-sizing: border-box;\r\n\t-moz-box-sizing: border-box;\r\n\tbox-sizing: border-box;\r\n}\r\n\r\n.app__chara_item___30gsH{\r\n\tlist-style: none;\r\n\tposition: relative;\r\n}\r\n\r\n.app__chara_item___30gsH:hover .app__chara_up___376vl{\r\n\tdisplay: block;\r\n}\r\n\r\n.app__chara_item___30gsH:hover .app__chara_down___H3XQN{\r\n\tdisplay: block;\r\n}\r\n\r\n.app__chara_item___30gsH:hover .app__chara_del___3u5h0{\r\n\tdisplay: block;\r\n}\r\n\r\n.app__chara_item___30gsH:hover .app__chara_add___1w-Ah{\r\n\tdisplay: block;\r\n}\r\n\r\n.app__chara_item___30gsH:first-of-type .app__chara_name___mQbjI{\r\n\tborder-radius: 20px 5px 5px 10px;\r\n}\r\n\r\n.app__chara_item___30gsH:first-of-type .app__chara_value___3d15b{\r\n\tborder-radius: 5px 20px 10px 5px;\r\n}\r\n\r\n.app__chara_item___30gsH:last-of-type .app__chara_add_name___1VEjZ{\r\n\tborder-radius: 10px 5px 5px 20px;\r\n}\r\n\r\n.app__chara_item___30gsH:last-of-type .app__chara_add_value___3BFK1{\r\n\tborder-radius: 5px 10px 20px 5px;\r\n}\r\n\r\n.app__chara_item___30gsH:last-of-type{\r\n\tposition: absolute;\r\n\tbottom: 0px;\r\n\tpadding: 0 0 27px;\r\n\tbackground: #EBEBF3;\r\n}\r\n\r\n.app__chara_name___mQbjI{\r\n\tbackground: #9398F3;\r\n\tcolor: #ffffff;\r\n\tborder: 5px solid #FFC2FF;\r\n\tborder-radius: 10px 5px 5px 10px;\r\n\tpadding: 10px 15px;\r\n\tmargin: 2px 2px 2px 10px;\r\n\twidth: 130px;\r\n\tfont-weight: bold;\r\n}\r\n\r\n.app__chara_value___3d15b{\r\n\tbackground: #9398F3;\r\n\tcolor: #ffffff;\r\n\tborder: 5px solid #FFC2FF;\r\n\tborder-radius: 5px 10px 10px 5px;\r\n\tpadding: 10px 15px;\r\n\tmargin: 2px 10px 2px 2px;\r\n\twidth: 50px;\r\n\tfont-weight: bold;\r\n}\r\n\r\n.app__chara_add_name___1VEjZ{\r\n\tbackground: #9398F3;\r\n\tcolor: #ffffff;\r\n\tborder: 5px solid #FFC2FF;\r\n\tborder-radius: 10px 5px 5px 10px;\r\n\tpadding: 10px 15px;\r\n\tmargin: 2px 2px 2px 10px;\r\n\twidth: 130px;\r\n\tfont-weight: bold;\r\n}\r\n\r\n.app__chara_add_value___3BFK1{\r\n\tbackground: #9398F3;\r\n\tcolor: #ffffff;\r\n\tborder: 5px solid #FFC2FF;\r\n\tborder-radius: 5px 10px 10px 5px;\r\n\tpadding: 10px 15px;\r\n\tmargin: 2px 10px 2px 2px;\r\n\twidth: 50px;\r\n\tfont-weight: bold;\r\n}\r\n\r\n.app__chara_add___1w-Ah{\r\n\tbackground: #9398F3;\r\n\tcolor: #ffffff;\r\n\tborder: 5px solid #FFC2FF;\r\n\tborder-radius: 50%;\r\n\tpadding: 1px 5px;\r\n\tposition: absolute;\r\n\ttop: 0;\r\n\tright: 2px;\r\n\tdisplay: none;\r\n\r\n}\r\n\r\n.app__chara_del___3u5h0{\r\n\tbackground: #9398F3;\r\n\tcolor: #ffffff;\r\n\tborder: 5px solid #FFC2FF;\r\n\tborder-radius: 50%;\r\n\tpadding: 1px 5px;\r\n\tposition: absolute;\r\n\ttop: 0;\r\n\tright: 2px;\r\n\tdisplay: none;\r\n\r\n}\r\n\r\n.app__chara_up___376vl{\r\n\tbackground: #9398F3;\r\n\tcolor: #ffffff;\r\n\tborder: 5px solid #FFC2FF;\r\n\tborder-radius: 50%;\r\n\tpadding: 1px 5px;\r\n\tposition: absolute;\r\n\ttop: 0;\r\n\tleft: 2px;\r\n\tdisplay: none;\r\n}\r\n\r\n.app__chara_down___H3XQN{\r\n\tbackground: #9398F3;\r\n\tcolor: #ffffff;\r\n\tborder: 5px solid #FFC2FF;\r\n\tborder-radius: 50%;\r\n\tpadding: 1px 5px;\r\n\tposition: absolute;\r\n\tbottom: 0;\r\n\tleft: 2px;\r\n\tdisplay: none;\r\n}", ""]);
+	exports.push([module.id, ".app__colors___2nvcY{\r\n\tcolor: #9398F3;\r\n\tcolor: #F03BD6;\r\n\tcolor: #FFC2FF;\r\n\tcolor: #EBEBF3;\r\n\tcolor: #D9AE83;\r\n}\r\n\r\n\r\n\r\n.app__chara_cont___1i7YY{\r\n\t/*position: relative;*/\r\n}\r\n\r\n.app__chara_items___-Bz7A{\r\n\theight: 257px;\r\n\toverflow-y: scroll;\r\n  padding: 0 0 61px 17px;\r\n  margin: 4px 0 0;\r\n\t-webkit-box-sizing: border-box;\r\n\t-moz-box-sizing: border-box;\r\n\tbox-sizing: border-box;\r\n}\r\n\r\n.app__chara_item___30gsH{\r\n\tlist-style: none;\r\n\tposition: relative;\r\n}\r\n\r\n.app__chara_item___30gsH:hover .app__chara_up___376vl{\r\n\tdisplay: block;\r\n}\r\n\r\n.app__chara_item___30gsH:hover .app__chara_down___H3XQN{\r\n\tdisplay: block;\r\n}\r\n\r\n.app__chara_item___30gsH:hover .app__chara_del___3u5h0{\r\n\tdisplay: block;\r\n}\r\n\r\n.app__chara_item___30gsH:hover .app__chara_add___1w-Ah{\r\n\tdisplay: block;\r\n}\r\n\r\n.app__chara_item___30gsH:first-of-type .app__chara_name___mQbjI{\r\n\tborder-radius: 20px 5px 5px 10px;\r\n}\r\n\r\n.app__chara_item___30gsH:first-of-type .app__chara_value___3d15b{\r\n\tborder-radius: 5px 20px 10px 5px;\r\n}\r\n\r\n.app__chara_item___30gsH:last-of-type .app__chara_add_name___1VEjZ{\r\n\tborder-radius: 10px 5px 5px 20px;\r\n}\r\n\r\n.app__chara_item___30gsH:last-of-type .app__chara_add_value___3BFK1{\r\n\tborder-radius: 5px 10px 20px 5px;\r\n}\r\n\r\n.app__chara_item___30gsH:last-of-type{\r\n\tposition: absolute;\r\n\tbottom: 0px;\r\n\tpadding: 0 0 27px;\r\n\tbackground: #EBEBF3;\r\n}\r\n\r\n.app__chara_name___mQbjI{\r\n\tbackground: #9398F3;\r\n\tcolor: #ffffff;\r\n\tborder: 5px solid #FFC2FF;\r\n\tborder-radius: 10px 5px 5px 10px;\r\n\tpadding: 10px 15px;\r\n\tmargin: 2px 2px 2px 10px;\r\n\twidth: 130px;\r\n\tfont-weight: bold;\r\n}\r\n\r\n.app__chara_value___3d15b{\r\n\tbackground: #9398F3;\r\n\tcolor: #ffffff;\r\n\tborder: 5px solid #FFC2FF;\r\n\tborder-radius: 5px 10px 10px 5px;\r\n\tpadding: 10px 15px;\r\n\tmargin: 2px 10px 2px 2px;\r\n\twidth: 50px;\r\n\tfont-weight: bold;\r\n}\r\n\r\n.app__chara_add_name___1VEjZ{\r\n\tbackground: #9398F3;\r\n\tcolor: #ffffff;\r\n\tborder: 5px solid #FFC2FF;\r\n\tborder-radius: 10px 5px 5px 10px;\r\n\tpadding: 10px 15px;\r\n\tmargin: 2px 2px 2px 10px;\r\n\twidth: 130px;\r\n\tfont-weight: bold;\r\n}\r\n\r\n.app__chara_add_value___3BFK1{\r\n\tbackground: #9398F3;\r\n\tcolor: #ffffff;\r\n\tborder: 5px solid #FFC2FF;\r\n\tborder-radius: 5px 10px 10px 5px;\r\n\tpadding: 10px 15px;\r\n\tmargin: 2px 10px 2px 2px;\r\n\twidth: 50px;\r\n\tfont-weight: bold;\r\n}\r\n\r\n.app__chara_add___1w-Ah{\r\n\tbackground: #9398F3;\r\n\tcolor: #ffffff;\r\n\tborder: 5px solid #FFC2FF;\r\n\tborder-radius: 50%;\r\n\tpadding: 1px 5px;\r\n\tposition: absolute;\r\n\ttop: 0;\r\n\tright: 2px;\r\n\tdisplay: none;\r\n\r\n}\r\n\r\n.app__chara_del___3u5h0{\r\n\tbackground: #9398F3;\r\n\tcolor: #ffffff;\r\n\tborder: 5px solid #FFC2FF;\r\n\tborder-radius: 50%;\r\n\tpadding: 1px 5px;\r\n\tposition: absolute;\r\n\ttop: 0;\r\n\tright: 2px;\r\n\tdisplay: none;\r\n\r\n}\r\n\r\n.app__chara_up___376vl{\r\n\tbackground: #9398F3;\r\n\tcolor: #ffffff;\r\n\tborder: 5px solid #FFC2FF;\r\n\tborder-radius: 50%;\r\n\tpadding: 1px 5px;\r\n\tposition: absolute;\r\n\ttop: 0;\r\n\tleft: 2px;\r\n\tdisplay: none;\r\n}\r\n\r\n.app__chara_down___H3XQN{\r\n\tbackground: #9398F3;\r\n\tcolor: #ffffff;\r\n\tborder: 5px solid #FFC2FF;\r\n\tborder-radius: 50%;\r\n\tpadding: 1px 5px;\r\n\tposition: absolute;\r\n\tbottom: 0;\r\n\tleft: 2px;\r\n\tdisplay: none;\r\n}\r\n\r\n.app__chara_invalid___2C9kI{\r\n\tborder: 5px solid #D9AE83;\r\n}", ""]);
 
 	// exports
 	exports.locals = {
@@ -24948,7 +24949,8 @@
 		"chara_name": "app__chara_name___mQbjI",
 		"chara_value": "app__chara_value___3d15b",
 		"chara_add_name": "app__chara_add_name___1VEjZ",
-		"chara_add_value": "app__chara_add_value___3BFK1"
+		"chara_add_value": "app__chara_add_value___3BFK1",
+		"chara_invalid": "app__chara_invalid___2C9kI"
 	};
 
 /***/ },

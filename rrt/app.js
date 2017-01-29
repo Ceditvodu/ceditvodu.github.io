@@ -47,9 +47,9 @@ class App extends Component{
                                           isNotEmpty);
 
       if(name_is_valid){
-        this.charaInputName.classList.remove = ' invalid';
+        this.charaInputName.className = style.chara_add_name;
       }else{
-        this.charaInputName.classList.add = ' invalid';
+        this.charaInputName.className = [style.chara_add_name, style.chara_invalid].join(" ");
       }
 
       if(value_is_valid){
@@ -77,9 +77,9 @@ class App extends Component{
                                         isNotEmpty);
 
     if(name_is_valid){
-      this.charaInputName.classList.remove = ' invalid';
+      this.charaInputName.className = style.chara_add_name;
     }else{
-      this.charaInputName.classList.add = ' invalid';
+      this.charaInputName.className = [style.chara_add_name, style.chara_invalid].join(" ");
     }
 
     if(value_is_valid){
@@ -105,9 +105,9 @@ class App extends Component{
                                         isNotLessThenZero);
 
     if(name_is_valid){
-      this.charaInputName.classList.remove = ' invalid';
+      this.charaInputName.className = style.chara_add_name;
     }else{
-      this.charaInputName.classList.add = ' invalid';
+      this.charaInputName.className = [style.chara_add_name, style.chara_invalid].join(" ");
     }
 
     if(value_is_valid){
@@ -127,9 +127,9 @@ class App extends Component{
                                         isNotLessThenZero);
 
     if(name_is_valid){
-      this.charaInputName.classList.remove = ' invalid';
+      this.charaInputName.className = style.chara_add_name;
     }else{
-      this.charaInputName.classList.add = ' invalid';
+      this.charaInputName.className = [style.chara_add_name, style.chara_invalid].join(" ");
     }
 
     if(value_is_valid){
@@ -281,10 +281,11 @@ class App extends Component{
                     <text 
                       x={x} 
                       y={y} 
-                      fontFamily="Verdana" 
-                      fontSize="16px" 
-                      fontWeight="bold" 
-                      stroke="#fff" 
+                      fontFamily="Passion One" 
+                      fontSize="24px"
+                      fill="#fff" 
+                      // fontWeight="bold" 
+                      stroke="#000" 
                       strokeWidth="0.5" 
                       textAnchor={getAnchor(this.width/2,x)} 
                       alignmentBaseline={getBaseline(this.height/2,y)} 

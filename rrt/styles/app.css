@@ -159,3 +159,7 @@
 	left: 2px;
 	display: none;
 }
+
+.chara_invalid{
+	border: 5px solid #D9AE83;
+}
