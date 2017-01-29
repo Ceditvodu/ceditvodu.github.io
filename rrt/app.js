@@ -18,8 +18,6 @@ class App extends Component{
 
   constructor(props){
     super(props);
-    this.charaItemName = new Array();
-    this.charaItemValue = new Array();
   }
 
   render(){
@@ -27,7 +25,6 @@ class App extends Component{
       <div>
         <Chart />
         <Controls />
-        
       </div>
     )
   }
