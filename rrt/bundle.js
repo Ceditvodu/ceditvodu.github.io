@@ -62,7 +62,7 @@
 
 	var _App2 = _interopRequireDefault(_App);
 
-	var _reducers = __webpack_require__(238);
+	var _reducers = __webpack_require__(239);
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -24313,13 +24313,19 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _main = __webpack_require__(232);
+	var _chart = __webpack_require__(232);
 
-	var _validation = __webpack_require__(233);
+	var _chart2 = _interopRequireDefault(_chart);
 
-	var _app = __webpack_require__(234);
+	var _controls = __webpack_require__(241);
 
-	var _app2 = _interopRequireDefault(_app);
+	var _controls2 = _interopRequireDefault(_controls);
+
+	var _validation = __webpack_require__(234);
+
+	var _inputs = __webpack_require__(235);
+
+	var _inputs2 = _interopRequireDefault(_inputs);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -24339,6 +24345,69 @@
 
 	    _this.charaItemName = new Array();
 	    _this.charaItemValue = new Array();
+	    return _this;
+	  }
+
+	  _createClass(App, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(_chart2.default, null),
+	        _react2.default.createElement(_controls2.default, null)
+	      );
+	    }
+	  }]);
+
+	  return App;
+	}(_react.Component);
+
+	exports.default = App;
+
+/***/ },
+/* 232 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRedux = __webpack_require__(183);
+
+	var _reactDom = __webpack_require__(32);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	var _main = __webpack_require__(233);
+
+	var _inputs = __webpack_require__(235);
+
+	var _inputs2 = _interopRequireDefault(_inputs);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Chart = function (_Component) {
+	  _inherits(Chart, _Component);
+
+	  function Chart(props) {
+	    _classCallCheck(this, Chart);
+
+	    var _this = _possibleConstructorReturn(this, (Chart.__proto__ || Object.getPrototypeOf(Chart)).call(this, props));
 
 	    _this.height = 200;
 	    _this.width = 320;
@@ -24348,347 +24417,122 @@
 	    _this.radius = _this.height / 2;
 
 	    _this.points_count = _this.props.characters.length;
-
 	    return _this;
 	  }
 
-	  _createClass(App, [{
-	    key: 'addChara',
-	    value: function addChara(event) {
-	      if (event.key == 'Enter') {
-
-	        var name_is_valid = (0, _validation.validation)(this.charaInputName.value, _validation.isNotEmpty, _validation.isNotContainNumbers, _validation.isNotContainSpaces);
-	        var value_is_valid = (0, _validation.validation)(this.charaInputValue.value, _validation.isNotMoreThenHundred, _validation.isNotLessThenZero, _validation.isNotEmpty);
-
-	        if (name_is_valid) {
-	          this.charaInputName.className = _app2.default.chara_add_name;
-	        } else {
-	          this.charaInputName.className = [_app2.default.chara_add_name, _app2.default.chara_invalid].join(" ");
-	        }
-
-	        if (value_is_valid) {
-	          this.charaInputValue.className = _app2.default.chara_add_value;
-	        } else {
-	          this.charaInputName.className = [_app2.default.chara_add_name, _app2.default.chara_invalid].join(" ");
-	        }
-
-	        if (name_is_valid && value_is_valid) {
-	          this.props.onAddChara(this.charaInputName.value, this.charaInputValue.value);
-	          this.charaInputName.value = '';
-	          this.charaInputValue.value = '';
-	        }
-	      }
-	    }
-	  }, {
-	    key: 'addCharaB',
-	    value: function addCharaB() {
-	      var name_is_valid = (0, _validation.validation)(this.charaInputName.value, _validation.isNotEmpty, _validation.isNotContainNumbers, _validation.isNotContainSpaces);
-	      var value_is_valid = (0, _validation.validation)(this.charaInputValue.value, _validation.isNotMoreThenHundred, _validation.isNotLessThenZero, _validation.isNotEmpty);
-
-	      if (name_is_valid) {
-	        this.charaInputName.className = _app2.default.chara_add_name;
-	      } else {
-	        this.charaInputName.className = [_app2.default.chara_add_name, _app2.default.chara_invalid].join(" ");
-	      }
-
-	      if (value_is_valid) {
-	        this.charaInputValue.className = _app2.default.chara_add_value;
-	      } else {
-	        this.charaInputName.className = [_app2.default.chara_add_name, _app2.default.chara_invalid].join(" ");
-	      }
-
-	      if (name_is_valid && value_is_valid) {
-	        this.props.onAddChara(this.charaInputName.value, this.charaInputValue.value);
-	        this.charaInputName.value = '';
-	        this.charaInputValue.value = '';
-	      }
-	    }
-	  }, {
-	    key: 'blurChara',
-	    value: function blurChara(index, event) {
-
-	      var name_is_valid = (0, _validation.validation)(this.charaInputName.value, _validation.isNotContainNumbers, _validation.isNotContainSpaces);
-	      var value_is_valid = (0, _validation.validation)(this.charaInputValue.value, _validation.isNotMoreThenHundred, _validation.isNotLessThenZero);
-
-	      if (name_is_valid) {
-	        this.charaInputName.className = _app2.default.chara_add_name;
-	      } else {
-	        this.charaInputName.className = [_app2.default.chara_add_name, _app2.default.chara_invalid].join(" ");
-	      }
-
-	      if (value_is_valid) {
-	        this.charaInputValue.className = _app2.default.chara_add_value;
-	      } else {
-	        this.charaInputName.className = [_app2.default.chara_add_name, _app2.default.chara_invalid].join(" ");
-	      }
-	    }
-	  }, {
-	    key: 'changeInput',
-	    value: function changeInput() {
-	      var name_is_valid = (0, _validation.validation)(this.charaInputName.value, _validation.isNotContainNumbers, _validation.isNotContainSpaces);
-	      var value_is_valid = (0, _validation.validation)(this.charaInputValue.value, _validation.isNotMoreThenHundred, _validation.isNotLessThenZero);
-
-	      if (name_is_valid) {
-	        this.charaInputName.className = _app2.default.chara_add_name;
-	      } else {
-	        this.charaInputName.className = [_app2.default.chara_add_name, _app2.default.chara_invalid].join(" ");
-	      }
-
-	      if (value_is_valid) {
-	        this.charaInputValue.className = _app2.default.chara_add_value;
-	      } else {
-	        this.charaInputValue.className = [_app2.default.chara_add_value, _app2.default.chara_invalid].join(" ");
-	      }
-	    }
-	  }, {
-	    key: 'editChara',
-	    value: function editChara(index, event) {
-	      if (event.key == 'Enter') {
-
-	        var name_is_valid = (0, _validation.validation)(this.charaItemName[index].value, _validation.isNotEmpty, _validation.isNotContainNumbers, _validation.isNotContainSpaces);
-	        var value_is_valid = (0, _validation.validation)(this.charaItemValue[index].value, _validation.isNotMoreThenHundred, _validation.isNotLessThenZero, _validation.isNotEmpty);
-
-	        if (name_is_valid && value_is_valid) {
-	          this.props.onEditChara(this.charaItemName[index].value, this.charaItemValue[index].value, index);
-	        }
-	      }
-	    }
-	  }, {
-	    key: 'changeChara',
-	    value: function changeChara(index, event) {
-
-	      var name_is_valid = (0, _validation.validation)(this.charaItemName[index].value, _validation.isNotEmpty, _validation.isNotContainNumbers, _validation.isNotContainSpaces);
-	      var value_is_valid = (0, _validation.validation)(this.charaItemValue[index].value, _validation.isNotMoreThenHundred, _validation.isNotLessThenZero, _validation.isNotEmpty);
-
-	      if (name_is_valid && value_is_valid) {
-	        this.props.onEditChara(this.charaItemName[index].value, this.charaItemValue[index].value, index);
-	      }
-	    }
-	  }, {
-	    key: 'onMoveUpChara',
-	    value: function onMoveUpChara(index) {
-	      this.props.onMoveUpChara(index);
-	    }
-	  }, {
-	    key: 'onMoveDownChara',
-	    value: function onMoveDownChara(index) {
-	      this.props.onMoveDownChara(index);
-	    }
-	  }, {
-	    key: 'deleteChara',
-	    value: function deleteChara(index) {
-
-	      this.props.onDeleteChara(index);
-	    }
-	  }, {
+	  _createClass(Chart, [{
 	    key: 'render',
 	    value: function render() {
 	      var _this2 = this;
 
-	      //console.log(this.props)
 	      return _react2.default.createElement(
-	        'div',
-	        null,
+	        'svg',
+	        { width: this.width, height: this.height, ref: function ref(svg) {} },
 	        _react2.default.createElement(
-	          'svg',
-	          { width: this.width, height: this.height, ref: function ref(svg) {} },
-	          _react2.default.createElement(
-	            'g',
-	            null,
-	            'getIndicators = (count, cx, cy, index, value)',
-	            _react2.default.createElement('path', { d: this.props.characters.reduce(function (prev, chara, index) {
-	                var polygon = "M8 48 L56 48 L32 12 Z";
-	                // console.log(this.props.characters.length, index);
-	                if (index == 0) {
-	                  return prev + "M " + (0, _main.getIndicators)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).x + " " + (0, _main.getIndicators)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).y + " ";
-	                } else if (index == _this2.props.characters.length - 1) {
-	                  return prev + "L " + (0, _main.getIndicators)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).x + " " + (0, _main.getIndicators)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).y + " Z";
-	                } else {
-	                  return prev + "L " + (0, _main.getIndicators)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).x + " " + (0, _main.getIndicators)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).y + " ";
-	                }
-	                return prev + "";
-	              }, ""), style: { fill: "rgba(100,0,100,0.5)", stroke: "rgba(100,100,0,1)" } })
-	          ),
-	          _react2.default.createElement(
-	            'g',
-	            null,
-	            _react2.default.createElement('path', { d: this.props.characters.reduce(function (prev, chara, index) {
-	                var polygon = "M8 48 L56 48 L32 12 Z";
-	                // console.log(this.props.characters.length, index);
-	                if (index == 0) {
-	                  return prev + "M " + (0, _main.getPoints)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].x + " " + (0, _main.getPoints)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].y + " ";
-	                } else if (index == _this2.props.characters.length - 1) {
-	                  return prev + "L " + (0, _main.getPoints)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].x + " " + (0, _main.getPoints)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].y + " Z";
-	                } else {
-	                  return prev + "L " + (0, _main.getPoints)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].x + " " + (0, _main.getPoints)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].y + " ";
-	                }
-	                return prev + "";
-	              }, ""), style: { fill: "rgba(100,0,100,0.5)", stroke: "rgba(100,0,100,1)" } })
-	          ),
-	          _react2.default.createElement(
-	            'g',
-	            null,
-	            this.props.characters.map(function (chara, index) {
-	              return _react2.default.createElement('line', { x1: _this2.width / 2,
-	                y1: _this2.height / 2,
-	                x2: (0, _main.getPoints)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].x,
-	                y2: (0, _main.getPoints)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].y,
-	                style: { stroke: "rgba(100,0,100,1)" } });
-	            })
-	          ),
-	          this.props.characters.map(function (chara, index) {
-	            return _react2.default.createElement(
-	              'g',
-	              { key: index },
-	              _react2.default.createElement('circle', { cx: (0, _main.getIndicators)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).x,
-	                cy: (0, _main.getIndicators)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).y,
-	                r: '2', stroke: 'green', strokeWidth: '1', fill: 'blue' })
-	            );
-	          }),
-	          this.props.characters.map(function (chara, index) {
-	            var x = (0, _main.getIndicators)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, "100").x;
-	            var y = (0, _main.getIndicators)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, "100").y;
-	            return _react2.default.createElement(
-	              'g',
-	              { key: index },
-	              _react2.default.createElement(
-	                'text',
-	                {
-	                  x: x,
-	                  y: y,
-	                  fontFamily: 'Passion One',
-	                  fontSize: '24px',
-	                  fill: '#fff'
-	                  // fontWeight="bold" 
-	                  , stroke: '#000',
-	                  strokeWidth: '0.5',
-	                  textAnchor: (0, _main.getAnchor)(_this2.width / 2, x),
-	                  alignmentBaseline: (0, _main.getBaseline)(_this2.height / 2, y)
-	                },
-	                chara.name
-	              )
-	            );
-	          }),
-	          this.props.characters.map(function (chara, index) {
-	            return _react2.default.createElement(
-	              'g',
-	              { key: index },
-	              _react2.default.createElement('circle', { cx: (0, _main.getPoints)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].x,
-	                cy: (0, _main.getPoints)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].y,
-	                r: '2', stroke: 'green', strokeWidth: '1', fill: 'yellow' })
-	            );
-	          }),
-	          _react2.default.createElement(
-	            'g',
-	            null,
-	            _react2.default.createElement('circle', { cx: this.width / 2, cy: this.height / 2, r: '5', stroke: 'green', strokeWidth: '1', fill: 'black' })
-	          )
+	          'g',
+	          null,
+	          _react2.default.createElement('path', { d: this.props.characters.reduce(function (prev, chara, index) {
+	              var polygon = "M8 48 L56 48 L32 12 Z";
+	              // console.log(this.props.characters.length, index);
+	              if (index == 0) {
+	                return prev + "M " + (0, _main.getIndicators)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).x + " " + (0, _main.getIndicators)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).y + " ";
+	              } else if (index == _this2.props.characters.length - 1) {
+	                return prev + "L " + (0, _main.getIndicators)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).x + " " + (0, _main.getIndicators)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).y + " Z";
+	              } else {
+	                return prev + "L " + (0, _main.getIndicators)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).x + " " + (0, _main.getIndicators)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).y + " ";
+	              }
+	              return prev + "";
+	            }, ""), style: { fill: "rgba(100,0,100,0.5)", stroke: "rgba(100,100,0,1)" } })
 	        ),
 	        _react2.default.createElement(
-	          'ul',
-	          { className: _app2.default.chara_items },
+	          'g',
+	          null,
+	          _react2.default.createElement('path', { d: this.props.characters.reduce(function (prev, chara, index) {
+	              var polygon = "M8 48 L56 48 L32 12 Z";
+	              // console.log(this.props.characters.length, index);
+	              if (index == 0) {
+	                return prev + "M " + (0, _main.getPoints)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].x + " " + (0, _main.getPoints)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].y + " ";
+	              } else if (index == _this2.props.characters.length - 1) {
+	                return prev + "L " + (0, _main.getPoints)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].x + " " + (0, _main.getPoints)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].y + " Z";
+	              } else {
+	                return prev + "L " + (0, _main.getPoints)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].x + " " + (0, _main.getPoints)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].y + " ";
+	              }
+	              return prev + "";
+	            }, ""), style: { fill: "rgba(100,0,100,0.5)", stroke: "rgba(100,0,100,1)" } })
+	        ),
+	        _react2.default.createElement(
+	          'g',
+	          null,
 	          this.props.characters.map(function (chara, index) {
-	            return _react2.default.createElement(
-	              'li',
-	              { key: index, className: _app2.default.chara_item },
-	              _react2.default.createElement(
-	                'button',
-	                { className: _app2.default.chara_up, onClick: _this2.onMoveUpChara.bind(_this2, index), disabled: index == 0 ? true : false },
-	                '^'
-	              ),
-	              _react2.default.createElement(
-	                'button',
-	                { className: _app2.default.chara_down, onClick: _this2.onMoveDownChara.bind(_this2, index), disabled: index == _this2.props.characters.length - 1 ? true : false },
-	                'v'
-	              ),
-	              _react2.default.createElement('input', { type: 'text',
-	                value: chara.name,
-	                className: _app2.default.chara_name,
-	                placeholder: 'Feature',
-	                'data-index': index,
-	                ref: function ref(name) {
-	                  _this2.charaItemName[index] = name;
-	                },
-	                onKeyPress: _this2.editChara.bind(_this2, index),
-	                onChange: _this2.changeChara.bind(_this2, index) }),
-	              _react2.default.createElement('input', { type: 'number',
-	                value: chara.value,
-	                className: _app2.default.chara_value,
-	                'data-index': index,
-	                ref: function ref(value) {
-	                  _this2.charaItemValue[index] = value;
-	                },
-	                onKeyPress: _this2.editChara.bind(_this2, index),
-	                onChange: _this2.changeChara.bind(_this2, index) }),
-	              _react2.default.createElement(
-	                'button',
-	                { className: _app2.default.chara_del, onClick: _this2.deleteChara.bind(_this2, index) },
-	                'x'
-	              )
-	            );
-	          }),
-	          _react2.default.createElement(
-	            'li',
-	            { className: _app2.default.chara_item },
-	            _react2.default.createElement('input', { type: 'text',
-	              className: _app2.default.chara_add_name,
-	              ref: function ref(input) {
-	                _this2.charaInputName = input;
-	              },
-	              onKeyPress: this.addChara.bind(this),
-	              onBlur: this.blurChara.bind(this),
-	              onChange: this.changeInput.bind(this) }),
-	            _react2.default.createElement('input', { type: 'number', max: '100',
-	              className: _app2.default.chara_add_value,
-	              ref: function ref(input) {
-	                _this2.charaInputValue = input;
-	              },
-	              onKeyPress: this.addChara.bind(this),
-	              onBlur: this.blurChara.bind(this),
-	              onChange: this.changeInput.bind(this) }),
+	            return _react2.default.createElement('line', { x1: _this2.width / 2,
+	              y1: _this2.height / 2,
+	              x2: (0, _main.getPoints)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].x,
+	              y2: (0, _main.getPoints)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].y,
+	              style: { stroke: "rgba(100,0,100,1)" } });
+	          })
+	        ),
+	        this.props.characters.map(function (chara, index) {
+	          return _react2.default.createElement(
+	            'g',
+	            { key: index },
+	            _react2.default.createElement('circle', { cx: (0, _main.getIndicators)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).x,
+	              cy: (0, _main.getIndicators)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).y,
+	              r: '2', stroke: 'green', strokeWidth: '1', fill: 'blue' })
+	          );
+	        }),
+	        this.props.characters.map(function (chara, index) {
+	          var x = (0, _main.getIndicators)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, "100").x;
+	          var y = (0, _main.getIndicators)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, "100").y;
+	          return _react2.default.createElement(
+	            'g',
+	            { key: index },
 	            _react2.default.createElement(
-	              'button',
-	              { className: _app2.default.chara_add, onClick: this.addCharaB.bind(this) },
-	              '+'
+	              'text',
+	              {
+	                x: x,
+	                y: y,
+	                fontFamily: 'Passion One',
+	                fontSize: '24px',
+	                fill: '#fff'
+	                // fontWeight="bold" 
+	                , stroke: '#000',
+	                strokeWidth: '0.5',
+	                textAnchor: (0, _main.getAnchor)(_this2.width / 2, x),
+	                alignmentBaseline: (0, _main.getBaseline)(_this2.height / 2, y)
+	              },
+	              chara.name
 	            )
-	          )
+	          );
+	        }),
+	        this.props.characters.map(function (chara, index) {
+	          return _react2.default.createElement(
+	            'g',
+	            { key: index },
+	            _react2.default.createElement('circle', { cx: (0, _main.getPoints)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].x,
+	              cy: (0, _main.getPoints)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].y,
+	              r: '2', stroke: 'green', strokeWidth: '1', fill: 'yellow' })
+	          );
+	        }),
+	        _react2.default.createElement(
+	          'g',
+	          null,
+	          _react2.default.createElement('circle', { cx: this.width / 2, cy: this.height / 2, r: '5', stroke: 'green', strokeWidth: '1', fill: 'black' })
 	        )
 	      );
 	    }
 	  }]);
 
-	  return App;
+	  return Chart;
 	}(_react.Component);
 
 	exports.default = (0, _reactRedux.connect)(function (state) {
 	  return {
 	    characters: state.characters
 	  };
-	}, function (dispatch) {
-	  return {
-	    onAddChara: function onAddChara(charaInputName, charaInputValue) {
-	      dispatch({ type: 'ADD_CHARA', character_name: charaInputName, character_value: charaInputValue });
-	    },
-	    onEditChara: function onEditChara(charaName, charaValue, charaIndex) {
-	      dispatch({ type: 'EDIT_CHARA', character_name: charaName, character_value: charaValue, character_index: charaIndex });
-	    },
-	    onChangeChara: function onChangeChara(charaName, charaValue, charaIndex) {
-	      dispatch({ type: 'CHANGE_CHARA', character_name: charaName, character_value: charaValue, character_index: charaIndex });
-	    },
-	    onDeleteChara: function onDeleteChara(charaIndex) {
-	      dispatch({ type: 'DELETE_CHARA', character_index: charaIndex });
-	    },
-	    onMoveUpChara: function onMoveUpChara(charaIndex) {
-	      dispatch({ type: 'MOVE_UP_CHARA', character_index: charaIndex });
-	    },
-	    onMoveDownChara: function onMoveDownChara(charaIndex) {
-	      dispatch({ type: 'MOVE_DOWN_CHARA', character_index: charaIndex });
-	    }
-	  };
-	})(App);
+	})(Chart);
 
 /***/ },
-/* 232 */
+/* 233 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -24821,7 +24665,7 @@
 	}
 
 /***/ },
-/* 233 */
+/* 234 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -24882,23 +24726,23 @@
 	}
 
 /***/ },
-/* 234 */
+/* 235 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(235);
+	var content = __webpack_require__(236);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(237)(content, {});
+	var update = __webpack_require__(238)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../node_modules/css-loader/index.js?{\"modules\":true,\"localIdentName\":\"[name]__[local]___[hash:base64:5]\"}!./app.css", function() {
-				var newContent = require("!!./../node_modules/css-loader/index.js?{\"modules\":true,\"localIdentName\":\"[name]__[local]___[hash:base64:5]\"}!./app.css");
+			module.hot.accept("!!./../node_modules/css-loader/index.js?{\"modules\":true,\"localIdentName\":\"[name]__[local]___[hash:base64:5]\"}!./inputs.css", function() {
+				var newContent = require("!!./../node_modules/css-loader/index.js?{\"modules\":true,\"localIdentName\":\"[name]__[local]___[hash:base64:5]\"}!./inputs.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -24908,35 +24752,35 @@
 	}
 
 /***/ },
-/* 235 */
+/* 236 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(236)();
+	exports = module.exports = __webpack_require__(237)();
 	// imports
 
 
 	// module
-	exports.push([module.id, ".app__colors___2nvcY{\r\n\tcolor: #9398F3;\r\n\tcolor: #F03BD6;\r\n\tcolor: #FFC2FF;\r\n\tcolor: #EBEBF3;\r\n\tcolor: #D9AE83;\r\n}\r\n\r\n\r\n\r\n.app__chara_cont___1i7YY{\r\n\t/*position: relative;*/\r\n}\r\n\r\n.app__chara_items___-Bz7A{\r\n\theight: 257px;\r\n\toverflow-y: scroll;\r\n  padding: 0 0 61px 17px;\r\n  margin: 4px 0 0;\r\n\t-webkit-box-sizing: border-box;\r\n\t-moz-box-sizing: border-box;\r\n\tbox-sizing: border-box;\r\n}\r\n\r\n.app__chara_item___30gsH{\r\n\tlist-style: none;\r\n\tposition: relative;\r\n}\r\n\r\n.app__chara_item___30gsH:hover .app__chara_up___376vl{\r\n\tdisplay: block;\r\n}\r\n\r\n.app__chara_item___30gsH:hover .app__chara_down___H3XQN{\r\n\tdisplay: block;\r\n}\r\n\r\n.app__chara_item___30gsH:hover .app__chara_del___3u5h0{\r\n\tdisplay: block;\r\n}\r\n\r\n.app__chara_item___30gsH:hover .app__chara_add___1w-Ah{\r\n\tdisplay: block;\r\n}\r\n\r\n.app__chara_item___30gsH:first-of-type .app__chara_name___mQbjI{\r\n\tborder-radius: 20px 5px 5px 10px;\r\n}\r\n\r\n.app__chara_item___30gsH:first-of-type .app__chara_value___3d15b{\r\n\tborder-radius: 5px 20px 10px 5px;\r\n}\r\n\r\n.app__chara_item___30gsH:last-of-type .app__chara_add_name___1VEjZ{\r\n\tborder-radius: 10px 5px 5px 20px;\r\n}\r\n\r\n.app__chara_item___30gsH:last-of-type .app__chara_add_value___3BFK1{\r\n\tborder-radius: 5px 10px 20px 5px;\r\n}\r\n\r\n.app__chara_item___30gsH:last-of-type{\r\n\tposition: absolute;\r\n\tbottom: 0px;\r\n\tpadding: 0 0 27px;\r\n\tbackground: #EBEBF3;\r\n}\r\n\r\n.app__chara_name___mQbjI{\r\n\tbackground: #9398F3;\r\n\tcolor: #ffffff;\r\n\tborder: 5px solid #FFC2FF;\r\n\tborder-radius: 10px 5px 5px 10px;\r\n\tpadding: 10px 15px;\r\n\tmargin: 2px 2px 2px 10px;\r\n\twidth: 130px;\r\n\tfont-weight: bold;\r\n}\r\n\r\n.app__chara_value___3d15b{\r\n\tbackground: #9398F3;\r\n\tcolor: #ffffff;\r\n\tborder: 5px solid #FFC2FF;\r\n\tborder-radius: 5px 10px 10px 5px;\r\n\tpadding: 10px 15px;\r\n\tmargin: 2px 10px 2px 2px;\r\n\twidth: 50px;\r\n\tfont-weight: bold;\r\n}\r\n\r\n.app__chara_add_name___1VEjZ{\r\n\tbackground: #9398F3;\r\n\tcolor: #ffffff;\r\n\tborder: 5px solid #FFC2FF;\r\n\tborder-radius: 10px 5px 5px 10px;\r\n\tpadding: 10px 15px;\r\n\tmargin: 2px 2px 2px 10px;\r\n\twidth: 130px;\r\n\tfont-weight: bold;\r\n}\r\n\r\n.app__chara_add_value___3BFK1{\r\n\tbackground: #9398F3;\r\n\tcolor: #ffffff;\r\n\tborder: 5px solid #FFC2FF;\r\n\tborder-radius: 5px 10px 10px 5px;\r\n\tpadding: 10px 15px;\r\n\tmargin: 2px 10px 2px 2px;\r\n\twidth: 50px;\r\n\tfont-weight: bold;\r\n}\r\n\r\n.app__chara_add___1w-Ah{\r\n\tbackground: #9398F3;\r\n\tcolor: #ffffff;\r\n\tborder: 5px solid #FFC2FF;\r\n\tborder-radius: 50%;\r\n\tpadding: 1px 5px;\r\n\tposition: absolute;\r\n\ttop: 0;\r\n\tright: 2px;\r\n\tdisplay: none;\r\n\r\n}\r\n\r\n.app__chara_del___3u5h0{\r\n\tbackground: #9398F3;\r\n\tcolor: #ffffff;\r\n\tborder: 5px solid #FFC2FF;\r\n\tborder-radius: 50%;\r\n\tpadding: 1px 5px;\r\n\tposition: absolute;\r\n\ttop: 0;\r\n\tright: 2px;\r\n\tdisplay: none;\r\n\r\n}\r\n\r\n.app__chara_up___376vl{\r\n\tbackground: #9398F3;\r\n\tcolor: #ffffff;\r\n\tborder: 5px solid #FFC2FF;\r\n\tborder-radius: 50%;\r\n\tpadding: 1px 5px;\r\n\tposition: absolute;\r\n\ttop: 0;\r\n\tleft: 2px;\r\n\tdisplay: none;\r\n}\r\n\r\n.app__chara_down___H3XQN{\r\n\tbackground: #9398F3;\r\n\tcolor: #ffffff;\r\n\tborder: 5px solid #FFC2FF;\r\n\tborder-radius: 50%;\r\n\tpadding: 1px 5px;\r\n\tposition: absolute;\r\n\tbottom: 0;\r\n\tleft: 2px;\r\n\tdisplay: none;\r\n}\r\n\r\n.app__chara_invalid___2C9kI{\r\n\tborder: 5px solid #D9AE83;\r\n}", ""]);
+	exports.push([module.id, ".inputs__colors___3rVoX{\r\n\tcolor: #9398F3;\r\n\tcolor: #F03BD6;\r\n\tcolor: #FFC2FF;\r\n\tcolor: #EBEBF3;\r\n\tcolor: #D9AE83;\r\n}\r\n\r\n\r\n\r\n.inputs__chara_cont___2Egrc{\r\n\t/*position: relative;*/\r\n}\r\n\r\n.inputs__chara_items___2Zhdt{\r\n\theight: 257px;\r\n\toverflow-y: scroll;\r\n  padding: 0 0 61px 17px;\r\n  margin: 4px 0 0;\r\n\t-webkit-box-sizing: border-box;\r\n\t-moz-box-sizing: border-box;\r\n\tbox-sizing: border-box;\r\n}\r\n\r\n.inputs__chara_item___2QKn9{\r\n\tlist-style: none;\r\n\tposition: relative;\r\n}\r\n\r\n.inputs__chara_item___2QKn9:hover .inputs__chara_up___3AaPR{\r\n\tdisplay: block;\r\n}\r\n\r\n.inputs__chara_item___2QKn9:hover .inputs__chara_down___jKhKK{\r\n\tdisplay: block;\r\n}\r\n\r\n.inputs__chara_item___2QKn9:hover .inputs__chara_del___1ccci{\r\n\tdisplay: block;\r\n}\r\n\r\n.inputs__chara_item___2QKn9:hover .inputs__chara_add___3cq0Z{\r\n\tdisplay: block;\r\n}\r\n\r\n.inputs__chara_item___2QKn9:first-of-type .inputs__chara_name___OtnZS{\r\n\tborder-radius: 20px 5px 5px 10px;\r\n}\r\n\r\n.inputs__chara_item___2QKn9:first-of-type .inputs__chara_value___3MUow{\r\n\tborder-radius: 5px 20px 10px 5px;\r\n}\r\n\r\n.inputs__chara_item___2QKn9:last-of-type .inputs__chara_add_name___34K_y{\r\n\tborder-radius: 10px 5px 5px 20px;\r\n}\r\n\r\n.inputs__chara_item___2QKn9:last-of-type .inputs__chara_add_value___1SPYY{\r\n\tborder-radius: 5px 10px 20px 5px;\r\n}\r\n\r\n.inputs__chara_item___2QKn9:last-of-type{\r\n\tposition: absolute;\r\n\tbottom: 0px;\r\n\tpadding: 0 0 27px;\r\n\tbackground: #EBEBF3;\r\n}\r\n\r\n.inputs__chara_name___OtnZS{\r\n\tbackground: #9398F3;\r\n\tcolor: #ffffff;\r\n\tborder: 5px solid #FFC2FF;\r\n\tborder-radius: 10px 5px 5px 10px;\r\n\tpadding: 10px 15px;\r\n\tmargin: 2px 2px 2px 10px;\r\n\twidth: 130px;\r\n\tfont-weight: bold;\r\n}\r\n\r\n.inputs__chara_value___3MUow{\r\n\tbackground: #9398F3;\r\n\tcolor: #ffffff;\r\n\tborder: 5px solid #FFC2FF;\r\n\tborder-radius: 5px 10px 10px 5px;\r\n\tpadding: 10px 15px;\r\n\tmargin: 2px 10px 2px 2px;\r\n\twidth: 50px;\r\n\tfont-weight: bold;\r\n}\r\n\r\n.inputs__chara_add_name___34K_y{\r\n\tbackground: #9398F3;\r\n\tcolor: #ffffff;\r\n\tborder: 5px solid #FFC2FF;\r\n\tborder-radius: 10px 5px 5px 10px;\r\n\tpadding: 10px 15px;\r\n\tmargin: 2px 2px 2px 10px;\r\n\twidth: 130px;\r\n\tfont-weight: bold;\r\n}\r\n\r\n.inputs__chara_add_value___1SPYY{\r\n\tbackground: #9398F3;\r\n\tcolor: #ffffff;\r\n\tborder: 5px solid #FFC2FF;\r\n\tborder-radius: 5px 10px 10px 5px;\r\n\tpadding: 10px 15px;\r\n\tmargin: 2px 10px 2px 2px;\r\n\twidth: 50px;\r\n\tfont-weight: bold;\r\n}\r\n\r\n.inputs__chara_add___3cq0Z{\r\n\tbackground: #9398F3;\r\n\tcolor: #ffffff;\r\n\tborder: 5px solid #FFC2FF;\r\n\tborder-radius: 50%;\r\n\tpadding: 1px 5px;\r\n\tposition: absolute;\r\n\ttop: 0;\r\n\tright: 2px;\r\n\tdisplay: none;\r\n\r\n}\r\n\r\n.inputs__chara_del___1ccci{\r\n\tbackground: #9398F3;\r\n\tcolor: #ffffff;\r\n\tborder: 5px solid #FFC2FF;\r\n\tborder-radius: 50%;\r\n\tpadding: 1px 5px;\r\n\tposition: absolute;\r\n\ttop: 0;\r\n\tright: 2px;\r\n\tdisplay: none;\r\n\r\n}\r\n\r\n.inputs__chara_up___3AaPR{\r\n\tbackground: #9398F3;\r\n\tcolor: #ffffff;\r\n\tborder: 5px solid #FFC2FF;\r\n\tborder-radius: 50%;\r\n\tpadding: 1px 5px;\r\n\tposition: absolute;\r\n\ttop: 0;\r\n\tleft: 2px;\r\n\tdisplay: none;\r\n}\r\n\r\n.inputs__chara_down___jKhKK{\r\n\tbackground: #9398F3;\r\n\tcolor: #ffffff;\r\n\tborder: 5px solid #FFC2FF;\r\n\tborder-radius: 50%;\r\n\tpadding: 1px 5px;\r\n\tposition: absolute;\r\n\tbottom: 0;\r\n\tleft: 2px;\r\n\tdisplay: none;\r\n}\r\n\r\n.inputs__chara_invalid___29prT{\r\n\tborder: 5px solid #D9AE83;\r\n}", ""]);
 
 	// exports
 	exports.locals = {
-		"colors": "app__colors___2nvcY",
-		"chara_cont": "app__chara_cont___1i7YY",
-		"chara_items": "app__chara_items___-Bz7A",
-		"chara_item": "app__chara_item___30gsH",
-		"chara_up": "app__chara_up___376vl",
-		"chara_down": "app__chara_down___H3XQN",
-		"chara_del": "app__chara_del___3u5h0",
-		"chara_add": "app__chara_add___1w-Ah",
-		"chara_name": "app__chara_name___mQbjI",
-		"chara_value": "app__chara_value___3d15b",
-		"chara_add_name": "app__chara_add_name___1VEjZ",
-		"chara_add_value": "app__chara_add_value___3BFK1",
-		"chara_invalid": "app__chara_invalid___2C9kI"
+		"colors": "inputs__colors___3rVoX",
+		"chara_cont": "inputs__chara_cont___2Egrc",
+		"chara_items": "inputs__chara_items___2Zhdt",
+		"chara_item": "inputs__chara_item___2QKn9",
+		"chara_up": "inputs__chara_up___3AaPR",
+		"chara_down": "inputs__chara_down___jKhKK",
+		"chara_del": "inputs__chara_del___1ccci",
+		"chara_add": "inputs__chara_add___3cq0Z",
+		"chara_name": "inputs__chara_name___OtnZS",
+		"chara_value": "inputs__chara_value___3MUow",
+		"chara_add_name": "inputs__chara_add_name___34K_y",
+		"chara_add_value": "inputs__chara_add_value___1SPYY",
+		"chara_invalid": "inputs__chara_invalid___29prT"
 	};
 
 /***/ },
-/* 236 */
+/* 237 */
 /***/ function(module, exports) {
 
 	/*
@@ -24992,7 +24836,7 @@
 
 
 /***/ },
-/* 237 */
+/* 238 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -25244,7 +25088,7 @@
 
 
 /***/ },
-/* 238 */
+/* 239 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25255,7 +25099,7 @@
 
 	var _redux = __webpack_require__(194);
 
-	var _characters = __webpack_require__(239);
+	var _characters = __webpack_require__(240);
 
 	var _characters2 = _interopRequireDefault(_characters);
 
@@ -25266,7 +25110,7 @@
 	});
 
 /***/ },
-/* 239 */
+/* 240 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -25321,6 +25165,290 @@
 		}
 		return state;
 	}
+
+/***/ },
+/* 241 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRedux = __webpack_require__(183);
+
+	var _reactDom = __webpack_require__(32);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	var _validation = __webpack_require__(234);
+
+	var _inputs = __webpack_require__(235);
+
+	var _inputs2 = _interopRequireDefault(_inputs);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Controls = function (_Component) {
+	  _inherits(Controls, _Component);
+
+	  function Controls(props) {
+	    _classCallCheck(this, Controls);
+
+	    var _this = _possibleConstructorReturn(this, (Controls.__proto__ || Object.getPrototypeOf(Controls)).call(this, props));
+
+	    _this.charaItemName = new Array();
+	    _this.charaItemValue = new Array();
+	    return _this;
+	  }
+
+	  _createClass(Controls, [{
+	    key: 'addChara',
+	    value: function addChara(event) {
+	      if (event.key == 'Enter') {
+
+	        var name_is_valid = (0, _validation.validation)(this.charaInputName.value, _validation.isNotEmpty, _validation.isNotContainNumbers, _validation.isNotContainSpaces);
+	        var value_is_valid = (0, _validation.validation)(this.charaInputValue.value, _validation.isNotMoreThenHundred, _validation.isNotLessThenZero, _validation.isNotEmpty);
+
+	        if (name_is_valid) {
+	          this.charaInputName.className = _inputs2.default.chara_add_name;
+	        } else {
+	          this.charaInputName.className = [_inputs2.default.chara_add_name, _inputs2.default.chara_invalid].join(" ");
+	        }
+
+	        if (value_is_valid) {
+	          this.charaInputValue.className = _inputs2.default.chara_add_value;
+	        } else {
+	          this.charaInputName.className = [_inputs2.default.chara_add_name, _inputs2.default.chara_invalid].join(" ");
+	        }
+
+	        if (name_is_valid && value_is_valid) {
+	          this.props.onAddChara(this.charaInputName.value, this.charaInputValue.value);
+	          this.charaInputName.value = '';
+	          this.charaInputValue.value = '';
+	        }
+	      }
+	    }
+	  }, {
+	    key: 'addCharaB',
+	    value: function addCharaB() {
+	      var name_is_valid = (0, _validation.validation)(this.charaInputName.value, _validation.isNotEmpty, _validation.isNotContainNumbers, _validation.isNotContainSpaces);
+	      var value_is_valid = (0, _validation.validation)(this.charaInputValue.value, _validation.isNotMoreThenHundred, _validation.isNotLessThenZero, _validation.isNotEmpty);
+
+	      if (name_is_valid) {
+	        this.charaInputName.className = _inputs2.default.chara_add_name;
+	      } else {
+	        this.charaInputName.className = [_inputs2.default.chara_add_name, _inputs2.default.chara_invalid].join(" ");
+	      }
+
+	      if (value_is_valid) {
+	        this.charaInputValue.className = _inputs2.default.chara_add_value;
+	      } else {
+	        this.charaInputName.className = [_inputs2.default.chara_add_name, _inputs2.default.chara_invalid].join(" ");
+	      }
+
+	      if (name_is_valid && value_is_valid) {
+	        this.props.onAddChara(this.charaInputName.value, this.charaInputValue.value);
+	        this.charaInputName.value = '';
+	        this.charaInputValue.value = '';
+	      }
+	    }
+	  }, {
+	    key: 'blurChara',
+	    value: function blurChara(index, event) {
+
+	      var name_is_valid = (0, _validation.validation)(this.charaInputName.value, _validation.isNotContainNumbers, _validation.isNotContainSpaces);
+	      var value_is_valid = (0, _validation.validation)(this.charaInputValue.value, _validation.isNotMoreThenHundred, _validation.isNotLessThenZero);
+
+	      if (name_is_valid) {
+	        this.charaInputName.className = _inputs2.default.chara_add_name;
+	      } else {
+	        this.charaInputName.className = [_inputs2.default.chara_add_name, _inputs2.default.chara_invalid].join(" ");
+	      }
+
+	      if (value_is_valid) {
+	        this.charaInputValue.className = _inputs2.default.chara_add_value;
+	      } else {
+	        this.charaInputName.className = [_inputs2.default.chara_add_name, _inputs2.default.chara_invalid].join(" ");
+	      }
+	    }
+	  }, {
+	    key: 'changeInput',
+	    value: function changeInput() {
+	      var name_is_valid = (0, _validation.validation)(this.charaInputName.value, _validation.isNotContainNumbers, _validation.isNotContainSpaces);
+	      var value_is_valid = (0, _validation.validation)(this.charaInputValue.value, _validation.isNotMoreThenHundred, _validation.isNotLessThenZero);
+
+	      if (name_is_valid) {
+	        this.charaInputName.className = _inputs2.default.chara_add_name;
+	      } else {
+	        this.charaInputName.className = [_inputs2.default.chara_add_name, _inputs2.default.chara_invalid].join(" ");
+	      }
+
+	      if (value_is_valid) {
+	        this.charaInputValue.className = _inputs2.default.chara_add_value;
+	      } else {
+	        this.charaInputValue.className = [_inputs2.default.chara_add_value, _inputs2.default.chara_invalid].join(" ");
+	      }
+	    }
+	  }, {
+	    key: 'editChara',
+	    value: function editChara(index, event) {
+	      if (event.key == 'Enter') {
+
+	        var name_is_valid = (0, _validation.validation)(this.charaItemName[index].value, _validation.isNotEmpty, _validation.isNotContainNumbers, _validation.isNotContainSpaces);
+	        var value_is_valid = (0, _validation.validation)(this.charaItemValue[index].value, _validation.isNotMoreThenHundred, _validation.isNotLessThenZero, _validation.isNotEmpty);
+
+	        if (name_is_valid && value_is_valid) {
+	          this.props.onEditChara(this.charaItemName[index].value, this.charaItemValue[index].value, index);
+	        }
+	      }
+	    }
+	  }, {
+	    key: 'changeChara',
+	    value: function changeChara(index, event) {
+
+	      var name_is_valid = (0, _validation.validation)(this.charaItemName[index].value, _validation.isNotEmpty, _validation.isNotContainNumbers, _validation.isNotContainSpaces);
+	      var value_is_valid = (0, _validation.validation)(this.charaItemValue[index].value, _validation.isNotMoreThenHundred, _validation.isNotLessThenZero, _validation.isNotEmpty);
+
+	      if (name_is_valid && value_is_valid) {
+	        this.props.onEditChara(this.charaItemName[index].value, this.charaItemValue[index].value, index);
+	      }
+	    }
+	  }, {
+	    key: 'onMoveUpChara',
+	    value: function onMoveUpChara(index) {
+	      this.props.onMoveUpChara(index);
+	    }
+	  }, {
+	    key: 'onMoveDownChara',
+	    value: function onMoveDownChara(index) {
+	      this.props.onMoveDownChara(index);
+	    }
+	  }, {
+	    key: 'deleteChara',
+	    value: function deleteChara(index) {
+
+	      this.props.onDeleteChara(index);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+
+	      return _react2.default.createElement(
+	        'ul',
+	        { className: _inputs2.default.chara_items },
+	        this.props.characters.map(function (chara, index) {
+	          return _react2.default.createElement(
+	            'li',
+	            { key: index, className: _inputs2.default.chara_item },
+	            _react2.default.createElement(
+	              'button',
+	              { className: _inputs2.default.chara_up, onClick: _this2.onMoveUpChara.bind(_this2, index), disabled: index == 0 ? true : false },
+	              '^'
+	            ),
+	            _react2.default.createElement(
+	              'button',
+	              { className: _inputs2.default.chara_down, onClick: _this2.onMoveDownChara.bind(_this2, index), disabled: index == _this2.props.characters.length - 1 ? true : false },
+	              'v'
+	            ),
+	            _react2.default.createElement('input', { type: 'text',
+	              value: chara.name,
+	              className: _inputs2.default.chara_name,
+	              placeholder: 'Feature',
+	              'data-index': index,
+	              ref: function ref(name) {
+	                _this2.charaItemName[index] = name;
+	              },
+	              onKeyPress: _this2.editChara.bind(_this2, index),
+	              onChange: _this2.changeChara.bind(_this2, index) }),
+	            _react2.default.createElement('input', { type: 'number',
+	              value: chara.value,
+	              className: _inputs2.default.chara_value,
+	              'data-index': index,
+	              ref: function ref(value) {
+	                _this2.charaItemValue[index] = value;
+	              },
+	              onKeyPress: _this2.editChara.bind(_this2, index),
+	              onChange: _this2.changeChara.bind(_this2, index) }),
+	            _react2.default.createElement(
+	              'button',
+	              { className: _inputs2.default.chara_del, onClick: _this2.deleteChara.bind(_this2, index) },
+	              'x'
+	            )
+	          );
+	        }),
+	        _react2.default.createElement(
+	          'li',
+	          { className: _inputs2.default.chara_item },
+	          _react2.default.createElement('input', { type: 'text',
+	            className: _inputs2.default.chara_add_name,
+	            ref: function ref(input) {
+	              _this2.charaInputName = input;
+	            },
+	            onKeyPress: this.addChara.bind(this),
+	            onBlur: this.blurChara.bind(this),
+	            onChange: this.changeInput.bind(this) }),
+	          _react2.default.createElement('input', { type: 'number', max: '100',
+	            className: _inputs2.default.chara_add_value,
+	            ref: function ref(input) {
+	              _this2.charaInputValue = input;
+	            },
+	            onKeyPress: this.addChara.bind(this),
+	            onBlur: this.blurChara.bind(this),
+	            onChange: this.changeInput.bind(this) }),
+	          _react2.default.createElement(
+	            'button',
+	            { className: _inputs2.default.chara_add, onClick: this.addCharaB.bind(this) },
+	            '+'
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Controls;
+	}(_react.Component);
+
+	exports.default = (0, _reactRedux.connect)(function (state) {
+	  return {
+	    characters: state.characters
+	  };
+	}, function (dispatch) {
+	  return {
+	    onAddChara: function onAddChara(charaInputName, charaInputValue) {
+	      dispatch({ type: 'ADD_CHARA', character_name: charaInputName, character_value: charaInputValue });
+	    },
+	    onEditChara: function onEditChara(charaName, charaValue, charaIndex) {
+	      dispatch({ type: 'EDIT_CHARA', character_name: charaName, character_value: charaValue, character_index: charaIndex });
+	    },
+	    onChangeChara: function onChangeChara(charaName, charaValue, charaIndex) {
+	      dispatch({ type: 'CHANGE_CHARA', character_name: charaName, character_value: charaValue, character_index: charaIndex });
+	    },
+	    onDeleteChara: function onDeleteChara(charaIndex) {
+	      dispatch({ type: 'DELETE_CHARA', character_index: charaIndex });
+	    },
+	    onMoveUpChara: function onMoveUpChara(charaIndex) {
+	      dispatch({ type: 'MOVE_UP_CHARA', character_index: charaIndex });
+	    },
+	    onMoveDownChara: function onMoveDownChara(charaIndex) {
+	      dispatch({ type: 'MOVE_DOWN_CHARA', character_index: charaIndex });
+	    }
+	  };
+	})(Controls);
 
 /***/ }
 /******/ ]);
