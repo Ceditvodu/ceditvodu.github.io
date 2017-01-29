@@ -6,7 +6,6 @@ export function getIndicators(count, cx, cy, index, value){
   let pos = 0;
   if(value != undefined){
     pos = getValuePosition(cx,value);
-    console.log(pos);
   }
 
   if(count==1){

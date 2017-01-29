@@ -47,15 +47,15 @@ class App extends Component{
                                           isNotEmpty);
 
       if(name_is_valid){
-        this.charaInputName.classList.remove = 'invalid';
+        this.charaInputName.classList.remove = ' invalid';
       }else{
-        this.charaInputName.classList.add = 'invalid';
+        this.charaInputName.classList.add = ' invalid';
       }
 
       if(value_is_valid){
-        this.charaInputValue.classList.remove = 'invalid';
+        this.charaInputValue.classList.remove = ' invalid';
       }else{
-        this.charaInputValue.classList.add = 'invalid';
+        this.charaInputValue.classList.add = ' invalid';
       }
 
       if((name_is_valid)&&(value_is_valid)){
@@ -77,15 +77,15 @@ class App extends Component{
                                         isNotEmpty);
 
     if(name_is_valid){
-      this.charaInputName.classList.remove = 'invalid';
+      this.charaInputName.classList.remove = ' invalid';
     }else{
-      this.charaInputName.classList.add = 'invalid';
+      this.charaInputName.classList.add = ' invalid';
     }
 
     if(value_is_valid){
-      this.charaInputValue.classList.remove = 'invalid';
+      this.charaInputValue.classList.remove = ' invalid';
     }else{
-      this.charaInputValue.classList.add = 'invalid';
+      this.charaInputValue.classList.add = ' invalid';
     }
 
     if((name_is_valid)&&(value_is_valid)){
@@ -105,15 +105,15 @@ class App extends Component{
                                         isNotLessThenZero);
 
     if(name_is_valid){
-      this.charaInputName.classList.remove = 'invalid';
+      this.charaInputName.classList.remove = ' invalid';
     }else{
-      this.charaInputName.classList.add = 'invalid';
+      this.charaInputName.classList.add = ' invalid';
     }
 
     if(value_is_valid){
-      this.charaInputValue.classList.remove = 'invalid';
+      this.charaInputValue.classList.remove = ' invalid';
     }else{
-      this.charaInputValue.classList.add = 'invalid';
+      this.charaInputValue.classList.add = ' invalid';
     }
 
   }
@@ -127,15 +127,15 @@ class App extends Component{
                                         isNotLessThenZero);
 
     if(name_is_valid){
-      this.charaInputName.classList.remove = 'invalid';
+      this.charaInputName.classList.remove = ' invalid';
     }else{
-      this.charaInputName.classList.add = 'invalid';
+      this.charaInputName.classList.add = ' invalid';
     }
 
     if(value_is_valid){
-      this.charaInputValue.classList.remove = 'invalid';
+      this.charaInputValue.classList.remove = ' invalid';
     }else{
-      this.charaInputValue.classList.add = 'invalid';
+      this.charaInputValue.classList.add = ' invalid';
     }
 
   }
@@ -153,15 +153,15 @@ class App extends Component{
                                           isNotEmpty);
 
       if(name_is_valid){
-        this.charaItemName[index].classList.remove = 'invalid';
+        this.charaItemName[index].classList.remove = ' invalid';
       }else{
-        this.charaItemName[index].classList.add = 'invalid';
+        this.charaItemName[index].classList.add = ' invalid';
       }
 
       if(value_is_valid){
-        this.charaItemValue[index].classList.remove = 'invalid';
+        this.charaItemValue[index].classList.remove = ' invalid';
       }else{
-        this.charaItemValue[index].classList.add = 'invalid';
+        this.charaItemValue[index].classList.add = ' invalid';
       }
 
       if((name_is_valid)&&(value_is_valid)){
