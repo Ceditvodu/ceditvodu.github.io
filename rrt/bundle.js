@@ -24425,22 +24425,6 @@
 	              var polygon = "M8 48 L56 48 L32 12 Z";
 	              // console.log(this.props.characters.length, index);
 	              if (index == 0) {
-	                return prev + "M " + (0, _main.getIndicators)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).x + " " + (0, _main.getIndicators)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).y + " ";
-	              } else if (index == _this2.props.characters.length - 1) {
-	                return prev + "L " + (0, _main.getIndicators)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).x + " " + (0, _main.getIndicators)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).y + " Z";
-	              } else {
-	                return prev + "L " + (0, _main.getIndicators)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).x + " " + (0, _main.getIndicators)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).y + " ";
-	              }
-	              return prev + "";
-	            }, ""), className: _chart2.default.chart })
-	        ),
-	        _react2.default.createElement(
-	          'g',
-	          null,
-	          _react2.default.createElement('path', { d: this.props.characters.reduce(function (prev, chara, index) {
-	              var polygon = "M8 48 L56 48 L32 12 Z";
-	              // console.log(this.props.characters.length, index);
-	              if (index == 0) {
 	                return prev + "M " + (0, _main.getPoints)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].x + " " + (0, _main.getPoints)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].y + " ";
 	              } else if (index == _this2.props.characters.length - 1) {
 	                return prev + "L " + (0, _main.getPoints)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].x + " " + (0, _main.getPoints)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].y + " Z";
@@ -24453,12 +24437,28 @@
 	        _react2.default.createElement(
 	          'g',
 	          null,
+	          _react2.default.createElement('path', { d: this.props.characters.reduce(function (prev, chara, index) {
+	              var polygon = "M8 48 L56 48 L32 12 Z";
+	              // console.log(this.props.characters.length, index);
+	              if (index == 0) {
+	                return prev + "M " + (0, _main.getIndicators)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).x + " " + (0, _main.getIndicators)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).y + " ";
+	              } else if (index == _this2.props.characters.length - 1) {
+	                return prev + "L " + (0, _main.getIndicators)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).x + " " + (0, _main.getIndicators)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).y + " Z";
+	              } else {
+	                return prev + "L " + (0, _main.getIndicators)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).x + " " + (0, _main.getIndicators)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).y + " ";
+	              }
+	              return prev + "";
+	            }, ""), className: _chart2.default.chart })
+	        ),
+	        _react2.default.createElement(
+	          'g',
+	          null,
 	          this.props.characters.map(function (chara, index) {
 	            return _react2.default.createElement('line', { x1: _this2.width / 2,
 	              y1: _this2.height / 2,
 	              x2: (0, _main.getPoints)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].x,
 	              y2: (0, _main.getPoints)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].y,
-	              style: { stroke: "rgba(100,0,100,1)" } });
+	              className: _chart2.default.vertical });
 	          })
 	        ),
 	        this.props.characters.map(function (chara, index) {
@@ -24467,7 +24467,7 @@
 	            { key: index },
 	            _react2.default.createElement('circle', { cx: (0, _main.getIndicators)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).x,
 	              cy: (0, _main.getIndicators)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2, index, chara.value).y,
-	              r: '2', stroke: 'green', strokeWidth: '1', fill: 'blue' })
+	              r: '2', className: _chart2.default.critical_point })
 	          );
 	        }),
 	        this.props.characters.map(function (chara, index) {
@@ -24495,13 +24495,13 @@
 	            { key: index },
 	            _react2.default.createElement('circle', { cx: (0, _main.getPoints)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].x,
 	              cy: (0, _main.getPoints)(_this2.props.characters.length, _this2.width / 2, _this2.height / 2)[index].y,
-	              r: '2', stroke: 'green', strokeWidth: '1', fill: 'yellow' })
+	              r: '2', className: _chart2.default.point })
 	          );
 	        }),
 	        _react2.default.createElement(
 	          'g',
 	          null,
-	          _react2.default.createElement('circle', { cx: this.width / 2, cy: this.height / 2, r: '5', stroke: 'green', strokeWidth: '1', fill: 'black' })
+	          _react2.default.createElement('circle', { cx: this.width / 2, cy: this.height / 2, r: '5', className: _chart2.default.center })
 	        )
 	      );
 	    }
@@ -25470,13 +25470,18 @@
 
 
 	// module
-	exports.push([module.id, ".chart__background___2SNp9{\r\n\tstroke:rgba(100,0,100,1);\r\n\tfill:rgba(100,0,100,0.5);\r\n}\r\n.chart__chart___3f-3y{\r\n\tstroke:rgba(100,100,0,1);\r\n\tfill:rgba(100,0,100,0.5);\r\n}\r\n.chart__text___mM7W4{\r\n\tfont-family:\"Passion One\";\r\n\tfont-size: 24px; \r\n  fill:#fff;\r\n  stroke:#000;\r\n  stroke-width:0.5 ;\r\n}", ""]);
+	exports.push([module.id, ".chart__colors___31_UW{\r\n\tcolor: #9398F3; /* rgba(147, 152, 243) */\r\n\tcolor: #F0ABD6; /* rgba(240, 171, 214) */\r\n\tcolor: #FFC2FF;\r\n\tcolor: #EBEBF3;\r\n\tcolor: #D9AE83;\r\n}\r\n\r\n.chart__background___2SNp9{\r\n\tstroke:rgba(240, 171, 214,1);\r\n\tfill:rgba(147, 152, 243,0.5);\r\n\tstroke-width:5 ;\r\n}\r\n.chart__chart___3f-3y{\r\n\tstroke:#D9AE83;\r\n\tfill:rgba(147, 152, 243,0.5);\r\n\tstroke-width:2.5 ;\r\n}\r\n.chart__text___mM7W4{\r\n\tfont-family:\"Passion One\";\r\n\tfont-size: 24px; \r\n  fill:#fff;\r\n  stroke:#000;\r\n  stroke-width:0.5 ;\r\n}\r\n.chart__vertical___35BCo{\r\n\tstroke:rgba(255, 255, 255,1);\r\n}\r\n.chart__critical_point___2NsLP{\r\n\tstroke:green;\r\n\tstroke-width:1;\r\n\tfill:rgba(255, 255, 255,1);\r\n}\r\n\r\n.chart__point___1azRS{\r\n\tstroke:green;\r\n\tstroke-width:1;\r\n\tfill:yellow;\r\n}\r\n\r\n.chart__center___lunti{\r\n\tstroke:green;\r\n\tstrokeWidth:1;\r\n\tfill:rgba(255, 255, 255,1);\r\n\t\r\n}\r\n", ""]);
 
 	// exports
 	exports.locals = {
+		"colors": "chart__colors___31_UW",
 		"background": "chart__background___2SNp9",
 		"chart": "chart__chart___3f-3y",
-		"text": "chart__text___mM7W4"
+		"text": "chart__text___mM7W4",
+		"vertical": "chart__vertical___35BCo",
+		"critical_point": "chart__critical_point___2NsLP",
+		"point": "chart__point___1azRS",
+		"center": "chart__center___lunti"
 	};
 
 /***/ }

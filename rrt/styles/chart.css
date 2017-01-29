@@ -1,10 +1,20 @@
+.colors{
+	color: #9398F3; /* rgba(147, 152, 243) */
+	color: #F0ABD6; /* rgba(240, 171, 214) */
+	color: #FFC2FF;
+	color: #EBEBF3;
+	color: #D9AE83;
+}
+
 .background{
-	stroke:rgba(100,0,100,1);
-	fill:rgba(100,0,100,0.5);
+	stroke:rgba(240, 171, 214,1);
+	fill:rgba(147, 152, 243,0.5);
+	stroke-width:5 ;
 }
 .chart{
-	stroke:rgba(100,100,0,1);
-	fill:rgba(100,0,100,0.5);
+	stroke:#D9AE83;
+	fill:rgba(147, 152, 243,0.5);
+	stroke-width:2.5 ;
 }
 .text{
 	font-family:"Passion One";
@@ -12,4 +22,25 @@
   fill:#fff;
   stroke:#000;
   stroke-width:0.5 ;
+}
+.vertical{
+	stroke:rgba(255, 255, 255,1);
+}
+.critical_point{
+	stroke:green;
+	stroke-width:1;
+	fill:rgba(255, 255, 255,1);
+}
+
+.point{
+	stroke:green;
+	stroke-width:1;
+	fill:yellow;
+}
+
+.center{
+	stroke:green;
+	strokeWidth:1;
+	fill:rgba(255, 255, 255,1);
+	
 }
