@@ -221,7 +221,7 @@ class Controls extends Component{
 
 export default connect(
   state => ({
-    characters: state.characters
+    characters: state.characterList.characters
   }),
   dispatch => ({
     onAddChara: (charaInputName, charaInputValue) => {

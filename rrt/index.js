@@ -1,12 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
+import { Router, Route, browserHistory } from 'react-router'
+import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 import App from './App';
 
 import characterList from './reducers'
 
-const store = createStore(characterList, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const store = createStore(  combineReducers({
+    characterList:characterList,
+    router:routerReducer
+  }), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+
+
+
 
 ReactDOM.render(
 	<Provider store={store}>

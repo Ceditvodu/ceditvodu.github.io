@@ -129,6 +129,6 @@ class Chart extends Component {
 
 export default connect(
   state => ({
-    characters: state.characters
+    characters: state.characterList.characters
   })
 )(Chart);
