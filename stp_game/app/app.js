@@ -6,6 +6,8 @@ window.onload = () => {
 	}[+(container!=null)])();
 }
 
+// Place where progrmm innit 
+
 function programStart (container) {
 	let program_cont = document.getElementById(container);
 
@@ -176,6 +178,7 @@ function programStart (container) {
 
 	sectionGenStart(section_runner, program_cont, collector);
 
+	
 	function sectionGenStart (callbacks, container, collectors_entity) {
 		let section_gen = new Worker("app/view/section_gen.js");
 		section_gen.postMessage('make');
