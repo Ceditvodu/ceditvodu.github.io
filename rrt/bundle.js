@@ -73,14 +73,27 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var store = (0, _redux.createStore)((0, _redux.combineReducers)({
-		characterList: _reducers2.default,
-		router: _reactRouterRedux.routerReducer
+	    characterList: _reducers2.default,
+	    routing: _reactRouterRedux.routerReducer
 	}), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
+	var history = (0, _reactRouterRedux.syncHistoryWithStore)(_reactRouter.browserHistory, store);
+
+	// <Router history={history}>
 	_reactDom2.default.render(_react2.default.createElement(
-		_reactRedux.Provider,
-		{ store: store },
-		_react2.default.createElement(_App2.default, null)
+	    _reactRedux.Provider,
+	    { store: store },
+	    _react2.default.createElement(
+	        _reactRouter.Router,
+	        { history: history },
+	        _react2.default.createElement(
+	            _reactRouter.Route,
+	            { path: '/', component: _App2.default },
+	            _react2.default.createElement(_reactRouter.IndexRoute, { component: _App2.default }),
+	            _react2.default.createElement(_reactRouter.Route, { path: 'app/', component: _App2.default }),
+	            _react2.default.createElement(_reactRouter.Route, { path: 'app/', onEnter: _App2.default })
+	        )
+	    )
 	), document.getElementsByClassName('root')[0]);
 
 	// store.subscribe(() => {
@@ -24320,6 +24333,8 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
+	var _reactRouter = __webpack_require__(244);
+
 	var _chart = __webpack_require__(232);
 
 	var _chart2 = _interopRequireDefault(_chart);
@@ -24352,7 +24367,12 @@
 	        'div',
 	        null,
 	        _react2.default.createElement(_chart2.default, { width: '320', height: '200' }),
-	        _react2.default.createElement(_controls2.default, null)
+	        _react2.default.createElement(_controls2.default, null),
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/app/', activeClassName: 'current' },
+	          'go'
+	        )
 	      );
 	    }
 	  }]);
